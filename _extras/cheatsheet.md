@@ -16,18 +16,18 @@ In some commands a parameter appears in angle brackets (e.g. `<file>`). This not
 
 ## First steps
 
-| command                                    | description                                                                                                                                |
-|--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `git init <repo-name>`                     | creates a new repository called `<repo-name>`                                                                                               |
-| `git clone <<repository>`                  | clones an existing repository                                                                                                               |
-| `git status`                               | shows status message about the state of the working directory and staging area                                                                   |
-| `git add <file>`                           | adds `<file>` to staging area                                                                                                               |
-| `git add .`                                | adds all files to the staging area that where changed since last commit                                                                    |
-| `git commit -m "<commit-message>"`         | creates a commit from the current (staged) project state with the message `<commit-message>`                                               |
-| `git commit --amend -m "<commit-message>"` | replaces last commit using new commit message; additional files can be staged beforehand (`git add`)                                 |
-| `git gui`                                  | starts the graphical client for staging and committing                                                                                     |
-| file `.gitignore`                          | contains files ignored by Git<br>each line can contain a file name or patterns like `*.log` which will ignore all files ending with `.log` |
-| `git status --ignored`                     | shows ignored files                                                                                                                                            |
+| command                                    | description                                                                                                                             |
+|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `git init <repo-name>`                     | creates a new repository called `<repo-name>`                                                                                           |
+| `git clone <repository>`                  | clones an existing repository                                                                                                           |
+| `git status`                               | shows status message about the state of the working directory and staging area                                                          |
+| `git add <file>`                           | adds `<file>` to staging area                                                                                                           |
+| `git add .`                                | adds all files to the staging area that where changed since last commit                                                                 |
+| `git commit -m "<commit-message>"`         | creates a commit from the current (staged) project state with the message `<commit-message>`                                            |
+| `git commit --amend -m "<commit-message>"` | replaces last commit using new commit message; additional files can be staged beforehand (`git add`)                                    |
+| `git gui`                                  | starts the graphical client for staging and committing                                                                                  |
+| `cat .gitignore`                           | shows files ignored by Git<br>each line can contain a file name or patterns like `*.log` which will ignore all files ending with `.log` |
+| `git status --ignored`                     | shows ignored files                                                                                                                     |
 
 ## Version history
 
@@ -78,7 +78,7 @@ In some commands a parameter appears in angle brackets (e.g. `<file>`). This not
 |--------------------------------------|---------------------------------------------------------|
 | `git remote -v`                      | lists remotes                                           |
 | `git remote add <name> <url>`        | adds remote `<name>` pointing at `<url>`                |
-| `git remote set-url <name> <newurl>` | changes URL of remote `<name>` to `<newurl>`            |
+| `git remote set-url <name> <new-url>` | changes URL of remote `<name>` to `<new-url>`            |
 | `git pull <name>`                    | incorporates changes from remote `<name>`               |
 | `git push <name>`                    | pushes changes from current branch into remote `<name>` |
 
