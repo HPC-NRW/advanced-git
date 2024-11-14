@@ -67,7 +67,18 @@ In some commands a parameter appears in angle brackets (e.g. `<file>`). This not
 | `git checkout <branch>` | if `DETACHED HEAD`: back to current commit, reattaches `HEAD`, committing is harmless again. `<branch>` is `main` or `master` by default. |
 
 ## Reset project
+
 | command              | description                                                                                      |
 |----------------------|--------------------------------------------------------------------------------------------------|
 | `git reset <commit>` | set repository back into the state of `<commit>`, caution: deletes all commits after `<commit>`! |
+
+## Working with remote repositories
+
+| command                              | description                                             |
+|--------------------------------------|---------------------------------------------------------|
+| `git remote -v`                      | lists remotes                                           |
+| `git remote add <name> <url>`        | adds remote `<name>` pointing at `<url>`                |
+| `git remote set-url <name> <newurl>` | changes URL of remote `<name>` to `<newurl>`            |
+| `git pull <name>`                    | incorporates changes from remote `<name>`               |
+| `git push <name>`                    | pushes changes from current branch into remote `<name>` |
 
