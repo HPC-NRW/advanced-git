@@ -49,9 +49,23 @@ git commit -m "Message"
 ~~~
 {: .language-bash}
 
-A commit, or "revision", is an individual change to a file or set of files. It's like when you save a file, except with `git`, every time you save it creates a unique ID (a.k.a. the "SHA" or "hash") that allows you to keep record of what changes were made when and by who. Commits usually contain a commit message which is a brief description of what changes were made.
+A commit, or "revision", is an individual change to a file or set of files. It's like when you save a file, except with `git`, every time you save it creates a unique ID (a.k.a. the "SHA" or "hash") that allows you to keep record of what changes were made when and by who. Each commit contains several key pieces of information that uniquely define its state:
 
-![Review 3](../fig/04-recap.png)
+- **Commit message**: A description provided by the user explaining the purpose or details of the commit.
+
+- **Committer**: The person who added the commit to the repository.
+
+- **Commit date**: The date and time when the commit was added to the repository.
+
+- **Author**: The original creator of the changes in the commit, which may differ from the committer.
+
+- **Authoring date**: The date and time when the changes were originally made by the author.
+
+- **Parent commit(s)**: Reference to the previous commit(s), which allows Git to trace the history and create a chain of commits.
+
+- **Working directory hash**: A unique hash representing the state of all tracked files in the working directory at the time of the commit.
+
+All these elements together generate a unique **commit hash**, which identifies the commit across the Git repository.
 
 ~~~
 git log
