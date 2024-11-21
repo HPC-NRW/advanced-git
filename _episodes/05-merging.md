@@ -11,15 +11,15 @@ keypoints:
 - "`git merge --ff-only` is a good way to pull down changes from remote"
 ---
 
-Even if you live well, one day you will have to merge a branch. Your branch may or may not have diverged from the main branch. The command that accomplishes this is `git merge`.
+When you are collaborating, you will have to merge a branch independent if your branch may or may not have diverged from the main branch. Most of the Git hosting platform like GiHub or GitLab allows you to merge a branch from their web interface but you can also merge the branches from your machine using `git merge`.
 
-There are 3 ways to merge:
+There are 2 ways to merge:
 
 - non-fast-forward merged (recommended)
 
 - fast forward merged
 
-- three way
+![Merging diagram.](../fig/09-merging.png)
 
 Reminder: when starting work on a new feature, be careful where you branch from!
 
@@ -29,8 +29,6 @@ git fetch upstream
 git checkout -b develop upstream/develop
 ~~~
 {: .language-bash}
-
-![Merging 1](../fig/09-merging.png)
 
 ## Non-fast-forwad Merge
 
@@ -44,6 +42,35 @@ git merge --no-ff <branch> -m "Message"
 
 The `--no-ff` flag causes the merge to always create a new commit object, even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature.
 
+## Exercise: Creating a non-fast-forwad merge.
+
+> Create a new Git repository that has the following tree.
+>
+> ~~~
+> *   69fac81 (main) Merge branch 'gitignore'
+> |\  
+> | * 5537012 (gitignore) Add .gitignore
+> |/  
+> * 6ec7c0f Add README
+> ~~~
+> 
+> > ## Solution
+> > ~~~
+> > git init
+> > touch README.md
+> > git add README.md
+> > git commit -m 'Add README'
+> > git checkout -b gitignore
+> > touch .gitignore
+> > git add .gitignore
+> > git commit -m "Add .gitignore"
+> > git checkout main
+> > git merge --no-ff gitignore
+> > ~~~
+> > {: .language-bash}
+> {: .solution}
+{: .challenge}
+
 ## Fast-forward Merge
 
 If there are no conflicts with the main branch, a "fast-forward" merge can be executed with. This will NOT create a merge commit! Aborts merge if it cannot be done.
@@ -55,9 +82,27 @@ git merge --ff-only <branch>
 ~~~
 {: .language-bash}
 
-Using the fast-forward merge it is impossible to see from the `git` history which of the commit objects together have implemented a feature. You would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
+If using the fast-forward merge, it is impossible to see from the `git` history which of the commit objects together have implemented a feature. You would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
 
 For a good illustration of fast-forward merge (and other concepts), see this thread: https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge
+
+## Exercise: Creating a fast-forwad merge.
+
+> Consider the following Git tree
+>
+> ~~~
+> * a78b99f (main) Add title
+> | * 3d88062 (remote) Add .gitignore
+> |/  
+> * 86c4247 Add README
+> ~~~
+> 
+> Is possible to run a fast-forward merge to incorporate the branch `remote` into `main`?
+> > ## Solution
+> > It is not possible to run a fast-forward merge because of commit `a78b99f`. 
+> > {: .language-bash}
+> {: .solution}
+{: .challenge}
 
 ### Three-way Merge
 
