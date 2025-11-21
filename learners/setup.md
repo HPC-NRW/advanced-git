@@ -12,7 +12,10 @@ instructions on installing Git for various operating systems.
 - [Git installation on MacOS][workshop-setup]
 - [Git installation on Linux][workshop-setup]
 
-## Creating a GitHub Account
+
+::::::::::::::::::::::::: group-tab
+
+### Creating a GitHub Account
 
 You will need an account for [GitHub](https://github.com) to follow episodes 7 & 8 in this lesson.
 
@@ -21,7 +24,7 @@ You will need an account for [GitHub](https://github.com) to follow episodes 7 &
 3. Verify your email address with GitHub.
 4. Configure multifactor authentication (see below).
 
-### Multi-factor Authentication
+**Multi-factor Authentication**
 
 In 2023, GitHub introduced a requirement for 
 all accounts to have 
@@ -43,6 +46,38 @@ Several options exist for setting up 2FA, which are summarised here:
        or the [Google Titan key](https://store.google.com/us/product/titan_security_key?hl=en-US&pli=1).
 
 The GitHub documentation provides [more details about configuring 2FA](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).
+
+### Creating a Gitlab Account
+
+1. Go to https://gitlab.com and follow the "Get free trial" link at the top-right
+2. Follow the instructions to create an account
+3. Verify your email address with Gitlab
+4. Configure multifactor authentication (optional---see below)
+
+**Multi-factor Authentication**
+
+Multifactor authentication is currently not required, but you can set it up to
+increase security for your account.
+
+Several options exist for setting up 2FA, which are summarised here:
+
+1. If you already use an authenticator app,
+   like [Google Authenticator](https://support.google.com/accounts/answer/1066447?hl=en&co=GENIE.Platform%3DiOS&oco=0)
+   or [Duo Mobile](https://duo.com/product/multi-factor-authentication-mfa/duo-mobile-app) on your smartphone for example,
+   [add Gitlab to that app](https://docs.gitlab.com/user/profile/account/two_factor_authentication/#enable-a-one-time-password-authenticator).
+2. If you have access to a smartphone but do not already use an authenticator app, install one and
+   [add Gitlab to that app](https://docs.gitlab.com/user/profile/account/two_factor_authentication/#enable-a-one-time-password-authenticator).
+3. If you do not have access to a smartphone or do not want to install an authenticator app, you can
+   [use a hardware security key](https://docs.gitlab.com/user/profile/account/two_factor_authentication/#set-up-a-webauthn-device)
+   like [YubiKey](https://www.yubico.com/products/yubikey-5-overview/)
+   or the [Google Titan key](https://store.google.com/us/product/titan_security_key?hl=en-US&pli=1).
+4. [Save the recovery codes](https://docs.gitlab.com/user/profile/account/two_factor_authentication/#recovery-codes) and store them in a secure location. You can use
+   them to login and reconfigure should you loose access you to configured
+   second factor.
+
+The Gitlab documentation provides [more details about configuring 2FA](https://docs.gitlab.com/user/profile/account/two_factor_authentication/).
+
+:::::::::::::::::::::::::::::::::::
 
 ----------------
 
