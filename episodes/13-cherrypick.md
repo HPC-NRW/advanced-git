@@ -26,5 +26,3 @@ exercises: 0
 - First key point. Brief Answer to questions. (FIXME)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-{% include links.md %}

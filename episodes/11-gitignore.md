@@ -26,4 +26,3 @@ Add info about setting up a global git ignore file.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-{% include links.md %}

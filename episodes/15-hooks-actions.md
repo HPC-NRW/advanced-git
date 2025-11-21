@@ -71,5 +71,3 @@ Materials: https://verdantfox.com/blog/how-to-use-git-pre-commit-hooks-the-hard-
 - First key point. Brief Answer to questions. (FIXME)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-{% include links.md %}
