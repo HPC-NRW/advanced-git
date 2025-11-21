@@ -2,16 +2,21 @@
 title: "Branching Models"
 teaching: 0
 exercises: 0
-questions:
-- "What is a branching model?"
-- "Why do you need one?"
-- "What are the most common branching models?"
-objectives:
-- "Learn about the importance of a branching model."
-keypoints:
-- "A branching model is a pre-agreed way of merging branches into the main branch."
-- "A branching model is needed when multiple contributors are making changes to a single project."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Learn about the importance of a branching model.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- What is a branching model?
+- Why do you need one?
+- What are the most common branching models?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What is a branching model/strategy?
 
@@ -52,18 +57,18 @@ That said, there are a number of established (and less so) branching models that
 - **Centralized workflow**: enables all team members to make changes directly to the main branch. Every change is logged into the history. In this workflow, the contributors do not use other branches. Instead they all make changes on the main branch directly and commit to it. This woks for individual developers or small thema which communicate very well, but can be tricky for larger teams: the code is in constant state of flux and developers keep changes local until they are ready to release.
 
 - **Trunk-based development** (cactus flow?): is somewhat similar to the centralized workflow. The development happens on a single branch called `trunk`. When changes need to be merged, each developer pulls and rebases from the trunk branch and resolves conflicts locally. This can work if small merges are made frequently and is more successful if there is CI/CD.
-  
+
 - **Feature branch workflow**: every small change or "feature" gets its own branch where the developers make changes. Once the feature is done, they submit a merge/pull request and merge it into the main branch. Features branches should be relatively short-lived. The benefit of this model is that the main branch is not poluted by unfinished features. Good for teams.
-  
+
 - **Gitflow**: is a model where the main development happens in a develop branch with feature branches. When the develop branch is ready for a release (or to go into production), a team member creates a release branch which is tested and eventually merged onto the dev and eventually main branch.
-  
+
 - **GitHub flow** (https://docs.github.com/en/get-started/quickstart/github-flow): similar to the branching workflow.
-  
+
 - **GitLab flow**: is a simplified version of Gitflow (https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/)
 
 - **Oneflow**: is similar to Gitflow but relies on the maintanance of one long-lived branch. It is meant to be simpler, without a develop branch but feature branches still exist (https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow).
-  
-- **Forking workflow** (e.g. astropy): is a model where each contributor creates a `fork` or a complete copy of the repository. Every contribitor effectively has two repositories: his own and the main (upstream) one. Changes are made as pull requests against the main repository. This model is propular with open source projects because the vast majority of contributors do not need to have priviledges in the main repository. 
+
+- **Forking workflow** (e.g. astropy): is a model where each contributor creates a `fork` or a complete copy of the repository. Every contribitor effectively has two repositories: his own and the main (upstream) one. Changes are made as pull requests against the main repository. This model is propular with open source projects because the vast majority of contributors do not need to have priviledges in the main repository.
 
 A longer description of some of these can be found here: https://about.gitlab.com/topics/version-control/what-is-git-workflow/#feature-branching-git-workflow
 
@@ -72,5 +77,9 @@ In summary, there are many different ways to collaborate on a project. Look at t
 <!--- ![Branching 1](../fig/15-branching-1.png) --->
 <!--- ![branching 2](../fig/16-branching-2.png) --->
 
+:::::::::::::::::::::::::::::::::::::::: keypoints
 
-{% include links.md %}
+- A branching model is a pre-agreed way of merging branches into the main branch.
+- A branching model is needed when multiple contributors are making changes to a single project.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
