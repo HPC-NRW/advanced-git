@@ -556,76 +556,114 @@ any links that you are not going to use.
  --></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><p>FIXME: Setup instructions live in this document. Please specify the
-tools and the data sets the Learner needs to have installed.</p>
-<section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
-<hr class="half-width"><!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
---><p>Download the <a href="https://example.com/FIXME" class="external-link">data zip file</a>
-and unzip it to your Desktop</p>
-</section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><div id="details" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="details" class="callout-inner">
-<h3 class="callout-title">Details</h3>
-<div class="callout-content">
-<p>Setup for different systems can be presented in dropdown menus via a
-<code>spoiler</code> tag. They will join to this discussion block, so
-you can give a general overview of the software used in this lesson here
-and fill out the individual operating systems (and potentially add more,
-e.g. online setup) in the solutions blocks.</p>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Windows
+      </section><section id="setup"><section><h2 class="section-heading" id="installing-git">Installing Git<a class="anchor" aria-label="anchor" href="#installing-git"></a></h2>
+<hr class="half-width"><p>Since several Carpentries lessons rely on Git, please see <a href="https://carpentries.github.io/workshop-template/install_instructions/#git" class="external-link">this
+section of the workshop template</a> for instructions on installing Git
+for various operating systems.</p>
+<ul><li><a href="https://carpentries.github.io/workshop-template/install_instructions/#git" class="external-link">Git
+installation on Windows</a></li>
+<li><a href="https://carpentries.github.io/workshop-template/install_instructions/#git" class="external-link">Git
+installation on MacOS</a></li>
+<li><a href="https://carpentries.github.io/workshop-template/install_instructions/#git" class="external-link">Git
+installation on Linux</a></li>
+</ul><div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-CreatingaGitHubAccount" name="CreatingaGitHubAccount" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-CreatingaGitHubAccount" type="button" role="tab" aria-controls="nav-tabpanel-1-CreatingaGitHubAccount" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-CreatingaGitHubAccount">
+  Creating a GitHub Account
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
-<div class="accordion-body">
-<p>Use PuTTY</p>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  MacOS
+<button class="nav-link" id="nav-tab-1-CreatingaGitlabAccount" name="CreatingaGitlabAccount" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-CreatingaGitlabAccount" type="button" role="tab" aria-controls="nav-tabpanel-1-CreatingaGitlabAccount" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-CreatingaGitlabAccount">
+  Creating a Gitlab Account
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
-<div class="accordion-body">
-<p>Use Terminal.app</p>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-CreatingaGitHubAccount" class="tab-pane show active" aria-labelledby="nav-tab-1-CreatingaGitHubAccount" role="tabpanel">
+<p>You will need an account for <a href="https://github.com" class="external-link">GitHub</a>
+to follow episodes 7 &amp; 8 in this lesson.</p>
+<ol style="list-style-type: decimal"><li>Go to <a href="https://github.com" class="external-link uri">https://github.com</a> and follow the “Sign up” link at the
+top-right of the window.</li>
+<li>Follow the instructions to create an account.</li>
+<li>Verify your email address with GitHub.</li>
+<li>Configure multifactor authentication (see below).</li>
+</ol><p><strong>Multi-factor Authentication</strong></p>
+<p>In 2023, GitHub introduced a requirement for all accounts to have <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-two-factor-authentication" class="external-link">multi-factor
+authentication (2FA)</a> configured for extra security. Several options
+exist for setting up 2FA, which are summarised here:</p>
+<ol style="list-style-type: decimal"><li>
+<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-text-messages" class="external-link">set
+up 2FA via text message</a> (<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/countries-where-sms-authentication-is-supported" class="external-link">list
+of countries where authentication by SMS is supported</a>), or</li>
+<li>
+<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-security-key" class="external-link">use
+a hardware security key</a> like <a href="https://www.yubico.com/products/yubikey-5-overview/" class="external-link">YubiKey</a>
+or the <a href="https://store.google.com/us/product/titan_security_key?hl=en-US&amp;pli=1" class="external-link">Google
+Titan key</a>.</li>
+</ol><ol style="list-style-type: decimal"><li>If you already use an authenticator app, like <a href="https://support.google.com/accounts/answer/1066447?hl=en&amp;co=GENIE.Platform%3DiOS&amp;oco=0" class="external-link">Google
+Authenticator</a> or <a href="https://duo.com/product/multi-factor-authentication-mfa/duo-mobile-app" class="external-link">Duo
+Mobile</a> on your smartphone for example, <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-totp-mobile-app" class="external-link">add
+GitHub to that app</a>.</li>
+<li>If you have access to a smartphone but do not already use an
+authenticator app, install one and <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-totp-mobile-app" class="external-link">add
+GitHub to the app</a>.</li>
+<li>If you do not have access to a smartphone or do not want to install
+an authenticator app, you have two options:
+<ol style="list-style-type: decimal"><li>
+<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-text-messages" class="external-link">set
+up 2FA via text message</a> (<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/countries-where-sms-authentication-is-supported" class="external-link">list
+of countries where authentication by SMS is supported</a>), or</li>
+<li>
+<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-security-key" class="external-link">use
+a hardware security key</a> like <a href="https://www.yubico.com/products/yubikey-5-overview/" class="external-link">YubiKey</a>
+or the <a href="https://store.google.com/us/product/titan_security_key?hl=en-US&amp;pli=1" class="external-link">Google
+Titan key</a>.</li>
+</ol></li>
+</ol><p>The GitHub documentation provides <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication" class="external-link">more
+details about configuring 2FA</a>.</p>
+</div>
+<div id="nav-tabpanel-1-CreatingaGitlabAccount" class="tab-pane" aria-labelledby="nav-tab-1-CreatingaGitlabAccount" role="tabpanel">
+<ol style="list-style-type: decimal"><li>Go to <a href="https://gitlab.com" class="external-link uri">https://gitlab.com</a> and follow the “Get free trial” link
+at the top-right</li>
+<li>Follow the instructions to create an account</li>
+<li>Verify your email address with Gitlab</li>
+<li>Configure multifactor authentication (optional—see below)</li>
+</ol><p><strong>Multi-factor Authentication</strong></p>
+<p>Multifactor authentication is currently not required, but you can set
+it up to increase security for your account.</p>
+<p>Several options exist for setting up 2FA, which are summarised
+here:</p>
+<ol style="list-style-type: decimal"><li>If you already use an authenticator app, like <a href="https://support.google.com/accounts/answer/1066447?hl=en&amp;co=GENIE.Platform%3DiOS&amp;oco=0" class="external-link">Google
+Authenticator</a> or <a href="https://duo.com/product/multi-factor-authentication-mfa/duo-mobile-app" class="external-link">Duo
+Mobile</a> on your smartphone for example, <a href="https://docs.gitlab.com/user/profile/account/two_factor_authentication/#enable-a-one-time-password-authenticator" class="external-link">add
+Gitlab to that app</a>.</li>
+<li>If you have access to a smartphone but do not already use an
+authenticator app, install one and <a href="https://docs.gitlab.com/user/profile/account/two_factor_authentication/#enable-a-one-time-password-authenticator" class="external-link">add
+Gitlab to that app</a>.</li>
+<li>If you do not have access to a smartphone or do not want to install
+an authenticator app, you can <a href="https://docs.gitlab.com/user/profile/account/two_factor_authentication/#set-up-a-webauthn-device" class="external-link">use
+a hardware security key</a> like <a href="https://www.yubico.com/products/yubikey-5-overview/" class="external-link">YubiKey</a>
+or the <a href="https://store.google.com/us/product/titan_security_key?hl=en-US&amp;pli=1" class="external-link">Google
+Titan key</a>.</li>
+<li>
+<a href="https://docs.gitlab.com/user/profile/account/two_factor_authentication/#recovery-codes" class="external-link">Save
+the recovery codes</a> and store them in a secure location. You can use
+them to login and reconfigure should you loose access you to configured
+second factor.</li>
+</ol><p>The Gitlab documentation provides <a href="https://docs.gitlab.com/user/profile/account/two_factor_authentication/" class="external-link">more
+details about configuring 2FA</a>.</p>
 </div>
 </div>
 </div>
-</div>
-<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Linux
-  </h3>
-</button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
-<div class="accordion-body">
-<p>Use Terminal</p>
-</div>
-</div>
-</div>
+<hr></section><section><h2 class="section-heading" id="preparing-your-working-directory">Preparing Your Working Directory<a class="anchor" aria-label="anchor" href="#preparing-your-working-directory"></a></h2>
+<hr class="half-width"><p>We’ll do our work in the <code>Desktop</code> folder so make sure you
+change your working directory to it with:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> cd</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">$</span> cd Desktop</span></code></pre>
 </div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
