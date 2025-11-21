@@ -61,6 +61,12 @@
     <loc>https://carpentries-incubator.github.io/advanced-git/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/advanced-git/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/advanced-git/images.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/advanced-git/index.html</loc>
   </url>
   <url>
@@ -124,13 +130,31 @@
     <loc>https://carpentries-incubator.github.io/advanced-git/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/advanced-git/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/advanced-git/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/advanced-git/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/advanced-git/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/advanced-git/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/advanced-git/instructor/profiles.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/advanced-git/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/advanced-git/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/advanced-git/key-points.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/advanced-git/profiles.html</loc>
