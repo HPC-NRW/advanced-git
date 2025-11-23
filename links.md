@@ -1,10 +1,4 @@
-<!-- 
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use. 
- -->
 
-[pandoc]: https://pandoc.org/MANUAL.html
-[r-markdown]: https://rmarkdown.rstudio.com/
-[rstudio]: https://www.rstudio.com/
+[git-novice]: https://swcarpentry.github.io/git-novice
+[shell-novice]: https://swcarpentry.github.io/shell-novice
 [carpentries-workbench]: https://carpentries.github.io/sandpaper-docs/
-
