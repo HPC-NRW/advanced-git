@@ -13,11 +13,13 @@ instructions on installing Git for various operating systems.
 - [Git installation on Linux][workshop-setup]
 
 
+## Creating an Account at a Hosting Service
+
+You will need an account for [GitHub](https://github.com) to follow episodes 3 & 8 in this lesson.
+
 ::::::::::::::::::::::::: group-tab
 
-### Creating a GitHub Account
-
-You will need an account for [GitHub](https://github.com) to follow episodes 7 & 8 in this lesson.
+### GitHub
 
 1. Go to <https://github.com> and follow the "Sign up" link at the top-right of the window.
 2. Follow the instructions to create an account.
@@ -47,7 +49,7 @@ Several options exist for setting up 2FA, which are summarised here:
 
 The GitHub documentation provides [more details about configuring 2FA](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).
 
-### Creating a Gitlab Account
+### Gitlab
 
 1. Go to https://gitlab.com and follow the "Get free trial" link at the top-right
 2. Follow the instructions to create an account
