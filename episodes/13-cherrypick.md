@@ -48,6 +48,34 @@ The `<commit>` refers to the commit that you want to reset the branch to. You ca
 using the specific commit hash you want to reset to, or you can use relative references like
 `HEAD~2` (which refers to the commit two before the current HEAD).
 
+::: challenge
+## Undo a staged change.
+
+Stage a specific change and then take it back.
+
+:::: hint
+tbd.
+::::
+
+:::: solution
+tbd.
+::::
+
+:::
+
+
+::: challenge
+## Undo the last commit
+
+:::: hint
+tbd.
+::::
+
+:::: solution
+tbd.
+::::
+
+:::
 # I don't like the name of my branch! How do I rename it?
 
 You can rename a branch using the `git branch -m` command. The syntax looks like this:
@@ -63,9 +91,11 @@ branch, without checking it out you can provide the old branch name as well:
 git branch -m <old-branch-name> <new-branch-name>
 ```
 
-# What is "Cherrypick"?
+# I need that commit also in my branch. How do I get it?
 
-The "cherrypick" command is a way of moving a specific commit from one branch to another. Each
+If there is a specific change present in a different branch, that you need in
+another branch, Git let's to "cherrypick" those commits.
+The "cherrypick" command is a way of copying a specific commit from one branch to another. Each
 commit in git has a specific identifier (the "hash" or "SHA" of the commit) that we can use to
 refer to that exact commit. You can see the hash of your recent commits by runnning:
 
@@ -92,9 +122,13 @@ So why would I want to cherrypick a commit?
 - Or maybe you have a branch with several commits, but you realize that you want to split these out
   into one or more branches.
 
+::: callout
+The more confined and specific commits are, the better they can be cherry-picked.
+:::
+
 In these cases, you can use "cherrypick" to move a specific commit from one branch to another.
 
-# How to Cherrypick
+## How to Cherrypick
 
 The `cherrypick` command looks like this:
 
@@ -115,7 +149,7 @@ git cherry-pick <commit-hash>
 The command will then apply the changes only from the specified commit to the current branch,
 creating a new commit with those changes.
 
-# Undoing a Cherrypick
+## Undoing a Cherrypick
 
 If you cherrypick a commit and then realize that you made a mistake, you can undo the cherrypick
 using the `git reset` command we showed earlier:
@@ -124,7 +158,7 @@ using the `git reset` command we showed earlier:
 git reset --hard HEAD~1
 ```
 
-# Issues with Cherrypick
+## Issues with Cherrypick
 
 Cherrypicking is an infrequent operation, and it can lead to some issues if not used carefully.
 Some things to keep in mind:
@@ -136,6 +170,26 @@ Some things to keep in mind:
 - The new commit will look identical to the old commit, but with a different hash. This can make
   it difficult to visually track changes across branches.
 
+::: challenge
+
+## Cherry-picking a hotfix into a branch
+
+An urgend fix to main is also needed in a release branch to issue a bugfix
+release.
+
+1. Create a branch off main and add a commit.
+2. Switch back to main and add a commit there, too.
+3. Switch back to your newly created branch and cherry-pick the last commit
+   from main to the branch.
+
+:::: hint
+tbd.
+::::
+:::: solution
+tbd.
+::::
+
+:::
 
 ![GitFlow 1](fig/43-undo.png)
 ![GitFlow 1](fig/42-movebranch.png)
