@@ -28,7 +28,7 @@ The git version control system, used to manage the code in many millions of soft
 
 Git is powerful and flexible to fit a wide range of use cases and workflows from simple projects written by a single contributor to projects that are millions of lines and have hundreds of co-authors. Furthermore, it does a task that is quite complex. As a result, many users may find it challenging to navigate this complexity. While committing and sharing changes is fairly straightforward, for instance, but recovering from situations such as accidental commits, pushes or bad merges is difficult without a solid understanding of the rather large and complex conceptual model. Case in point, three of the top five highest voted questions on Stack Overflow are questions about how to carry out relatively simple tasks: undoing the last commit, changing the last commit message, and deleting a remote branch.
 
-![XKCD Git](fig/01-xkcd-git.png){alt="An XKCD comic about the git control system."}
+[![XKCD Git](fig/01-xkcd-git.png){alt="An XKCD comic about the git control system."}](https://xkcd.com/1597/)
 
 Mouse-over text: If that doesn't fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of 'It's really pretty simple, just think of branches as...' and eventually you'll learn the commands that will fix everything.
 
