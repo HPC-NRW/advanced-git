@@ -93,11 +93,11 @@ git branch -m <old-branch-name> <new-branch-name>
 
 # I need that commit also in my branch. How do I get it?
 
-If there is a specific change present in a different branch, that you need in
-another branch, Git let's to "cherrypick" those commits.
-The "cherrypick" command is a way of copying a specific commit from one branch to another. Each
-commit in git has a specific identifier (the "hash" or "SHA" of the commit) that we can use to
-refer to that exact commit. You can see the hash of your recent commits by runnning:
+If there is a specific change present in a different branch that you need in another branch, Git
+lets you "cherrypick" those commits. The "cherrypick" command is a way of copying a specific commit
+from one branch to another. Each commit in git has a specific identifier (the "hash" or "SHA" of
+the commit) that we can use to refer to that exact commit. You can see the hash of your recent
+commits by running:
 
 ```bash
 git log --oneline
