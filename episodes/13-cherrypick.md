@@ -36,7 +36,7 @@ The `<mode>` refers to how the command should handle changes to the working bran
 The most common modes are:
 
 
-- `--mixed`: This is the deafult mode if you do not provide one. The changes from the undone
+- `--mixed`: This is the default mode if you do not provide one. The changes from the undone
   commits are kept in the working directory, but are removed from the staging area.
 - `--soft`: The changes from the undone commit(s) are kept in the staging area, as though you had
   just run `git add` on those changes.
