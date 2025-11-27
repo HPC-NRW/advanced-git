@@ -29,12 +29,41 @@ There are 2 ways to merge:
 
 ## Fast-forward Merge
 
-If there are no conflicts with the main branch, a "fast-forward" merge can be executed with. This will NOT create a merge commit! Aborts merge if it cannot be done.
-Ideal for updating a branch from remote.
+If there are no conflicts with the main branch, we can perform a "fast-forward" merge. This works
+by moving the branch pointer to the latest commit in the target branch. This is the default behavior
+of `git merge` (when possible).
+
+Let's mergin in our `yaml-format` branch back into `main` using a fast-forward merge:
 
 ```bash
 git checkout main
-git merge --ff-only <branch>
+git merge yaml-format
+```
+
+```output
+$ git merge yaml-format
+Updating ec240ab..68b09d0
+Fast-forward
+ guacamole.md   | 7 -------
+ guacamole.yaml | 6 ++++++
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+ delete mode 100644 guacamole.md
+ create mode 100644 guacamole.yaml
+```
+
+If we look at the log, we can see that the commits that we made on the `yaml-format` branch are now
+a part of the `main` branch:
+
+```output
+$ git log --oneline
+68b09d0 (HEAD -> main, yaml-format) Rename recipe file to use .yaml extension.
+a2b55be Reformat recipe to use YAML.
+ec240ab Ignore png files and the pictures folder.
+20c856c Write prices for ingredients and their source
+11cdb65 Add some initial cakes
+7cdeaef Modify guacamole to the traditional recipe
+4b58094 Add ingredients for basic guacamole
+cdb0c21 Create initial structure for a Guacamole recipe
 ```
 
 If using the fast-forward merge, it is impossible to see from the `git` history which of the commit objects together have implemented a feature. You would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
