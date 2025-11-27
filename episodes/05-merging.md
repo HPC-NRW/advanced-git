@@ -55,7 +55,7 @@ If we look at the log, we can see that the commits that we made on the `yaml-for
 a part of the `main` branch:
 
 ```output
-$ git log --oneline
+$ git log --oneline --graph
 68b09d0 (HEAD -> main, yaml-format) Rename recipe file to use .yaml extension.
 a2b55be Reformat recipe to use YAML.
 ec240ab Ignore png files and the pictures folder.
@@ -142,6 +142,29 @@ a feature branch and groups together all commits that together added the feature
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
+## Exercise: Creating a fast-forwad merge.
+
+Consider the following Git tree
+
+```bash
+* a78b99f (main) Add title
+| * 3d88062 (remote) Add .gitignore
+|/
+* 86c4247 Add README
+```
+
+Is possible to run a fast-forward merge to incorporate the branch `remote` into `main`?
+
+:::::::::::::::  solution
+
+No, it is not possible to run a fast-forward merge because of commit `a78b99f`.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
 ## Exercise: Creating a non-fast-forwad merge.
 
 Create a new Git repository that has the following tree.
@@ -173,29 +196,6 @@ git merge --no-ff gitignore
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Exercise: Creating a fast-forwad merge.
-
-Consider the following Git tree
-
-```bash
-* a78b99f (main) Add title
-| * 3d88062 (remote) Add .gitignore
-|/
-* 86c4247 Add README
-```
-
-Is possible to run a fast-forward merge to incorporate the branch `remote` into `main`?
-
-:::::::::::::::  solution
-
-No, it is not possible to run a fast-forward merge because of commit `a78b99f`.
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Three-way Merge
 
