@@ -6,92 +6,17 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How to undo changes to a repository?
-- How to rename a branch?
-- How to incoproate specific changes in one branch into another?
+- How to incorporate specific changes in one branch into another?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::: objectives
+:::::::::::::::::::::::::::::::::::::::: objectives
 
-- Learn how to undo a specific commit.
-- Learn to rename an existing branch.
 - Learn to pick and incorporate specific changes into a different branch.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-# I made a mistake! How do I undo a commit?
-
-If you made a commit and then realize that you made a mistake, you can undo the commit using
-the `git reset` command. This command moves the branch pointer back to a previous commit,
-effectively removing the most recent commit(s) from the branch.
-
-The syntax for the `git reset` command looks like this:
-
-```bash
-git reset <mode> <commit>
-```
-
-The `<mode>` refers to how the command should handle changes to the working branch and staging area.
-The most common modes are:
-
-
-- `--mixed`: This is the default mode if you do not provide one. The changes from the undone
-  commits are kept in the working directory, but are removed from the staging area.
-- `--soft`: The changes from the undone commit(s) are kept in the staging area, as though you had
-  just run `git add` on those changes.
-- `--hard`: The changes from the undone commit(s) are removed from both the working directory and
-  the staging area, effectively discarding them in total. (Use with caution, as this cannot be
-  undone!)
-
-The `<commit>` refers to the commit that you want to reset the branch to. You can specify this
-using the specific commit hash you want to reset to, or you can use relative references like
-`HEAD~2` (which refers to the commit two before the current HEAD).
-
-::: challenge
-## Undo a staged change.
-
-Stage a specific change and then take it back.
-
-:::: hint
-tbd.
-::::
-
-:::: solution
-tbd.
-::::
-
-:::
-
-
-::: challenge
-## Undo the last commit
-
-:::: hint
-tbd.
-::::
-
-:::: solution
-tbd.
-::::
-
-:::
-# I don't like the name of my branch! How do I rename it?
-
-You can rename a branch using the `git branch -m` command. The syntax looks like this:
-
-```bash
-git branch -m <new-branch-name>
-```
-
-This will rename the current branch to the new name provided. If you want to rename a different
-branch, without checking it out you can provide the old branch name as well:
-
-```bash
-git branch -m <old-branch-name> <new-branch-name>
-```
-
-# I need that commit also in my branch. How do I get it?
+# What is a Cherrypick?
 
 If there is a specific change present in a different branch that you need in another branch, Git
 lets you "cherrypick" those commits. The "cherrypick" command is a way of copying a specific commit
@@ -197,8 +122,6 @@ tbd.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Making changes to a repository is not permanent; you can undo commits using `git reset`.
-- You can always rename branches using `git branch -m`.
 - You can cherrypick specific commits from one branch to another using `git cherry-pick <commit-hash>`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
