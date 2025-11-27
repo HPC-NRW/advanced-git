@@ -26,15 +26,25 @@ There are 2 ways to merge:
 
 ![Merging diagram.](fig/09-merging.png){alt="A diagram showing different types of Git merges."}
 
-Reminder: when starting work on a new feature, be careful where you branch from!
+
+## Fast-forward Merge
+
+If there are no conflicts with the main branch, a "fast-forward" merge can be executed with. This will NOT create a merge commit! Aborts merge if it cannot be done.
+Ideal for updating a branch from remote.
 
 ```bash
-git remote add upstream https://github.com/mpi-astronomy/advanced-git-training.git
-git fetch upstream
-git checkout -b develop upstream/develop
+git checkout main
+git merge --ff-only <branch>
 ```
 
+If using the fast-forward merge, it is impossible to see from the `git` history which of the commit objects together have implemented a feature. You would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
+
+For a good illustration of fast-forward merge (and other concepts), see this thread: https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge
+
 ## Non-fast-forwad Merge
+
+A non fast-forward merge makes a new commit that ties together the histories of both branches.
+
 
 Merges branch by creating a merge commit. Prompts for merge commit message. Ideal for merging two branches.
 
@@ -78,19 +88,6 @@ git merge --no-ff gitignore
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Fast-forward Merge
-
-If there are no conflicts with the main branch, a "fast-forward" merge can be executed with. This will NOT create a merge commit! Aborts merge if it cannot be done.
-Ideal for updating a branch from remote.
-
-```bash
-git checkout main
-git merge --ff-only <branch>
-```
-
-If using the fast-forward merge, it is impossible to see from the `git` history which of the commit objects together have implemented a feature. You would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
-
-For a good illustration of fast-forward merge (and other concepts), see this thread: https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
