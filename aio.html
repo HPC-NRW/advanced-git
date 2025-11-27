@@ -1140,7 +1140,7 @@ see the SHA of the last commit.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>You can use the <code>touch</code> command to create new files
 quickly.</p>
@@ -1153,7 +1153,7 @@ quickly.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>Use <code>git add</code> and
 <code>git commit -m "your message"</code> to save your changes.</p>
@@ -1166,7 +1166,7 @@ quickly.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1347,7 +1347,7 @@ status and log.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Step 1:</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -2042,7 +2042,7 @@ your feature branch out to GitHub.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2081,7 +2081,7 @@ request”.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <figure><img src="fig/32-forking-6.png" alt="GitFlow 1" class="figure mx-auto d-block"><div class="figcaption">GitFlow 1</div>
 </figure>
@@ -2347,7 +2347,7 @@ the Git data model</li>
 </div>
 </div></section><section id="aio-13-cherrypick"><p>Content from <a href="13-cherrypick.html">Undo, Move, Cherrypick</a></p>
 <hr>
-<p>Last updated on 2025-11-24 |
+<p>Last updated on 2025-11-27 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/13-cherrypick.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2361,9 +2361,7 @@ the Git data model</li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How to undo changes to a repository?</li>
-<li>How to rename a branch?</li>
-<li>How to incoproate specific changes in one branch into another?</li>
+<li>How to incorporate specific changes in one branch into another?</li>
 </ul>
 </div>
 </div>
@@ -2373,12 +2371,153 @@ the Git data model</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Learn how to undo a specific commit.</li>
-<li>Learn to rename an existing branch.</li>
 <li>Learn to pick and incorporate specific changes into a different
 branch.</li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level1">
+<h1 id="what-is-a-cherrypick">What is a Cherrypick?<a class="anchor" aria-label="anchor" href="#what-is-a-cherrypick"></a>
+</h1>
+<p>If there is a specific change present in a different branch that you
+need in another branch, Git lets you “cherrypick” those commits. The
+“cherrypick” command is a way of copying a specific commit from one
+branch to another. Each commit in git has a specific identifier (the
+“hash” or “SHA” of the commit) that we can use to refer to that exact
+commit. You can see the hash of your recent commits by running:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
+</div>
+<p>Note that this only shows the commits that are present on this
+“branch”. If you want to see commits from all branches, you can run:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--all</span></span></code></pre>
+</div>
+<p>or checkout the specific branch you want to see.</p>
+<p>So why would I want to cherrypick a commit?</p>
+<ul>
+<li>Imagine you have a branch where you are working on a new feature.
+You make several commits to this branch, but as you work you realize
+that one of the commits you just made would be important to include in
+the “main” branch right away.</li>
+<li>Or maybe you’re working on a branch and realize that the commit you
+just made would be better suited to a different branch.</li>
+<li>Or maybe you have a branch with several commits, but you realize
+that you want to split these out into one or more branches.</li>
+</ul>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>The more confined and specific commits are, the better they can be
+cherry-picked.</p>
+</div>
+</div>
+</div>
+<p>In these cases, you can use “cherrypick” to move a specific commit
+from one branch to another.</p>
+<div class="section level2">
+<h2 id="how-to-cherrypick">How to Cherrypick<a class="anchor" aria-label="anchor" href="#how-to-cherrypick"></a>
+</h2>
+<p>The <code>cherrypick</code> command looks like this:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>Note that we don’t have to provide any information about the source
+branch, because the commit hashes are unique across the entire
+repository. Git will find the commit with the specified hash, then apply
+it to the current branch. This means if we want to move a commit from,
+as in our example, a feature branch to the main branch, we first need to
+checkout the main branch:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>The command will then apply the changes only from the specified
+commit to the current branch, creating a new commit with those
+changes.</p>
+</div>
+<div class="section level2">
+<h2 id="undoing-a-cherrypick">Undoing a Cherrypick<a class="anchor" aria-label="anchor" href="#undoing-a-cherrypick"></a>
+</h2>
+<p>If you cherrypick a commit and then realize that you made a mistake,
+you can undo the cherrypick using the <code>git reset</code> command we
+showed earlier:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1</span></code></pre>
+</div>
+</div>
+<div class="section level2">
+<h2 id="issues-with-cherrypick">Issues with Cherrypick<a class="anchor" aria-label="anchor" href="#issues-with-cherrypick"></a>
+</h2>
+<p>Cherrypicking is an infrequent operation, and it can lead to some
+issues if not used carefully. Some things to keep in mind:</p>
+<ul>
+<li>You are creating a new commit on the branch, which means that if the
+original commit is later merged into the branch, you may end up with a
+merge conflict.</li>
+<li>If the commit you are cherrypicking depends on other commits that
+are not present in the target branch, you may run into issues when
+trying to apply the changes or run the code.</li>
+<li>The new commit will look identical to the old commit, but with a
+different hash. This can make it difficult to visually track changes
+across branches.</li>
+</ul>
+<div id="cherry-picking-a-hotfix-into-a-branch" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="cherry-picking-a-hotfix-into-a-branch" class="callout-inner">
+<h3 class="callout-title">Cherry-picking a hotfix into a branch</h3>
+<div class="callout-content">
+<p>An urgend fix to main is also needed in a release branch to issue a
+bugfix release.</p>
+<ol style="list-style-type: decimal">
+<li>Create a branch off main and add a commit.</li>
+<li>Switch back to main and add a commit there, too.</li>
+<li>Switch back to your newly created branch and cherry-pick the last
+commit from main to the branch.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div class="accordion-body">
+<p>tbd.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>tbd.</p>
 </div>
 </div>
 </div>
@@ -2392,14 +2531,14 @@ branch.</li>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>A local repository can still be changed.</li>
-<li>Once pushed to a remote, changing history can create
-complications.</li>
+<li>You can cherrypick specific commits from one branch to another using
+<code>git cherry-pick &lt;commit-hash&gt;</code>.</li>
 </ul>
 </div>
 </div>
 </div>
-<p>{% include links.md %}</p></section><section id="aio-14-squash-rebase"><p>Content from <a href="14-squash-rebase.html">Rebase, Squash, Bisect, Patch</a></p>
+</div>
+</div></section><section id="aio-14-squash-rebase"><p>Content from <a href="14-squash-rebase.html">Rebase, Squash, Bisect, Patch</a></p>
 <hr>
 <p>Last updated on 2025-11-21 |
 
