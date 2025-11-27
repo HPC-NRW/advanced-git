@@ -66,6 +66,21 @@ ec240ab Ignore png files and the pictures folder.
 cdb0c21 Create initial structure for a Guacamole recipe
 ```
 
+::: callout
+
+Note that our old branch is stil there!
+
+```output
+$ git branch -avv
+* main        68b09d0 Rename recipe file to use .yaml extension.
+  yaml-format 68b09d0 Rename recipe file to use .yaml extension.
+```
+
+It's just that both branches now point to the same commit. Until we specifically delete the branch,
+it will remain in the repository.
+
+:::
+
 If using the fast-forward merge, it is impossible to see from the `git` history which of the commit objects together have implemented a feature. You would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
 
 For a good illustration of fast-forward merge (and other concepts), see this thread: https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge
@@ -74,15 +89,56 @@ For a good illustration of fast-forward merge (and other concepts), see this thr
 
 A non fast-forward merge makes a new commit that ties together the histories of both branches.
 
-
-Merges branch by creating a merge commit. Prompts for merge commit message. Ideal for merging two branches.
+Let's make a new branch and add a commit to it:
 
 ```bash
-git checkout main
-git merge --no-ff <branch> -m "Message"
+git branch add-instructions
+git switch add-instructions
+nano guacamole.yaml
 ```
 
-The `--no-ff` flag causes the merge to always create a new commit object, even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature.
+```yaml
+instructions: |
+  1. Cut avocados in half and remove pit.
+  2. Make guacamole.
+```
+
+```bash
+git add guacamole.yaml
+git commit -m "Add instructions to guacamole recipe."
+```
+
+Now, let's move back to the main branch and merge the changes from the `add-instructions` branch
+using a non-fast-forward merge:
+
+```bash
+git switch main
+git merge --no-ff add-instructions -m "Merge add-instructions branch into main."
+```
+
+```output
+$ git merge --no-ff add-instructions -m "Merge add-instructions branch into main."
+Merge made by the 'ort' strategy.
+ guacamole.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+```
+
+Let's look at the log to see what happened:
+
+```output
+$ git log --oneline --graph
+$ git log --oneline --graph
+*   a20b39f (HEAD -> main) Merge add-instructions branch into main.
+|\
+| * 22e4eb6 (add-instructions) Add instructions to guacamole recipe.
+|/
+* 68b09d0 (yaml-format) Rename recipe file to use .yaml extension.
+* a2b55be Reformat recipe to use YAML.
+```
+
+The `--no-ff` flag causes the merge to always create a new commit object, even if the merge could
+be performed with a fast-forward. This avoids losing information about the historical existence of
+a feature branch and groups together all commits that together added the feature.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
