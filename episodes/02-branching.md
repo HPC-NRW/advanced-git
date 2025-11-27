@@ -35,18 +35,20 @@ In `git` a branch is effectively a pointer to a snapshot of your changes. It's i
 
 ![Git Branching](fig/04-branching.png){alt="A diagram showing several commits on a single branch in a theoretical git repository."}
 
-Then, you create a branch using the following command:
+Lets's say we wanted to reworking our recipes to use a different format. We could continue on our
+existing branch, but we're not so sure about this change, so instead we create a new branch to
+experiment with:
 
 ```bash
-git branch crazy-experiment
+git branch yaml-format
 ```
 
 The repository history remains unchanged. All you get is a new pointer to the current commit:
 
-![Git Branching](fig/05-branching.png alt="A diagram showing a new branch pointer in a theoretical git repository.")
+![Git Branching](fig/05-branching.png){alt="A diagram showing a new branch pointer in a theoretical git repository."}
 
 
-Note that this only creates the new branch. To start adding commits to it, you need to select it with `git checkout`, and then use the standard `git add` and `git commit` commands.
+Note that this only creates the new branch. To start adding commits to it, you need to move to it with `git checkout`, and then use the standard `git add` and `git commit` commands.
 
 A branch *also* means an independent line of development. Branches serve as an abstraction for the edit/stage/commit process. New commits are recorded in the history for the current branch, which results in a fork in the history of the project. However, it is really important to remember that each commit only records the incremental change in the document and NOT the full history of changes. Therefore, while we think of a branch as a sequence of commits, each commit is independent unit of change.
 
@@ -59,9 +61,28 @@ To list all branches:
 git branch
 ```
 
+```output
+$ git branch
+* main
+  yaml-format
+```
+
+The asterisk (`*`) indicates the current branch. To see more information about each branch,
+including the latest commit on each branch, use the `-avv` flags:
+
 ```bash
 git branch -avv
 ```
+```output
+$ git branch -avv
+* main        ec240ab Ignore png files and the pictures folder.
+  yaml-format ec240ab Ignore png files and the pictures folder.
+```
+
+We can see that, as we have not added any new commits to the `yaml-format` branch, both branches
+point to the same commit (`ec240ab`).
+
+::: spoiler
 
 To create a new branch named `<branch>`, which *references the same point in history as the current branch.*
 ```bash
@@ -84,17 +105,37 @@ To delete the branch `<branch>` irrespective of its merged status:
 git branch -D <branch>
 ```
 
-To switch to a different branch `<branch>`, updating the working directory to reflect the version referenced by `<branch>`.
+Renaming a branch can be done with the `-m` tag:
+```bash
+git branch -m <old-branch-name> <new-branch-name>
+```
+
+:::
+
+Let's switch over to our new branch so we can start making changes:
 
 ```bash
-git switch <branch>
+git switch yaml-format
 ```
+
+```output
+$ git switch yaml-format
+Switched to branch 'yaml-format'
+```
+
+::: callout
+
+`git switch` was introduced in Git 2.23 as a more purpose specific command for switching branches.
+It is functionally similar to `git checkout`, which is still used widely, but is a more general
+command with multiple purposes (switching branches, restoring files, etc).
 
 To create a new branch `<new>` referencing `<start-point>`, and check it out.
 
 ```bash
 git switch -c <new> <start-point>
 ```
+
+:::
 
 The special symbol `"HEAD"` can always be used to refer to the current branch. In fact, Git uses a file named `HEAD` in the `.git` directory to remember which branch is current:
 
@@ -103,10 +144,81 @@ $ cat .git/HEAD
 ref: refs/heads/master
 ```
 
-Renaming a branch can be done with the `-m` tag:
+Let's reformat our recipe to use YAML and commit the changes:
+
 ```bash
-git branch -m <old-branch-name> <new-branch-name>
+nano guacamole.md
 ```
+
+```
+name: Guacamole
+ingredients:
+  avocado: 1.35
+  lime: 0.64
+  salt: 2
+instructions: ""
+```
+
+```bash
+git add guacamole.md
+git commit -m "Reformat recipe to use YAML."
+```
+
+Now let's check our branches again:
+
+```bash
+git branch -avv
+```
+
+```output
+$ git branch -avv
+  main        ec240ab Ignore png files and the pictures folder.
+* yaml-format a2b55be Reformat recipe to use YAML.
+```
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+We updated our guacamole recipe in the `yaml-format` branch to use a different format. But now the
+file extension `.md` doesn't make sense anymore. Rename the file to `guacamole.yaml` and commit the
+change to the `yaml-format` branch. Run `git status` before you commit your changes. Is there
+anything different about the way this commit looks than in our earlier exercies?
+
+::: hint
+
+You can use the `mv` command to rename files in the terminal:
+
+```bash
+mv old-filename new-filename
+```
+
+:::
+
+:::::::::::::::  solution
+
+```bash
+mv guacamole.md guacamole.yaml
+git add guacamole.yaml guacamole.md
+git status
+```
+
+```output
+$ git status
+On branch yaml-format
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    guacamole.md -> guacamole.yaml
+```
+
+Git is not very clever about most things, but as long as the contents of the file are identical, it
+can at least figure out that we just renamed the file, rather than deleting one and adding another.
+
+```bash
+git commit -m "Rename recipe file to use .yaml extension."
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
