@@ -20,54 +20,54 @@ Preparation: Make sure that the main is clean, everything is committed.
 
 The forking workflow is popular among open source software projects and often used in conjunction with a branching model.
 
-FIXME: Why?
-
-The focus of this workflow is to keep the "upstream main" stable while allowing anyone to work on their own contributions independently. Contributions are then suggested and accepted via pull requests. There is not necessarily a develop branch, but you may have release branches.
-
-![GitFlow 1](fig/27-forking-1.png)
+The main advantage is that you enable people external to your project to implementent and suggest changes to your project without the need to give them push access to your project.
+In this workflow developers usually interact with multiple (at least two) repositories and remotes: the original code
+repository and the forked repository.
+It is important to understand that a fork represents a **complete copy** of a
+remote repository.
 
 In order to understand the forking workflow, let's first take a look at some special words and roles needed:
 
-*upstream* - Remote repository containing the "true copy"
-*origin* - Remote repository containing the forked copy
-Pull request(PR) - Merge request from fork to upstream (a request to add your suggestions to the "original copy")
-Maintainer - Someone with write access to upstream who vets PRs
-Contributor - Someone who contributes to upstream via PRs
-Release manager - A maintainer who also oversees releases
+- **upstream** - Remote repository containing the "original copy"
+- **origin** - Remote repository containing the forked copy
+- **pull request (PR)** / **merge request (MR)** - Request to merge changes from fork to upstream (a request to add your suggestions to the "original copy")
+- **maintainer** - Someone with write access to upstream who vets PRs/MRs
+- **contributor** - Someone who contributes to upstream via PRs/MRs
+- **release manager** - A maintainer who also oversees releases
 
-[Example release workflow for the astropy Python package](https://docs.astropy.org/en/latest/development/maintainers/releasing.html)
-[Spacetelescope (STScI) style guide for release workflow](https://github.com/spacetelescope/style-guides/blob/master/guides/release-workflow.md)
+In this workflow changes are suggested and integrated into the "upstream main" branch via a
+pull/merge request from an "origin branch" (and not the "origin main").
+The "origin main" branch is updated by pulling changes from the "upstream main"
+as they become available.
+
+This way the "upstream main" remains the true source for any suggested change
+in the project, while allowing anyone to work on their own contributions independently.
+
+::: callout
+Pull requests / merge requests are a service of the hosting platform to ease
+code reviews and managing changes. They only work **within the same hosting
+service**, while you certainly have remotes on several hosting services
+configured for a repository.
+:::
+
+![Forking Workflow](fig/forking_workflow.svg)
 
 
-![GitFlow 1](fig/29-forking-3.png){Alt: A brief refresher from Git Training: The figure shows the local computer ("You") with branch1 that includes three files of which one is indicated as removed. An arrow from the local computer points to the cloud in which origin and upstream are located, with a picture of GitHubs Octocat. The arrow from local points to origin with you/code(branch1), also with three files of which the same is indicated as removed. Origin has an arrow pointing to upstream with "PR" written on top of it and a screenshot of the "merge pull request" button from the GitHub webinterface. Upstream has spacetelescope/code (main) with the same three files of which the same file is indicated as removed as in local and origin.}
+#### Example workflows
 
-FIXME: Remove text from image and add as caption, source?
+- [Example release workflow for the astropy Python package](https://docs.astropy.org/en/latest/development/maintainers/releasing.html)
+- [Spacetelescope (STScI) style guide for release workflow](https://github.com/spacetelescope/style-guides/blob/master/guides/release-workflow.md)
 
-![GitFlow 1](fig/30-forking-4.png){Alt: ...}
-
-FIXME: Alt text. Remove text from image and add as caption, source?
 
 ## Exercises
-
-FIXME: More description about what is happening at each step in the solution
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ### Exercise 1: Create and push a feature branch
 
-You will be assigned a number by the instructor/helper.
-Create a feature branch based on upstream main. Then create a file in the `trainees` folder called `hello_NNN.txt` using the number you just got (replace NNN with your number, e.g. 007).
-Then push your feature branch out to GitHub.
-
 :::::::::::::::  solution
 
 ```bash
-git fetch upstream main
-git checkout -b myforkfeature upstream/main
-touch ./trainees/hello_NNN.txt
-git add ./trainees/hello_NNN.txt
-git commit -m "adding my textfile"
-git push origin myforkfeature
 ```
 
 :::::::::::::::::::::::::
@@ -78,11 +78,8 @@ git push origin myforkfeature
 
 ### Exercise 2: Suggest your changes via pull request
 
-Go to your repository (your fork) on GitHub and find the tab called "Pull requests". Klick the green "new pull request" button. Then find and click the blue link uder "Compare changes" called "compare across fork". Select your username and branch name from the right menus. Then click the big green button under the menus called "create pull request".
-
 :::::::::::::::  solution
 
-![GitFlow 1](../fig/32-forking-6.png)
 
 :::::::::::::::::::::::::
 
@@ -90,6 +87,15 @@ Go to your repository (your fork) on GitHub and find the tab called "Pull reques
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- First key point. Brief Answer to questions. (FIXME)
+- The forking workflow allows third parties to prepare and propose changes
+  without write access to the upstream repository
+- The `main` branch is not modified but only be updated from the upstream
+  `main` branch
+- Branch off `main` to a feature branch, pushing to the forked repository
+  (origin)
+- Update forked `main` branch using `git pull upstream main` where `upstream`
+  is the name of the upstream remote
+- Update your local feature branch by `git pull --rebase upstream main` 
+- Force push to origin branch for pull request updates.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
