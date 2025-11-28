@@ -19,4 +19,4 @@ while getopts ":r:h" opt; do
   esac
 done
 
-echo "Creating a new repository in the repository '$repo'..."
+echo "Creating and pushing content to'$repo'..."
