@@ -118,7 +118,8 @@ Complete the main *forking workflow* once for your project.
 2. Follow the clone-change-push workflow
 ```bash
 git clone <repository-url>
-git checkout -b myfeature
+git branch myfeature
+git switch myfeature
 # make changes
 git add <changed-files>
 git commit -m "Add feature X"
