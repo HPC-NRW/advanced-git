@@ -50,7 +50,7 @@ service**, while you certainly have remotes on several hosting services
 configured for a repository.
 :::
 
-![Forking Workflow](fig/forking_workflow.svg)
+![Forking Workflow](fig/forking_workflow.svg){alt="A diagram showing the forking workflow with upstream, origin, and local repositories."}
 
 
 #### Example workflows
