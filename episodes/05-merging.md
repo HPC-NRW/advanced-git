@@ -26,24 +26,142 @@ There are 2 ways to merge:
 
 ![Merging diagram.](fig/09-merging.png){alt="A diagram showing different types of Git merges."}
 
-Reminder: when starting work on a new feature, be careful where you branch from!
 
-```bash
-git remote add upstream https://github.com/mpi-astronomy/advanced-git-training.git
-git fetch upstream
-git checkout -b develop upstream/develop
-```
+## Fast-forward Merge
 
-## Non-fast-forwad Merge
+If there are no conflicts with the main branch, we can perform a "fast-forward" merge. This works
+by moving the branch pointer to the latest commit in the target branch. This is the default behavior
+of `git merge` (when possible).
 
-Merges branch by creating a merge commit. Prompts for merge commit message. Ideal for merging two branches.
+Let's mergin in our `yaml-format` branch back into `main` using a fast-forward merge:
 
 ```bash
 git checkout main
-git merge --no-ff <branch> -m "Message"
+git merge yaml-format
 ```
 
-The `--no-ff` flag causes the merge to always create a new commit object, even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature.
+```output
+$ git merge yaml-format
+Updating ec240ab..68b09d0
+Fast-forward
+ guacamole.md   | 7 -------
+ guacamole.yaml | 6 ++++++
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+ delete mode 100644 guacamole.md
+ create mode 100644 guacamole.yaml
+```
+
+If we look at the log, we can see that the commits that we made on the `yaml-format` branch are now
+a part of the `main` branch:
+
+```output
+$ git log --oneline --graph
+68b09d0 (HEAD -> main, yaml-format) Rename recipe file to use .yaml extension.
+a2b55be Reformat recipe to use YAML.
+ec240ab Ignore png files and the pictures folder.
+20c856c Write prices for ingredients and their source
+11cdb65 Add some initial cakes
+7cdeaef Modify guacamole to the traditional recipe
+4b58094 Add ingredients for basic guacamole
+cdb0c21 Create initial structure for a Guacamole recipe
+```
+
+::: callout
+
+Note that our old branch is stil there!
+
+```output
+$ git branch -avv
+* main        68b09d0 Rename recipe file to use .yaml extension.
+  yaml-format 68b09d0 Rename recipe file to use .yaml extension.
+```
+
+It's just that both branches now point to the same commit. Until we specifically delete the branch,
+it will remain in the repository.
+
+:::
+
+If using the fast-forward merge, it is impossible to see from the `git` history which of the commit objects together have implemented a feature. You would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
+
+For a good illustration of fast-forward merge (and other concepts), see this thread: https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge
+
+## Non-fast-forwad Merge
+
+A non fast-forward merge makes a new commit that ties together the histories of both branches.
+
+Let's make a new branch and add a commit to it:
+
+```bash
+git branch add-instructions
+git switch add-instructions
+nano guacamole.yaml
+```
+
+```yaml
+instructions: |
+  1. Cut avocados in half and remove pit.
+  2. Make guacamole.
+```
+
+```bash
+git add guacamole.yaml
+git commit -m "Add instructions to guacamole recipe."
+```
+
+Now, let's move back to the main branch and merge the changes from the `add-instructions` branch
+using a non-fast-forward merge:
+
+```bash
+git switch main
+git merge --no-ff add-instructions -m "Merge add-instructions branch into main."
+```
+
+```output
+$ git merge --no-ff add-instructions -m "Merge add-instructions branch into main."
+Merge made by the 'ort' strategy.
+ guacamole.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+```
+
+Let's look at the log to see what happened:
+
+```output
+$ git log --oneline --graph
+$ git log --oneline --graph
+*   a20b39f (HEAD -> main) Merge add-instructions branch into main.
+|\
+| * 22e4eb6 (add-instructions) Add instructions to guacamole recipe.
+|/
+* 68b09d0 (yaml-format) Rename recipe file to use .yaml extension.
+* a2b55be Reformat recipe to use YAML.
+```
+
+The `--no-ff` flag causes the merge to always create a new commit object, even if the merge could
+be performed with a fast-forward. This avoids losing information about the historical existence of
+a feature branch and groups together all commits that together added the feature.
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Creating a fast-forwad merge.
+
+Consider the following Git tree
+
+```bash
+* a78b99f (main) Add title
+| * 3d88062 (remote) Add .gitignore
+|/
+* 86c4247 Add README
+```
+
+Is possible to run a fast-forward merge to incorporate the branch `remote` into `main`?
+
+:::::::::::::::  solution
+
+No, it is not possible to run a fast-forward merge because of commit `a78b99f`.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -78,42 +196,6 @@ git merge --no-ff gitignore
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Fast-forward Merge
-
-If there are no conflicts with the main branch, a "fast-forward" merge can be executed with. This will NOT create a merge commit! Aborts merge if it cannot be done.
-Ideal for updating a branch from remote.
-
-```bash
-git checkout main
-git merge --ff-only <branch>
-```
-
-If using the fast-forward merge, it is impossible to see from the `git` history which of the commit objects together have implemented a feature. You would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
-
-For a good illustration of fast-forward merge (and other concepts), see this thread: https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Exercise: Creating a fast-forwad merge.
-
-Consider the following Git tree
-
-```bash
-* a78b99f (main) Add title
-| * 3d88062 (remote) Add .gitignore
-|/
-* 86c4247 Add README
-```
-
-Is possible to run a fast-forward merge to incorporate the branch `remote` into `main`?
-
-:::::::::::::::  solution
-
-No, it is not possible to run a fast-forward merge because of commit `a78b99f`.
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Three-way Merge
 
