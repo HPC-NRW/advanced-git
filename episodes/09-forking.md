@@ -172,6 +172,8 @@ It therefore remains a judgement call and will largely be influenced by the spec
 
 Update the copies of your `main` branch after the successfull merge of the pull request.
 
+You can do this with the UI of the hosting service, but try to use the command line.
+
 :::: solution
 After the merge request is complete, you need to update your `main` branches from *upstream*
 ```bash
