@@ -63,12 +63,20 @@ configured for a repository.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-### Exercise 1: Create and push a feature branch
+### Exercise 1a: Create and push a feature branch
+
+Create a fork of the demo repository provided by the instructor in your own GitLab account and
+clone it locally. Follow the forking workflow to create a feature branch and suggest a change to
+the original repository via a pull request.
+
 
 :::::::::::::::  solution
 
-```bash
-```
+1. Create a fork of the demo repository on GitLab under your own account.
+2. Clone your forked repository locally with `git clone <your-forked-repo-url>`.
+3. Create a new feature branch off `main` (`git branch <feature-branch-name>` and `git switch <feature-branch-name>`).
+4. Make a change in the codebase (e.g., edit a file) and commit it (`git add .` and `git commit -m "Your commit message"`).
+5. Push the feature branch to your forked repository (`git push -u origin <feature-branch-name>`).
 
 :::::::::::::::::::::::::
 
@@ -76,14 +84,54 @@ configured for a repository.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-### Exercise 2: Suggest your changes via pull request
+### Exercise 1b: Suggest your changes via pull request
+
+Now that you have pushed your feature branch to your forked repository, create a pull request to
+the original repository to suggest your changes.
 
 :::::::::::::::  solution
 
+1. Create a new merge request (pull request) on GitLab. The "Source Branch" should be your feature branch in your forked repository, and the "Target Branch" should be the `main` branch of the original repository.
+2. Fill in the title and description for your pull request, explaining the changes you made.
+3. Submit the pull request for review.
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+### Exercise 2: Update your forked repository
+
+As other contributors make changes to the original repository, you need to keep your forked repository up to date.
+Update your forked repository's `main` branch with the latest changes from the original repository's
+`main` branch.
+
+You can do this via the GitLab interface, but try to work with the git command line here.
+
+::: hint
+
+You will need to have the original repository added as a remote named `upstream` in your local clone of the forked repository.
+
+:::
+
+:::::::::::::::  solution
+
+*via the command line*
+
+1. Add the original repository as a remote named `upstream`:
+   ```bash
+   git remote add upstream <original-repo-url>
+   ```
+2. Fetch the latest changes from the original repository:
+   ```bash
+    git pull upstream main --rebase
+    ```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
@@ -95,7 +143,7 @@ configured for a repository.
   (origin)
 - Update forked `main` branch using `git pull upstream main` where `upstream`
   is the name of the upstream remote
-- Update your local feature branch by `git pull --rebase upstream main` 
+- Update your local feature branch by `git pull --rebase upstream main`
 - Force push to origin branch for pull request updates.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
