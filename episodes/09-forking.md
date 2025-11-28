@@ -103,7 +103,7 @@ After pushing
 
 ::: challenge
 
-## Full fork-to-pull-request example
+## Exercise 1: Full fork-to-pull-request example
 
 Complete the main *forking workflow* once for your project.
 
@@ -167,7 +167,7 @@ It therefore remains a judgement call and will largely be influenced by the spec
 
 ::: challenge
 
-## Keeping things up-to-date
+## Exercise 2: Keeping things up-to-date
 
 Update the copies of your `main` branch after the successfull merge of the pull request.
 
