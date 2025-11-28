@@ -6,7 +6,7 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- First learning objective. (FIXME)
+- Use the forking workflow to contribute to a project.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
