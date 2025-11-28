@@ -554,7 +554,19 @@ changes to a single project.</li>
 </ul></section><section id="09-forking"><h2 class="section-heading"><a href="09-forking.html">Forking Workflow</a></h2>
 <hr class="half-width">
 <ul>
-<li>First key point. Brief Answer to questions. (FIXME)</li>
+<li>The forking workflow allows third parties to prepare and propose
+changes without write access to the upstream repository</li>
+<li>The <code>main</code> branch is not modified but only be updated
+from the upstream <code>main</code> branch</li>
+<li>Branch off <code>main</code> to a feature branch, pushing to the
+forked repository (origin)</li>
+<li>Update forked <code>main</code> branch using
+<code>git pull upstream main</code> where <code>upstream</code> is the
+name of the upstream remote</li>
+<li>Update your local feature branch by
+<code>git pull --rebase upstream main</code>
+</li>
+<li>Force push to origin branch for pull request updates.</li>
 </ul></section><section id="10-datascience"><h2 class="section-heading"><a href="10-datascience.html">Data Science Workflow</a></h2>
 <hr class="half-width"></section><section id="12-large-files"><h2 class="section-heading"><a href="12-large-files.html">Large Files</a></h2>
 <hr class="half-width">
@@ -637,9 +649,9 @@ easier.</li>
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/advanced-git/instructor/key-points.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/instructor/key-points.html",
-  "dateCreated": "2025-11-27",
-  "dateModified": "2025-11-27",
-  "datePublished": "2025-11-27"
+  "dateCreated": "2025-11-28",
+  "dateModified": "2025-11-28",
+  "datePublished": "2025-11-28"
 }
 
   </script><script>
