@@ -68,11 +68,13 @@ create a fork of this repository.
 
 ### Github
 
-![Screenshot of the button array in the top right corner of the Github interface with the fork button highlighted.](fig/github_fork_button.png)
+![Screenshot of the button array in the top right corner of the Github interface with the fork button highlighted.](fig/github_fork_button.png){alt=A cropped screenshot of the Github UI showing the array of buttons on the top right of the project home page with the fork button highlighted.}
 
 ### Gitlab
 
-![Screenshot of the button array in the top right corner of the Gitlab interface with the fork button highlighted.](fig/gitlab_fork_button.png)
+![Screenshot of the button array in the top right corner of the Gitlab interface with the fork button highlighted.](fig/gitlab_fork_button.png){alt=A cropped screenshot of the Gitlab UI showing the array of buttons on the top right of the project home page with the fork button highlighted.}
+
+
 
 :::
 
