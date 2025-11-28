@@ -59,31 +59,127 @@ configured for a repository.
 - [Spacetelescope (STScI) style guide for release workflow](https://github.com/spacetelescope/style-guides/blob/master/guides/release-workflow.md)
 
 
-## Exercises
+## The main workflow
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+Once you discover a hosted Git project that you want to contribute to, you can
+create a fork of this repository.
 
-### Exercise 1: Create and push a feature branch
+::: group-tab
 
-:::::::::::::::  solution
+### Github
 
+![Screenshot of the button array in the top right corner of the Github interface with the fork button highlighted.](fig/github_fork_button.png)
+
+### Gitlab
+
+![Screenshot of the button array in the top right corner of the Gitlab interface with the fork button highlighted.](fig/gitlab_fork_button.png)
+
+:::
+
+After clicking *fork* you can choose in which group you want to fork in. Only groups where you have write access will be listed.
+Depending on the branching model of the upstream repository, you may want to copy only the `main` branch (or rather the branch set as the `default` branch).
+For most repositories a full copy will be the best choice, especially if the upstream repository uses a more complex branching model.
+
+#### Cloning the forked copy
+
+After the fork is complete, you clone the repository as you would with any other personal project repository.
+Your copy will then use the remote name *origin*.
+
+On you cloned working copy you should then create a branch for your proposed changes.
+
+::: caution
+You should avoid changing the `main` branch of your local repository, as this should only be your reference to the upstream `main` branch, which eventually be providing updates (i.e., new commits). If you change your local `main` branch, its history will diverge from the upstream's history of the `main` branch causing problems in the future.
+:::
+
+
+#### Make changes and push branch to your fork
+
+After you cloned the forked repository, you interact with it just the way you would with a repository of your own. In fact, the forked copy now *is* your own, as you have full access control over the forked project.
+Remember to **only work on branches**.
+
+#### Create a pull request
+
+After pushing
+
+::: challenge
+
+## Full fork-to-pull-request example
+
+Complete the main *forking workflow* once for your project.
+
+1. Fork a repository named by the workshop instructors.
+2. Clone the repository
+3. Create a new branch for the changes
+3. Add and commit a change
+4. Push branch to *origin* as the tracking branch
+
+:::: solution
+1. Fork the repository
+2. Follow the clone-change-push workflow
 ```bash
+git clone <repository-url>
+git checkout -b myfeature
+# make changes
+git add <changed-files>
+git commit -m "Add feature X"
+git push --set-upstream origin myfeature
+```
+3. Create a merge request to the **upstream** repository.
+::::
+
+:::
+
+
+## Keeping up-to-date
+
+You may either want to continue to contribute to the forked project, or the forked project has received updates before your changes could be merged.
+Either way, you will want to incorporate the upstream changes into the corresponding branches both in the forked repository and
+
+As you never modify the `main` branch, it remains straight forward to pull in any change from upstream.
+First you switch to the main branch of your working copy, pull in changes directly from *upstream* `main`, and push them to your forked repository on *origin*.
+```bash
+git switch main
+git pull upstream main
+git push --set-upstream origin main
 ```
 
-:::::::::::::::::::::::::
+Updating your branch is a bit more intricate.
+Here, we want our contributed changes to be the last on the branch, so we need to **rebase** the branch.
+When we rebase the branch to the newest commits on `main`, the history of the *origin* `branch` and the *working copy* branch will have diverged and you will have to update the *origin* `branch` by force.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+```bash
+git switch mybranch
+git pull --rebase upstream main
+# resolve potential conflicts
+git push --force origin mybranch
+```
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: caution
+Force-pushing to a remote branch will invalidate any other copies of that branch in other people's working copies.
+This, it is usually a bad idea to force-push on branches actually worked on by others.
+In that case, just merge the changes with `git pull upstream main` creating a merge commit.
+:::
 
-### Exercise 2: Suggest your changes via pull request
+::: callout
+The reason why some people prefer the *rebase* over the *merge* is that it keeps the history cleaner.The merge commits
+It therefore remains a judgement call and will largely be influenced by the specific policies in place for the repositories of the projects you collaborate with.
+:::
 
-:::::::::::::::  solution
+::: challenge
 
+## Keeping things up-to-date
 
-:::::::::::::::::::::::::
+Update the copies of your `main` branch after the successfull merge of the pull request.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::: solution
+After the merge request is complete, you need to update your `main` branches from *upstream*
+```bash
+git switch main
+git pull upstream main
+git push --set-upstream origin main
+```
+::::
+:::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
