@@ -1,21 +1,23 @@
 ---
-title: "Rebase, Squash, Bisect, Patch"
+title: "Interactive Rebase and Squash"
 teaching: 0
 exercises: 0
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
-
-- First learning objective. (FIXME)
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- What are rebase, squash, bisect and patch?
+- Why would I rebase a branch?
+- When would I squash commits during a rebase?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Understand the reasons for interactive rebases.
+- Remove ammending commits from the history.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ![GitFlow 1](fig/44-rebase.png)
 ![GitFlow 1](fig/45-squash.png)
@@ -24,7 +26,11 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- First key point. Brief Answer to questions. (FIXME)
+- Use an interactive rebase to clean up merge requests before the merge.
+- Rebased branches need to be force-pushed due to history changes.
+- Squashing can be used to combine multiple commits
+- Depending on the project policy merge requests may need to be cleaned up
+  before they are allowed upstream.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
