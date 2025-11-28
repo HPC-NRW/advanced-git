@@ -134,7 +134,11 @@ git push --set-upstream origin myfeature
 ## Keeping up-to-date
 
 You may either want to continue to contribute to the forked project, or the forked project has received updates before your changes could be merged.
-Either way, you will want to incorporate the upstream changes into the corresponding branches both in the forked repository and
+Either way, you will want to incorporate the upstream changes into the corresponding branches both in the forked repository and your working copy.
+For this it is best to add the original source, the *upstream* as a remote.
+```bash
+git remote add upstream <url-to-upstream-repository>
+```
 
 As you never modify the `main` branch, it remains straight forward to pull in any change from upstream.
 First you switch to the main branch of your working copy, pull in changes directly from *upstream* `main`, and push them to your forked repository on *origin*.
