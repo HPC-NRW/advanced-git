@@ -682,7 +682,7 @@ on projects with others</li>
 </div>
 </section></section><section id="aio-02-branching"><p>Content from <a href="02-branching.html">Branches</a></p>
 <hr>
-<p>Last updated on 2025-11-21 |
+<p>Last updated on 2025-12-01 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/02-branching.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -726,7 +726,9 @@ branch to encapsulate your changes. This makes it harder for unstable
 code to get merged into the main code base, and it gives you the chance
 to clean up your future’s history before merging it into the main
 branch.</p>
-<figure><img src="../fig/03-branching-example.png" alt="A diagram showing branching in a theoretical git repository." class="figure mx-auto d-block"><div class="figcaption">Git Branching</div>
+<figure><img src="../fig/03-branching-example.png" alt="A diagram showing branching in a theoretical git repository." class="figure mx-auto d-block"><div class="figcaption">Git Branching: An example of how branches of a
+repository are based on each other and evolve over time. (Source: <a href="https://www.atlassian.com/git/tutorials/using-branches" class="external-link">Atlassian
+Git Tutorial</a>)</div>
 </figure><p>The diagram above visualizes a repository with two isolated lines of
 development, one for a little feature, and one for a longer-running
 feature. By developing them in branches, it’s not only possible to work
@@ -738,7 +740,7 @@ directory to directory, Git stores a branch as a reference to a commit.
 In this sense, a branch represents the tip of a series of commits—it’s
 not a container for commits. The history for a branch is extrapolated
 through the commit relationships.</p>
-<p>(<a href="https://www.atlassian.com/git/tutorials/using-branches" class="external-link uri">https://www.atlassian.com/git/tutorials/using-branches</a>)</p>
+<p>()</p>
 <section><h2 class="section-heading" id="what-is-a-branch">What is a branch?<a class="anchor" aria-label="anchor" href="#what-is-a-branch"></a>
 </h2>
 <hr class="half-width">
@@ -747,7 +749,9 @@ of your changes. It’s important to understand that branches are just
 pointers to commits. When you create a branch, all Git needs to do is
 create a new pointer, it doesn’t change the repository in any other way.
 If you start with a repository that looks like this:</p>
-<figure><img src="../fig/04-branching.png" alt="A diagram showing several commits on a single branch in a theoretical git repository." class="figure mx-auto d-block"><div class="figcaption">Git Branching</div>
+<figure><img src="../fig/04-branching.png" alt="A diagram showing several commits on a single branch in a theoretical git repository." class="figure mx-auto d-block"><div class="figcaption">Git Branching: A branch is just a “named
+pointer” to a commit. (Source: <a href="https://www.atlassian.com/git/tutorials/using-branches" class="external-link">Atlassian
+Git Tutorial</a>)</div>
 </figure><p>Then, you create a branch using the following command:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -756,7 +760,9 @@ If you start with a repository that looks like this:</p>
 </div>
 <p>The repository history remains unchanged. All you get is a new
 pointer to the current commit:</p>
-<figure><img src="../fig/05-branching.png%20alt=%22A%20diagram%20showing%20a%20new%20branch%20pointer%20in%20a%20theoretical%20git%20repository.%22" alt="Git Branching" class="figure mx-auto d-block"><div class="figcaption">Git Branching</div>
+<figure><img src="../fig/05-branching.png" alt="A diagram showing a new branch pointer in a theoretical git repository." class="figure mx-auto d-block"><div class="figcaption">Git Branching: The new branch is pointing to the
+same commit from which it was branched off. (Source: <a href="https://www.atlassian.com/git/tutorials/using-branches" class="external-link">Atlassian
+Git Tutorial</a>)</div>
 </figure><p>Note that this only creates the new branch. To start adding commits
 to it, you need to select it with <code>git checkout</code>, and then
 use the standard <code>git add</code> and <code>git commit</code>
@@ -1061,7 +1067,7 @@ as the upstream locally.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2071,13 +2077,13 @@ to, you can create a fork of this repository.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-Github" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-Github">
+<div id="nav-tabpanel-1-Github" class="tab-pane show active" aria-labelledby="nav-tab-1-Github" role="tabpanel">
 <p><img src="../fig/github_fork_button.png" alt="Screenshot of the button array in the top right corner of the Github interface with the fork button highlighted." class="figure">{alt=A
 cropped screenshot of the Github UI showing the array of buttons on the
 top right of the project home page with the fork button
 highlighted.}</p>
 </div>
-<div id="nav-tabpanel-1-Gitlab" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Gitlab">
+<div id="nav-tabpanel-1-Gitlab" class="tab-pane" aria-labelledby="nav-tab-1-Gitlab" role="tabpanel">
 <p><img src="../fig/gitlab_fork_button.png" alt="Screenshot of the button array in the top right corner of the Gitlab interface with the fork button highlighted." class="figure">{alt=A
 cropped screenshot of the Gitlab UI showing the array of buttons on the
 top right of the project home page with the fork button
@@ -2954,7 +2960,7 @@ shown as part of the prompt.</p>
   Some ideas.
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -3312,9 +3318,9 @@ easier.</li>
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/advanced-git/instructor/aio.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/instructor/aio.html",
-  "dateCreated": "2025-11-28",
-  "dateModified": "2025-11-28",
-  "datePublished": "2025-11-28"
+  "dateCreated": "2025-12-01",
+  "dateModified": "2025-12-01",
+  "datePublished": "2025-12-01"
 }
 
   </script><script>
