@@ -61,14 +61,59 @@ The `cherrypick` command looks like this:
 git cherry-pick <commit-hash>
 ```
 
+::: callout
+
 Note that we don't have to provide any information about the source branch, because the commit
 hashes are unique across the entire repository. Git will find the commit with the specified hash,
-then apply it to the current branch. This means if we want to move a commit from, as in our
-example, a feature branch to the main branch, we first need to checkout the main branch:
+then apply it to the current branch.
+
+:::
+
+Let's modify our `groceries.md` file in our `bean-dip` branch:
+
+```bash
+nano groceries.md
+```
+
+```markdown
+# Market A
+* avocado: 1.35 per unit.
+* lime: 0.64 per unit
+* salt: 2 per kg
+* black beans: 0.99 per can
+```
+
+```bash
+git add groceries.md
+git commit -m "Add bean dip ingredients to groceries"
+```
+
+Wait though! We actually want this change to happen in the `main` branch instead. We can
+switch to the `main` branch and cherrypick the commit we just made in the `bean-dip` branch:
+
+Use `git log --oneline` in the `bean-dip` branch to find the commit hash of the commit we just made:
+
+```output
+$ git log --oneline
+4a473c9 (HEAD -> bean-dip) Add bean dip ingredients to groceries
+b8732e4 Add bean dip recipe
+79cb366 (origin/bean-dip) Add bean dip recipe.
+```
+
+(Your commit hash will be different.)
+
+Now switch to the `main` branch and cherrypick that commit:
 
 ```bash
 git checkout main
 git cherry-pick <commit-hash>
+```
+
+```output
+$ git cherry-pick 4a473c9
+[main 68fbfdc] Add bean dip ingredients to groceries
+ Date: Thu Nov 27 23:11:28 2025 +0100
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
 The command will then apply the changes only from the specified commit to the current branch,
@@ -80,7 +125,7 @@ If you cherrypick a commit and then realize that you made a mistake, you can und
 using the `git reset` command we showed earlier:
 
 ```bash
-git reset --hard HEAD~1
+git reset --hard HEAD
 ```
 
 ## Issues with Cherrypick
@@ -99,7 +144,7 @@ Some things to keep in mind:
 
 ## Cherry-picking a hotfix into a branch
 
-An urgend fix to main is also needed in a release branch to issue a bugfix
+An urgent fix to main is also needed in a release branch to issue a bugfix
 release.
 
 1. Create a branch off main and add a commit.
