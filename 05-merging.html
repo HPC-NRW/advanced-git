@@ -252,8 +252,8 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#non-fast-forwad-merge">Non-fast-forwad Merge</a></li>
-<li><a href="#fast-forward-merge">Fast-forward Merge</a></li>
+        <ul><li><a href="#fast-forward-merge">Fast-forward Merge</a></li>
+<li><a href="#non-fast-forwad-merge">Non-fast-forwad Merge</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -408,7 +408,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Merging</h1>
-        <p>Last updated on 2025-11-21 |
+        <p>Last updated on 2025-12-02 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/05-merging.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -450,29 +450,169 @@ branches from your machine using <code>git merge</code>.</p>
 <ul><li><p>non-fast-forward merged (recommended)</p></li>
 <li><p>fast forward merged</p></li>
 </ul><figure><img src="fig/09-merging.png" alt="A diagram showing different types of Git merges." class="figure mx-auto d-block"><div class="figcaption">Merging diagram.</div>
-</figure><p>Reminder: when starting work on a new feature, be careful where you
-branch from!</p>
+</figure><section><h2 class="section-heading" id="fast-forward-merge">Fast-forward Merge<a class="anchor" aria-label="anchor" href="#fast-forward-merge"></a></h2>
+<hr class="half-width"><p>If there are no conflicts with the main branch, we can perform a
+“fast-forward” merge. This works by moving the branch pointer to the
+latest commit in the target branch. This is the default behavior of
+<code>git merge</code> (when possible).</p>
+<p>Let’s mergin in our <code>yaml-format</code> branch back into
+<code>main</code> using a fast-forward merge:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> remote add upstream https://github.com/mpi-astronomy/advanced-git-training.git</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">git</span> fetch upstream</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> develop upstream/develop</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">git</span> merge yaml-format</span></code></pre>
 </div>
-<section><h2 class="section-heading" id="non-fast-forwad-merge">Non-fast-forwad Merge<a class="anchor" aria-label="anchor" href="#non-fast-forwad-merge"></a></h2>
-<hr class="half-width"><p>Merges branch by creating a merge commit. Prompts for merge commit
-message. Ideal for merging two branches.</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git merge yaml-format
+Updating ec240ab..68b09d0
+Fast-forward
+ guacamole.md   | 7 -------
+ guacamole.yaml | 6 ++++++
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+ delete mode 100644 guacamole.md
+ create mode 100644 guacamole.yaml</code></pre>
+</div>
+<p>If we look at the log, we can see that the commits that we made on
+the <code>yaml-format</code> branch are now a part of the
+<code>main</code> branch:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git log --oneline --graph
+68b09d0 (HEAD -&gt; main, yaml-format) Rename recipe file to use .yaml extension.
+a2b55be Reformat recipe to use YAML.
+ec240ab Ignore png files and the pictures folder.
+20c856c Write prices for ingredients and their source
+11cdb65 Add some initial cakes
+7cdeaef Modify guacamole to the traditional recipe
+4b58094 Add ingredients for basic guacamole
+cdb0c21 Create initial structure for a Guacamole recipe</code></pre>
+</div>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>Note that our old branch is stil there!</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git branch -avv
+* main        68b09d0 Rename recipe file to use .yaml extension.
+  yaml-format 68b09d0 Rename recipe file to use .yaml extension.</code></pre>
+</div>
+<p>It’s just that both branches now point to the same commit. Until we
+specifically delete the branch, it will remain in the repository.</p>
+</div>
+</div>
+</div>
+<p>If using the fast-forward merge, it is impossible to see from the
+<code>git</code> history which of the commit objects together have
+implemented a feature. You would have to manually read all the log
+messages. Reverting a whole feature (i.e. a group of commits), is a true
+headache in the latter situation, whereas it is easily done if the
+–no-ff flag was used.</p>
+<p>For a good illustration of fast-forward merge (and other concepts),
+see this thread: <a href="https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge" class="external-link uri">https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge</a></p>
+</section><section><h2 class="section-heading" id="non-fast-forwad-merge">Non-fast-forwad Merge<a class="anchor" aria-label="anchor" href="#non-fast-forwad-merge"></a></h2>
+<hr class="half-width"><p>A non fast-forward merge makes a new commit that ties together the
+histories of both branches.</p>
+<p>Let’s make a new branch and add a commit to it:</p>
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span> -m <span class="st">"Message"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> branch add-instructions</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">git</span> switch add-instructions</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  1. Cut avocados in half and remove pit.</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  2. Make guacamole.</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> add guacamole.yaml</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add instructions to guacamole recipe."</span></span></code></pre>
+</div>
+<p>Now, let’s move back to the main branch and merge the changes from
+the <code>add-instructions</code> branch using a non-fast-forward
+merge:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> add-instructions <span class="at">-m</span> <span class="st">"Merge add-instructions branch into main."</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git merge --no-ff add-instructions -m "Merge add-instructions branch into main."
+Merge made by the 'ort' strategy.
+ guacamole.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)</code></pre>
+</div>
+<p>Let’s look at the log to see what happened:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git log --oneline --graph
+$ git log --oneline --graph
+*   a20b39f (HEAD -&gt; main) Merge add-instructions branch into main.
+|\
+| * 22e4eb6 (add-instructions) Add instructions to guacamole recipe.
+|/
+* 68b09d0 (yaml-format) Rename recipe file to use .yaml extension.
+* a2b55be Reformat recipe to use YAML.</code></pre>
 </div>
 <p>The <code>--no-ff</code> flag causes the merge to always create a new
 commit object, even if the merge could be performed with a fast-forward.
 This avoids losing information about the historical existence of a
 feature branch and groups together all commits that together added the
 feature.</p>
+<div id="exercise-creating-a-fast-forwad-merge." class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-creating-a-fast-forwad-merge." class="callout-inner">
+<h3 class="callout-title">Exercise: Creating a fast-forwad merge.</h3>
+<div class="callout-content">
+<p>Consider the following Git tree</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">*</span> a78b99f <span class="er">(</span><span class="ex">main</span><span class="kw">)</span> <span class="ex">Add</span> title</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 3d88062 <span class="er">(</span><span class="ex">remote</span><span class="kw">)</span> <span class="ex">Add</span> .gitignore</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="ex">*</span> 86c4247 Add README</span></code></pre>
+</div>
+<p>Is possible to run a fast-forward merge to incorporate the branch
+<code>remote</code> into <code>main</code>?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>No, it is not possible to run a fast-forward merge because of commit
+<code>a78b99f</code>.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="exercise-creating-a-non-fast-forwad-merge." class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -491,80 +631,27 @@ merge.</h3>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">touch</span> README.md</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'Add README'</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> gitignore</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">touch</span> .gitignore</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add .gitignore"</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> gitignore</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="fast-forward-merge">Fast-forward Merge<a class="anchor" aria-label="anchor" href="#fast-forward-merge"></a></h2>
-<hr class="half-width"><p>If there are no conflicts with the main branch, a “fast-forward”
-merge can be executed with. This will NOT create a merge commit! Aborts
-merge if it cannot be done. Ideal for updating a branch from remote.</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--ff-only</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
-</div>
-<p>If using the fast-forward merge, it is impossible to see from the
-<code>git</code> history which of the commit objects together have
-implemented a feature. You would have to manually read all the log
-messages. Reverting a whole feature (i.e. a group of commits), is a true
-headache in the latter situation, whereas it is easily done if the
-–no-ff flag was used.</p>
-<p>For a good illustration of fast-forward merge (and other concepts),
-see this thread: <a href="https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge" class="external-link uri">https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge</a></p>
-<div id="exercise-creating-a-fast-forwad-merge." class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="exercise-creating-a-fast-forwad-merge." class="callout-inner">
-<h3 class="callout-title">Exercise: Creating a fast-forwad merge.</h3>
-<div class="callout-content">
-<p>Consider the following Git tree</p>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">*</span> a78b99f <span class="er">(</span><span class="ex">main</span><span class="kw">)</span> <span class="ex">Add</span> title</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 3d88062 <span class="er">(</span><span class="ex">remote</span><span class="kw">)</span> <span class="ex">Add</span> .gitignore</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">*</span> 86c4247 Add README</span></code></pre>
-</div>
-<p>Is possible to run a fast-forward merge to incorporate the branch
-<code>remote</code> into <code>main</code>?</p>
-</div>
-</div>
-</div>
 <div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>No, it is not possible to run a fast-forward merge because of commit
-<code>a78b99f</code>.</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">touch</span> README.md</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'Add README'</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> gitignore</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="fu">touch</span> .gitignore</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add .gitignore"</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> gitignore</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -574,10 +661,10 @@ see this thread: <a href="https://stackoverflow.com/questions/9069061/what-effec
 <p>Similar to <code>--no-ff</code>, but there may be dragons. Forced
 upon you when there’s an intermediate change since you branched. May
 prompt your to manually resolve</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> merge <span class="op">&lt;</span>branch<span class="op">&gt;</span> [-s <span class="op">&lt;</span>strategy<span class="op">&gt;</span>]</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">git</span> merge <span class="op">&lt;</span>branch<span class="op">&gt;</span> [-s <span class="op">&lt;</span>strategy<span class="op">&gt;</span>]</span></code></pre>
 </div>
 <p>See <a href="https://git-scm.com/docs/merge-strategies" class="external-link uri">https://git-scm.com/docs/merge-strategies</a> for a zillion
 options (“patience”, “octopus”, etc), But also git is only so smart and
@@ -669,8 +756,8 @@ from remote</li>
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/advanced-git/05-merging.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/05-merging.html",
-  "dateCreated": "2025-12-01",
-  "dateModified": "2025-11-21",
+  "dateCreated": "2025-12-02",
+  "dateModified": "2025-12-02",
   "datePublished": "2025-12-02"
 }
 

@@ -400,7 +400,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Undo, Move, Cherrypick</h1>
-        <p>Last updated on 2025-11-27 |
+        <p>Last updated on 2025-12-02 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/13-cherrypick.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -488,17 +488,72 @@ from one branch to another.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
 </div>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
 <p>Note that we don’t have to provide any information about the source
 branch, because the commit hashes are unique across the entire
 repository. Git will find the commit with the specified hash, then apply
-it to the current branch. This means if we want to move a commit from,
-as in our example, a feature branch to the main branch, we first need to
-checkout the main branch:</p>
+it to the current branch.</p>
+</div>
+</div>
+</div>
+<p>Let’s modify our <code>groceries.md</code> file in our
+<code>bean-dip</code> branch:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">nano</span> groceries.md</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu"># Market A</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ss">* </span>avocado: 1.35 per unit.</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ss">* </span>lime: 0.64 per unit</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ss">* </span>salt: 2 per kg</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="ss">* </span>black beans: 0.99 per can</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> add groceries.md</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add bean dip ingredients to groceries"</span></span></code></pre>
+</div>
+<p>Wait though! We actually want this change to happen in the
+<code>main</code> branch instead. We can switch to the <code>main</code>
+branch and cherrypick the commit we just made in the
+<code>bean-dip</code> branch:</p>
+<p>Use <code>git log --oneline</code> in the <code>bean-dip</code>
+branch to find the commit hash of the commit we just made:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git log --oneline
+4a473c9 (HEAD -&gt; bean-dip) Add bean dip ingredients to groceries
+b8732e4 Add bean dip recipe
+79cb366 (origin/bean-dip) Add bean dip recipe.</code></pre>
+</div>
+<p>(Your commit hash will be different.)</p>
+<p>Now switch to the <code>main</code> branch and cherrypick that
+commit:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git cherry-pick 4a473c9
+[main 68fbfdc] Add bean dip ingredients to groceries
+ Date: Thu Nov 27 23:11:28 2025 +0100
+ 1 file changed, 1 insertion(+), 1 deletion(-)</code></pre>
 </div>
 <p>The command will then apply the changes only from the specified
 commit to the current branch, creating a new commit with those
@@ -509,10 +564,10 @@ changes.</p>
 <p>If you cherrypick a commit and then realize that you made a mistake,
 you can undo the cherrypick using the <code>git reset</code> command we
 showed earlier:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD</span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -536,7 +591,7 @@ across branches.</li>
 <div id="cherry-picking-a-hotfix-into-a-branch" class="callout-inner">
 <h3 class="callout-title">Cherry-picking a hotfix into a branch</h3>
 <div class="callout-content">
-<p>An urgend fix to main is also needed in a release branch to issue a
+<p>An urgent fix to main is also needed in a release branch to issue a
 bugfix release.</p>
 <ol style="list-style-type: decimal"><li>Create a branch off main and add a commit.</li>
 <li>Switch back to main and add a commit there, too.</li>
@@ -644,8 +699,8 @@ commit from main to the branch.</li>
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/advanced-git/instructor/13-cherrypick.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/instructor/13-cherrypick.html",
-  "dateCreated": "2025-12-01",
-  "dateModified": "2025-11-27",
+  "dateCreated": "2025-12-02",
+  "dateModified": "2025-12-02",
   "datePublished": "2025-12-02"
 }
 

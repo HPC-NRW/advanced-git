@@ -483,7 +483,125 @@
       <section id="aggregate-instructor-notes"><section id="01-introduction"><h2 class="section-heading"><a href="01-introduction.html">Introduction</a></h2>
 <hr class="half-width"></section><section id="02-branching"><h2 class="section-heading"><a href="02-branching.html">Branches</a></h2>
 <hr class="half-width"></section><section id="03-remote"><h2 class="section-heading"><a href="03-remote.html">Remote Repositories</a></h2>
-<hr class="half-width"></section><section id="04-undo"><h2 class="section-heading"><a href="04-undo.html">Undoing Changes</a></h2>
+<hr class="half-width">
+<h3 id="03-remote-headingInstructor1">
+<a href="03-remote.html#headingInstructor1">Create and Modify Connections</a><a class="anchor" aria-label="anchor" href="#03-remote-headingInstructor1"></a>
+</h3>
+<p>The <code>git remote</code> command also lets you manage connections
+with other repositories. The following commands will modify the repo’s
+<code>./.git/config</code> file. The result of the following commands
+can also be achieved by directly editing the <code>./.git/config</code>
+file with a text editor.</p>
+<p>Create a new connection to a remote repository. After adding a
+remote, you’ll be able to use <code>＜name＞</code> as a convenient
+shortcut for <code>＜url＞</code> in other Git commands.</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">git</span> remote add <span class="op">&lt;</span>name<span class="op">&gt;</span> <span class="op">&lt;</span>url<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>Remove the connection:</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> remote rm <span class="op">&lt;</span>name<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>Rename a connection:</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">git</span> remote rename <span class="op">&lt;</span>old-name<span class="op">&gt;</span> <span class="op">&lt;</span>new-name<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>To get high-level information about the remote
+<code>＜name＞</code>:</p>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">git</span> show <span class="op">&lt;</span>name<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>Exercise: Add a connection to your neighbour’s repository. Having
+this kind of access to individual developers’ repositories makes it
+possible to collaborate outside of the central repository. This can be
+very useful for small teams working on a large project.</p>
+<div class="codewrapper sourceCode" id="cb23">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">git</span> remote add john http://dev.example.com/john.git</span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="starting-a-branch-from-the-main-repository-state">Starting a branch from the main repository state:<a class="anchor" aria-label="anchor" href="#starting-a-branch-from-the-main-repository-state"></a>
+</h2>
+<p>Remember that when you create a new branch without specifying a
+starting point, then the starting point will be the current state and
+branch. In order to avoid confusion, ALWAYS branch from the stable
+version. Here is how you would branch from your own origin/main
+branch:</p>
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">git</span> fetch origin main</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span> origin/main</span></code></pre>
+</div>
+<p>You must fetch first so that you have the most recent state of the
+repository.</p>
+<p>If there is another “true” version/state of the project, then this
+connection may be set as upstream (or something else).
+<code>Upstream</code> is a common name for the stable repository, then
+the sequence will be:</p>
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">git</span> fetch upstream main</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span> upstream/main</span></code></pre>
+</div>
+<p>Now we can set the MPIA version of our repository as the upstream for
+our local copy.</p>
+<div id="setting-the-upstream-repository" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="setting-the-upstream-repository" class="callout-inner">
+<h3 class="callout-title">Setting the upstream repository</h3>
+<div class="callout-content">
+<p>Set the <a href="https://github.com/mpi-astronomy/advanced-git-training" class="external-link uri">https://github.com/mpi-astronomy/advanced-git-training</a>
+as the upstream locally.</p>
+<p>Then, examine the state of your repository with
+<code>git branch</code>, <code>git remote -v</code>,
+<code>git remote show upstream</code></p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb26">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">git</span> remote add upstream https://github.com/mpi-astronomy/advanced-git-training.git</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">git</span> fetch upstream</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> develop upstream/develop</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<br><hr>
+<br><div class="codewrapper sourceCode" id="cb26">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">git</span> remote add upstream https://github.com/mpi-astronomy/advanced-git-training.git</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">git</span> fetch upstream</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> develop upstream/develop</span></code></pre>
+</div>
+<hr>
+<br></section><section id="04-undo"><h2 class="section-heading"><a href="04-undo.html">Undoing Changes</a></h2>
 <hr class="half-width"></section><section id="05-merging"><h2 class="section-heading"><a href="05-merging.html">Merging</a></h2>
 <hr class="half-width"></section><section id="06-tags"><h2 class="section-heading"><a href="06-tags.html">Tags</a></h2>
 <hr class="half-width"></section><section id="07-branching-models"><h2 class="section-heading"><a href="07-branching-models.html">Branching Models</a></h2>
@@ -542,7 +660,7 @@
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/advanced-git/instructor/instructor-notes.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/instructor/instructor-notes.html",
-  "dateCreated": "2025-12-01",
+  "dateCreated": "2025-12-02",
   "dateModified": "2025-12-02",
   "datePublished": "2025-12-02"
 }

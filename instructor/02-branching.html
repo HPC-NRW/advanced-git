@@ -408,7 +408,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Branches</h1>
-        <p>Last updated on 2025-12-01 |
+        <p>Last updated on 2025-12-02 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/02-branching.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -479,11 +479,14 @@ If you start with a repository that looks like this:</p>
 <figure><img src="../fig/04-branching.png" alt="A diagram showing several commits on a single branch in a theoretical git repository." class="figure mx-auto d-block"><div class="figcaption">Git Branching: A branch is just a “named
 pointer” to a commit. (Source: <a href="https://www.atlassian.com/git/tutorials/using-branches" class="external-link">Atlassian
 Git Tutorial</a>)</div>
-</figure><p>Then, you create a branch using the following command:</p>
+</figure><p>Lets’s say we wanted to reworking our recipes to use a different
+format. We could continue on our existing branch, but we’re not so sure
+about this change, so instead we create a new branch to experiment
+with:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> branch crazy-experiment</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> branch yaml-format</span></code></pre>
 </div>
 <p>The repository history remains unchanged. All you get is a new
 pointer to the current commit:</p>
@@ -491,7 +494,7 @@ pointer to the current commit:</p>
 same commit from which it was branched off. (Source: <a href="https://www.atlassian.com/git/tutorials/using-branches" class="external-link">Atlassian
 Git Tutorial</a>)</div>
 </figure><p>Note that this only creates the new branch. To start adding commits
-to it, you need to select it with <code>git checkout</code>, and then
+to it, you need to move to it with <code>git checkout</code>, and then
 use the standard <code>git add</code> and <code>git commit</code>
 commands.</p>
 <p>A branch <em>also</em> means an independent line of development.
@@ -511,70 +514,248 @@ a summary of the commands:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> branch</span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-avv</span></span></code></pre>
+<pre class="output" tabindex="0"><code>$ git branch
+* main
+  yaml-format</code></pre>
 </div>
-<p>To create a new branch named <code>&lt;branch&gt;</code>, which
-<em>references the same point in history as the current branch.</em></p>
+<p>The asterisk (<code>*</code>) indicates the current branch. To see
+more information about each branch, including the latest commit on each
+branch, use the <code>-avv</code> flags:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-avv</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git branch -avv
+* main        ec240ab Ignore png files and the pictures folder.
+  yaml-format ec240ab Ignore png files and the pictures folder.</code></pre>
+</div>
+<p>We can see that, as we have not added any new commits to the
+<code>yaml-format</code> branch, both branches point to the same commit
+(<code>ec240ab</code>).</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<p>To create a new branch named <code>&lt;branch&gt;</code>, which
+<em>references the same point in history as the current branch.</em></p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>To create a new branch named <code>&lt;branch&gt;</code>, referencing
 <code>&lt;start-point&gt;</code>, which may be specified any way you
 like, including using a branch name or a tag name:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="op">&lt;</span>branch<span class="op">&gt;</span> <span class="op">&lt;</span>start-point<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="op">&lt;</span>branch<span class="op">&gt;</span> <span class="op">&lt;</span>start-point<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>To delete the branch <code>&lt;branch&gt;</code>; if the branch is
 not fully merged in its upstream branch or contained in the current
 branch, this command will fail with a warning:</p>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
-</div>
-<p>To delete the branch <code>&lt;branch&gt;</code> irrespective of its
-merged status:</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
-</div>
-<p>To switch to a different branch <code>&lt;branch&gt;</code>, updating
-the working directory to reflect the version referenced by
-<code>&lt;branch&gt;</code>.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
 </div>
-<p>To create a new branch <code>&lt;new&gt;</code> referencing
-<code>&lt;start-point&gt;</code>, and check it out.</p>
+<p>To delete the branch <code>&lt;branch&gt;</code> irrespective of its
+merged status:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> <span class="op">&lt;</span>new<span class="op">&gt;</span> <span class="op">&lt;</span>start-point<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>Renaming a branch can be done with the <code>-m</code> tag:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-m</span> <span class="op">&lt;</span>old-branch-name<span class="op">&gt;</span> <span class="op">&lt;</span>new-branch-name<span class="op">&gt;</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Let’s switch over to our new branch so we can start making
+changes:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> switch yaml-format</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git switch yaml-format
+Switched to branch 'yaml-format'</code></pre>
+</div>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p><code>git switch</code> was introduced in Git 2.23 as a more purpose
+specific command for switching branches. It is functionally similar to
+<code>git checkout</code>, which is still used widely, but is a more
+general command with multiple purposes (switching branches, restoring
+files, etc).</p>
+<p>To create a new branch <code>&lt;new&gt;</code> referencing
+<code>&lt;start-point&gt;</code>, and check it out.</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> <span class="op">&lt;</span>new<span class="op">&gt;</span> <span class="op">&lt;</span>start-point<span class="op">&gt;</span></span></code></pre>
+</div>
+</div>
+</div>
 </div>
 <p>The special symbol <code>"HEAD"</code> can always be used to refer to
 the current branch. In fact, Git uses a file named <code>HEAD</code> in
 the <code>.git</code> directory to remember which branch is current:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> cat .git/HEAD</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">ref:</span> refs/heads/master</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> cat .git/HEAD</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">ref:</span> refs/heads/master</span></code></pre>
 </div>
-<p>Renaming a branch can be done with the <code>-m</code> tag:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<p>Let’s reformat our recipe to use YAML and commit the changes:</p>
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-m</span> <span class="op">&lt;</span>old-branch-name<span class="op">&gt;</span> <span class="op">&lt;</span>new-branch-name<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">nano</span> guacamole.md</span></code></pre>
+</div>
+<pre><code><span><span class="va">name</span><span class="op">:</span> <span class="va">Guacamole</span></span>
+<span><span class="va">ingredients</span><span class="op">:</span></span>
+<span>  <span class="va">avocado</span><span class="op">:</span> <span class="fl">1.35</span></span>
+<span>  <span class="va">lime</span><span class="op">:</span> <span class="fl">0.64</span></span>
+<span>  <span class="va">salt</span><span class="op">:</span> <span class="fl">2</span></span>
+<span><span class="va">instructions</span><span class="op">:</span> <span class="st">""</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Reformat recipe to use YAML."</span></span></code></pre>
+</div>
+<p>Now let’s check our branches again:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-avv</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git branch -avv
+  main        ec240ab Ignore png files and the pictures folder.
+* yaml-format a2b55be Reformat recipe to use YAML.</code></pre>
+</div>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>Challenge 1: Renaming a file in a branch</p>
+<p>We updated our guacamole recipe in the <code>yaml-format</code>
+branch to use a different format. But now the file extension
+<code>.md</code> doesn’t make sense anymore. Rename the file to
+<code>guacamole.yaml</code> and commit the change to the
+<code>yaml-format</code> branch. Run <code>git status</code> before you
+commit your changes. Is there anything different about the way this
+commit looks than in our earlier exercies?</p>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div class="accordion-body">
+<p>You can use the <code>mv</code> command to rename files in the
+terminal:</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">mv</span> old-filename new-filename</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">mv</span> guacamole.md guacamole.yaml</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">git</span> add guacamole.yaml guacamole.md</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ git status
+On branch yaml-format
+Changes to be committed:
+  (use "git restore --staged &lt;file&gt;..." to unstage)
+        renamed:    guacamole.md -&gt; guacamole.yaml</code></pre>
+</div>
+<p>Git is not very clever about most things, but as long as the contents
+of the file are identical, it can at least figure out that we just
+renamed the file, rather than deleting one and adding another.</p>
+<div class="codewrapper sourceCode" id="cb23">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Rename recipe file to use .yaml extension."</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>Challenge 2:</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+
+</div>
+</div>
+</div>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -650,8 +831,8 @@ state.</li>
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/advanced-git/instructor/02-branching.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/instructor/02-branching.html",
-  "dateCreated": "2025-12-01",
-  "dateModified": "2025-12-01",
+  "dateCreated": "2025-12-02",
+  "dateModified": "2025-12-02",
   "datePublished": "2025-12-02"
 }
 
