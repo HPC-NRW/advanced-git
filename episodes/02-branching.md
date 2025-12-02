@@ -178,6 +178,8 @@ $ git branch -avv
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
+Challenge 1: Renaming a file in a branch
+
 We updated our guacamole recipe in the `yaml-format` branch to use a different format. But now the
 file extension `.md` doesn't make sense anymore. Rename the file to `guacamole.yaml` and commit the
 change to the `yaml-format` branch. Run `git status` before you commit your changes. Is there
@@ -215,6 +217,16 @@ can at least figure out that we just renamed the file, rather than deleting one 
 ```bash
 git commit -m "Rename recipe file to use .yaml extension."
 ```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+Challenge 2:
+
+:::::::::::::::  solution
 
 :::::::::::::::::::::::::
 
