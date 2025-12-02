@@ -17,46 +17,57 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Exercise: Creating a branch.
-
-Create a new branch called `hotfix`. Create a new file and make 3-4 commits in that file or create 3-4 new files. Check the log to see the SHA of the last commit.
-
-::: hint
-You can use the `touch` command to create new files quickly.
-:::
-
-::: hint
-Use `git add` and `git commit -m "your message"` to save your changes.
-:::
-
-:::::::::::::::  solution
-
-```bash
-git checkout -b hotfix
-touch a.txt
-git add . && git commit -m "1st git commit: 1 file"
-touch b.txt
-git add . && git commit -m "2nd git commit: 2 file"
-touch c.txt
-git add . && git commit -m "3rd git commit: 3 file"
-git status
-git log --oneline
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 ## Git Revert
 
 Reverting undoes a commit by creating a new commit. This is a safe way to undo changes, as it has no chance of re-writing the commit history. For example, the following command will figure out the changes contained in the 2nd to last commit, create a new commit undoing those changes, and tack the new commit onto the existing project.
 
+Let's make a commit to revert first. On our `bean-dip` branch, let's add a line to our `bean-dip.md` file and commit it.
+
 ```bash
-git revert HEAD~1
-ls
+nano bean-dip.md
 ```
+
+```markdown
+# Bean Dip
+## Ingredients
+- beans
+## Instructions
+- Purchase the bean dip.
+```
+
+```bash
+git add bean-dip.md
+git commit -m "Add bean dip recipe"
+```
+
+After making that commit, maybe we second guess and decide we don't want that change after all. We can use `git revert` to back out that last commit.
+
+```bash
+git revert HEAD
+```
+
+We get a text editor window asking us for a commit message for the revert commit. Save and close the editor to complete the revert.
+
+Let's run `git log --oneline` to see what happened.
+
+```bash
+git log --oneline
+```
+
+```output
+$ git log --oneline
+96f26c7 (HEAD -> bean-dip) Revert "Add bean dip recipe"
+b8732e4 Add bean dip recipe
+79cb366 (origin/bean-dip) Add bean dip recipe.
+```
+
+Reverting doesn't actually delete the previous commit - it just creates a new commit that undoes exactly the changes made in that commit.
+
+::: callout
+
+We can also revert to specific commits by providing the commit SHA instead of `HEAD`, or undo several commits by using `HEAD~n` where `n` is the number of commits to go back.
+
+:::
 
 ![git revert](fig/08-revert.png){alt="A diagram showing a repository before and after reverting the last commit."}
 
@@ -66,10 +77,9 @@ Note that revert only backs out the atomic changes of the ONE specific commit (b
 
 ## Git Reset
 
-Resetting is a way to move the tip of a branch to a different commit. This can be used to remove commits from the current branch. For example, the following command moves the `hotfix` branch backwards by two commits.
+Resetting is a way to move the tip of a branch to a different commit. This can be used to remove commits from the current branch. For example, the following command moves the branch backwards by two commits.
 
 ```bash
-git checkout hotfix
 git reset HEAD~1
 ```
 
@@ -77,13 +87,6 @@ git reset HEAD~1
 
 
 The two commits that were on the end of `hotfix` are now dangling, or orphaned commits. This means they will be deleted the next time `git` performs a garbage collection. In other words, you’re saying that you want to throw away these commits.
-
-`git reset` also reverts the commits but leaves the uncommitted changes in the repo.
-
-```bash
-git status
-git restore b.txt
-```
 
 `git reset` is a simple way to undo changes that haven’t been shared with anyone else. It’s your go-to command when you’ve started working on a feature and find yourself thinking, “Oh crap, what am I doing? I should just start over.”
 
@@ -97,17 +100,13 @@ __--hard__ – The staged snapshot and the working directory are both updated to
 
 It’s easier to think of these modes as defining the scope of a git reset operation.
 
-To just undo any uncommitted changes:
+Let's discard our changes completely using `--hard`:
 
 ```bash
-git status
-git add c.txt
-git status
-git reset HEAD
-git status
+git reset HEAD --hard
 ```
 
-You can add and commit the changes or restore the file.
+::: callout
 
 `git reset` can also work on a single file:
 
@@ -115,12 +114,14 @@ You can add and commit the changes or restore the file.
 git reset HEAD~2 foo.txt
 ```
 
+:::
+
 ## Git Checkout: A Gentle Way
 
 We already saw that `git checkout` is used to move to a different branch but is can also be used to update the state of the repository to a specific point in the projects history.
 
 ```bash
-git checkout hotfix
+git checkout main
 git checkout HEAD~2
 ```
 
