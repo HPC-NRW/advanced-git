@@ -39,7 +39,7 @@ severely impact the performance of all your Git operations from `git clone` to e
 
 However, the problem of binary files in Git repositories cannot be fully neglected:
 There is a lot of value for a software project in keeping things together that belong
-together: Documentation assets belong to the documention they are part of.
+together: Documentation assets belong to the documentation they are part of.
 Therefore we will now explore some options on how to integrate large file handling into Git.
 
 The `git lfs` subcommand is part of an extension to Git. LFS stands for **L**arge

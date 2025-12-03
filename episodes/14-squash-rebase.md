@@ -15,7 +15,7 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Understand the reasons for interactive rebases.
-- Remove ammending commits from the history.
+- Remove amending commits from the history.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

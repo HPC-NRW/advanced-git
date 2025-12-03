@@ -7,13 +7,13 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Understand the range of functionality that exists in git.
-- Understand the different challenges that arrise with collaborative projects.
+- Understand the different challenges that arise with collaborative projects.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- What do I do when I need to make complex decisions with my git respository?
+- What do I do when I need to make complex decisions with my git repository?
 - How do I collaborate on a software project with others?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -22,7 +22,7 @@ exercises: 0
 
 Version control systems are a way to keep track of changes in text-based documents. We start with a base version of the document and then record the changes you make each step of the way. You can think of it as a recording of your progress: you can rewind to start at the base document and play back each change you made, eventually arriving at your more recent version.
 
-The git version control system, used to manage the code in many millions of software projects, is one of the most widely adopted one. It uses a distributed version control model (the "beautiful graph theory tree model"), meaning that there is no single central repository of code. Instead, users share code back and forth to synchronise their repositories, and it is up to each project to define processes and procedures for managing the flow of changes into a stable software product.
+The git version control system, used to manage the code in many millions of software projects, is one of the most widely adopted one. It uses a distributed version control model (the "beautiful graph theory tree model"), meaning that there is no single central repository of code. Instead, users share code back and forth to synchronize their repositories, and it is up to each project to define processes and procedures for managing the flow of changes into a stable software product.
 
 ## Challenges
 
@@ -92,7 +92,7 @@ git push
 git pull
 ```
 
-Finally, the `git fetch` command downloads commits, files, and refs from a remote repository into your local repo. When downloading content from a remote repo, `git pull` and `git fetch` commands are available to accomplish the task. You can consider git fetch the 'safe' version of the two commands. It will download the remote content but not update your local repo's working state, leaving your current work intact. `git pull` is the more aggressive alternative; it will download the remote content for the active local branch and immediately execute `git merge` to create a merge commit for the new remote content. If you have pending changes in progress this will cause conflicts and kick-off the merge conflict resolution flow. The following command will bring down __all__ the changes from the remote:
+Finally, the `git fetch` command downloads commits, files, and refs from a remote repository into your local repository. When downloading content from a remote repository, `git pull` and `git fetch` commands are available to accomplish the task. You can consider git fetch the 'safe' version of the two commands. It will download the remote content but not update your local repository's working state, leaving your current work intact. `git pull` is the more aggressive alternative; it will download the remote content for the active local branch and immediately execute `git merge` to create a merge commit for the new remote content. If you have pending changes in progress this will cause conflicts and kick-off the merge conflict resolution flow. The following command will bring down __all__ the changes from the remote:
 
 ```bash
 git fetch

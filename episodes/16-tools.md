@@ -31,11 +31,11 @@ Take a minute to think about which information might be helpful to be shown as p
 
 ## Some ideas.
 
-- **The active branch.** As you can swith between different branches of the same repository, it
+- **The active branch.** As you can switch between different branches of the same repository, it
   can sometimes be confusing to know which branch your working copy currently reflects. Presenting
   the branch name as part of the directory name you are currently in may help as a reminder.
 - **The state of the branch.** An indicator on whether there are modified or uncommitted files in
-  the repository may help in noticing uncommited changes in the repository.
+  the repository may help in noticing uncommitted changes in the repository.
 
 :::::::::::::::::::::::::
 
@@ -125,7 +125,7 @@ This will show username, pipe, then various status string, followed by colon, cw
 
 Using the `git-prompt.sh` script you can now tweak the information shown in the prompt by setting specific environment variables.
 
-### Indicating unstaged and uncommited changes in the working copy
+### Indicating unstaged and uncommitted changes in the working copy
 
 By setting the environment variable `GIT_PS1_SHOWDIRTYSTATE` to a non-empty value, the prompt will indicate modified files in the working copy with an `*` character.
 
@@ -176,7 +176,7 @@ you@computer:my_repo (main)>
 
 ### Indicating the name of and difference to the upstream repository
 
-The environment variable `GIT_PS1_SHOWUPSTREAM` can be set to a space-seperated list of options to show relation of the local working copy to an upstream repository. For basic use, you can select between the following options.
+The environment variable `GIT_PS1_SHOWUPSTREAM` can be set to a space-separated list of options to show relation of the local working copy to an upstream repository. For basic use, you can select between the following options.
 
 - **verbose** show the number of commits behind (-) or ahead (+) if not equal (=) to upstream.
 - **name** show the abbreviated name of the upstream repository
@@ -200,12 +200,12 @@ There are more options for advanced usage available. Check inside of `git-prompt
 ### Colorizing the output
 
 If the environment variable `GIT_PS1_SHOWCOLORHINTS` is set to any value, the Git-related part of the output in the prompt will be colorized.
-If the variable is not set, the output will not be colorized.
+If the variable is not set, the output will not be colourized.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
 - Use available scripts for common shell environments.
-- Indicate changes stashed, pending, or commited to the local working copy.
+- Indicate changes stashed, pending, or committed to the local working copy.
 - Indicate current branch name to aid in multi-branch workflows.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

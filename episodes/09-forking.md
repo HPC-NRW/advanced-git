@@ -20,7 +20,7 @@ Preparation: Make sure that the main is clean, everything is committed.
 
 The forking workflow is popular among open source software projects and often used in conjunction with a branching model.
 
-The main advantage is that you enable people external to your project to implementent and suggest changes to your project without the need to give them push access to your project.
+The main advantage is that you enable people external to your project to implement and suggest changes to your project without the need to give them push access to your project.
 In this workflow developers usually interact with multiple (at least two) repositories and remotes: the original code
 repository and the forked repository.
 It is important to understand that a fork represents a **complete copy** of a
@@ -176,7 +176,7 @@ It therefore remains a judgement call and will largely be influenced by the spec
 
 ## Exercise 2: Keeping things up-to-date
 
-Update the copies of your `main` branch after the successfull merge of the pull request.
+Update the copies of your `main` branch after the successful merge of the pull request.
 
 You can do this with the UI of the hosting service, but try to use the command line.
 

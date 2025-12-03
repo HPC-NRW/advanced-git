@@ -88,7 +88,7 @@ git reset HEAD~1
 
 The two commits that were on the end of `hotfix` are now dangling, or orphaned commits. This means they will be deleted the next time `git` performs a garbage collection. In other words, you’re saying that you want to throw away these commits.
 
-`git reset` is a simple way to undo changes that haven’t been shared with anyone else. It’s your go-to command when you’ve started working on a feature and find yourself thinking, “Oh crap, what am I doing? I should just start over.”
+`git reset` is a simple way to undo changes that haven’t been shared with anyone else. It’s your go-to command when you've started working on a feature and find yourself thinking, “Oh crap, what am I doing? I should just start over.”
 
 In addition to moving the current branch, you can also get `git reset` to alter the staged snapshot and/or the working directory by passing it one of the following flags:
 
@@ -134,7 +134,7 @@ Most of the time, HEAD points to a branch name. When you add a new commit, your 
 The detached HEAD state is when HEAD is pointing directly to a commit instead of a branch. This is really useful because it allows you to go to a previous point in the project’s history. You can also make changes here and see how they affect the project.
 
 ```bash
-echo "Welcome to the alternate timeline, Morty!" > new-file.txt
+echo "Welcome to the alternate timeline, Marty!" > new-file.txt
 git add .
 git commit -m "Create new file"
 echo "Another line" >> new-file.txt

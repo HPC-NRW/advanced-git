@@ -55,7 +55,7 @@ print('Hello world!'')
 
 The typo is on purpose. Add and commit it to the repository.
 
-GitHub actions are the equivalent of serverside hooks on GitHub.
+GitHub actions are the equivalent of server-side hooks on GitHub.
 
 There are lots of things that can be done with GitHub actions: https://docs.github.com/en/actions
 
