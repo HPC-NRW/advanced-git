@@ -310,7 +310,7 @@
 <div class="accordion accordion-flush" id="accordionFlush12">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading12">
-        <a href="13-cherrypick.html">11. Undo, Move, Cherrypick</a>
+        <a href="13-cherrypick.html">11. Undo, Move, cherry-pick</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -410,7 +410,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Branching Models</h1>
-        <p>Last updated on 2025-11-21 |
+        <p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/07-branching-models.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -494,7 +494,7 @@ models that can be used. <code>git</code> is very much (fortunately or
 unfortunately) not. This means that there are many different ways to do
 development in a team and the team needs to explicitly agree on how and
 when to merge contributions to the main branch. So the first rule of
-<code>git</code> granching is: “Talk about your branching model.” The
+<code>git</code> branching is: “Talk about your branching model.” The
 second rule is: “Talk about your branching model.” If in doubt, do what
 other people around you are doing. If they don’t do anything, call a
 friend.</p>
@@ -505,7 +505,7 @@ limited to:</p>
 to make changes directly to the main branch. Every change is logged into
 the history. In this workflow, the contributors do not use other
 branches. Instead they all make changes on the main branch directly and
-commit to it. This woks for individual developers or small thema which
+commit to it. This woks for individual developers or small teams which
 communicate very well, but can be tricky for larger teams: the code is
 in constant state of flux and developers keep changes local until they
 are ready to release.</p></li>
@@ -519,27 +519,27 @@ frequently and is more successful if there is CI/CD.</p></li>
 “feature” gets its own branch where the developers make changes. Once
 the feature is done, they submit a merge/pull request and merge it into
 the main branch. Features branches should be relatively short-lived. The
-benefit of this model is that the main branch is not poluted by
+benefit of this model is that the main branch is not polluted by
 unfinished features. Good for teams.</p></li>
 <li><p><strong>Gitflow</strong>: is a model where the main development
 happens in a develop branch with feature branches. When the develop
 branch is ready for a release (or to go into production), a team member
 creates a release branch which is tested and eventually merged onto the
-dev and eventually main branch.</p></li>
+develop and eventually main branch.</p></li>
 <li><p><strong>GitHub flow</strong> (<a href="https://docs.github.com/en/get-started/quickstart/github-flow" class="external-link uri">https://docs.github.com/en/get-started/quickstart/github-flow</a>):
 similar to the branching workflow.</p></li>
 <li><p><strong>GitLab flow</strong>: is a simplified version of Gitflow
 (<a href="https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/" class="external-link uri">https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/</a>)</p></li>
 <li><p><strong>Oneflow</strong>: is similar to Gitflow but relies on the
-maintanance of one long-lived branch. It is meant to be simpler, without
+maintenance of one long-lived branch. It is meant to be simpler, without
 a develop branch but feature branches still exist (<a href="https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow" class="external-link uri">https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow</a>).</p></li>
 <li><p><strong>Forking workflow</strong> (e.g. astropy): is a model
 where each contributor creates a <code>fork</code> or a complete copy of
-the repository. Every contribitor effectively has two repositories: his
+the repository. Every contributor effectively has two repositories: his
 own and the main (upstream) one. Changes are made as pull requests
-against the main repository. This model is propular with open source
+against the main repository. This model is popular with open source
 projects because the vast majority of contributors do not need to have
-priviledges in the main repository.</p></li>
+privileges in the main repository.</p></li>
 </ul><p>A longer description of some of these can be found here: <a href="https://about.gitlab.com/topics/version-control/what-is-git-workflow/#feature-branching-git-workflow" class="external-link uri">https://about.gitlab.com/topics/version-control/what-is-git-workflow/#feature-branching-git-workflow</a></p>
 <p>In summary, there are many different ways to collaborate on a
 project. Look at the pros and cons and select one that fits the needs
@@ -621,7 +621,7 @@ changes to a single project.</li>
   "url": "https://carpentries-incubator.github.io/advanced-git/instructor/07-branching-models.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/instructor/07-branching-models.html",
   "dateCreated": "2025-12-03",
-  "dateModified": "2025-11-21",
+  "dateModified": "2025-12-03",
   "datePublished": "2025-12-03"
 }
 

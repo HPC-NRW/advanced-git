@@ -365,7 +365,7 @@
 <div class="accordion accordion-flush" id="accordionFlush12">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading12">
-        <a href="13-cherrypick.html">11. Undo, Move, Cherrypick</a>
+        <a href="13-cherrypick.html">11. Undo, Move, cherry-pick</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -479,7 +479,7 @@
         
 <section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-11-24 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/01-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -494,7 +494,7 @@
 <h3 class="card-title">Questions</h3>
 <ul>
 <li>What do I do when I need to make complex decisions with my git
-respository?</li>
+repository?</li>
 <li>How do I collaborate on a software project with others?</li>
 </ul>
 </div>
@@ -506,7 +506,7 @@ respository?</li>
 <h3 class="card-title">Objectives</h3>
 <ul>
 <li>Understand the range of functionality that exists in git.</li>
-<li>Understand the different challenges that arrise with collaborative
+<li>Understand the different challenges that arise with collaborative
 projects.</li>
 </ul>
 </div>
@@ -527,7 +527,7 @@ more recent version.</p>
 millions of software projects, is one of the most widely adopted one. It
 uses a distributed version control model (the “beautiful graph theory
 tree model”), meaning that there is no single central repository of
-code. Instead, users share code back and forth to synchronise their
+code. Instead, users share code back and forth to synchronize their
 repositories, and it is up to each project to define processes and
 procedures for managing the flow of changes into a stable software
 product.</p>
@@ -629,11 +629,11 @@ project repositories.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre>
 </div>
 <p>Finally, the <code>git fetch</code> command downloads commits, files,
-and refs from a remote repository into your local repo. When downloading
-content from a remote repo, <code>git pull</code> and
+and refs from a remote repository into your local repository. When
+downloading content from a remote repository, <code>git pull</code> and
 <code>git fetch</code> commands are available to accomplish the task.
 You can consider git fetch the ‘safe’ version of the two commands. It
-will download the remote content but not update your local repo’s
+will download the remote content but not update your local repository’s
 working state, leaving your current work intact. <code>git pull</code>
 is the more aggressive alternative; it will download the remote content
 for the active local branch and immediately execute
@@ -680,7 +680,7 @@ on projects with others</li>
 </div>
 </section></section><section id="aio-02-branching"><p>Content from <a href="02-branching.html">Branches</a></p>
 <hr>
-<p>Last updated on 2025-12-02 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/02-branching.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -749,7 +749,7 @@ If you start with a repository that looks like this:</p>
 <figure><img src="fig/04-branching.png" alt="A diagram showing several commits on a single branch in a theoretical git repository." class="figure mx-auto d-block"><div class="figcaption">Git Branching: A branch is just a “named
 pointer” to a commit. (Source: <a href="https://www.atlassian.com/git/tutorials/using-branches" class="external-link">Atlassian
 Git Tutorial</a>)</div>
-</figure><p>Lets’s say we wanted to reworking our recipes to use a different
+</figure><p>Let’s say we wanted to reworking our recipes to use a different
 format. We could continue on our existing branch, but we’re not so sure
 about this change, so instead we create a new branch to experiment
 with:</p>
@@ -948,7 +948,7 @@ branch to use a different format. But now the file extension
 <code>guacamole.yaml</code> and commit the change to the
 <code>yaml-format</code> branch. Run <code>git status</code> before you
 commit your changes. Is there anything different about the way this
-commit looks than in our earlier exercies?</p>
+commit looks than in our earlier exercises?</p>
 </div>
 </div>
 </div>
@@ -1149,11 +1149,11 @@ location of this URL will depend on the hosting service you are using
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
 <p>Look for the blue “Code” button on the upper right of the repository
 page. Click it to reveal the URL.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
 <p>Look for the green “Code” button on the upper right of the repository
 page. Click it to see two tabs: “Local” and “Codespaces”. Under the
 “Local” tab, you will find the URL.</p>
@@ -1396,7 +1396,7 @@ URLs.</p>
 </h2>
 <hr class="half-width">
 <p>We pulled changes from the remote repository, but if we refresh the
-page on GitLab, we won’t see our local commits there. If we run the
+page on Gitlab, we won’t see our local commits there. If we run the
 <code>git status</code> command we can see that git is aware that our
 local branch has some commits that aren’t on the remote branch:</p>
 <div class="codewrapper">
@@ -1429,7 +1429,7 @@ Total 27 (delta 4), reused 0 (delta 0), pack-reused 0
 To &lt;REPOSITORY-URL&gt;
    5be9f46..0622c3a  main -&gt; main</code></pre>
 </div>
-<p>If we now refresh the page on GitLab, we should see our commits
+<p>If we now refresh the page on Gitlab, we should see our commits
 there!</p>
 
 <div id="creating-a-branch-and-pushing-it-to-the-remote" class="callout challenge">
@@ -1505,7 +1505,7 @@ responsibilities.</li>
 </div>
 </section></section><section id="aio-04-undo"><p>Content from <a href="04-undo.html">Undoing Changes</a></p>
 <hr>
-<p>Last updated on 2025-12-02 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/04-undo.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1698,7 +1698,7 @@ here and see how they affect the project.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Welcome to the alternate timeline, Morty!"</span> <span class="op">&gt;</span> new-file.txt</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Welcome to the alternate timeline, Marty!"</span> <span class="op">&gt;</span> new-file.txt</span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">git</span> add .</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Create new file"</span></span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Another line"</span> <span class="op">&gt;&gt;</span> new-file.txt</span>
@@ -1872,7 +1872,7 @@ commits.</li>
 </div>
 <p>When you are collaborating, you will have to merge a branch
 independent if your branch may or may not have diverged from the main
-branch. Most of the Git hosting platform like GiHub or GitLab allows you
+branch. Most of the Git hosting platform like GiHub or Gitlab allows you
 to merge a branch from their web interface but you can also merge the
 branches from your machine using <code>git merge</code>.</p>
 <p>There are 2 ways to merge:</p>
@@ -1886,9 +1886,9 @@ branches from your machine using <code>git merge</code>.</p>
 <hr class="half-width">
 <p>If there are no conflicts with the main branch, we can perform a
 “fast-forward” merge. This works by moving the branch pointer to the
-latest commit in the target branch. This is the default behavior of
+latest commit in the target branch. This is the default behaviour of
 <code>git merge</code> (when possible).</p>
-<p>Let’s mergin in our <code>yaml-format</code> branch back into
+<p>Let’s merge in our <code>yaml-format</code> branch back into
 <code>main</code> using a fast-forward merge:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2298,7 +2298,7 @@ modified in both branches</li>
 </div>
 </section></section><section id="aio-06-tags"><p>Content from <a href="06-tags.html">Tags</a></p>
 <hr>
-<p>Last updated on 2025-11-21 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/06-tags.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2329,15 +2329,15 @@ modified in both branches</li>
 </div>
 </div>
 </div>
-<p>A tag is a marker of a specic commit in the project history. You can
-think of it as a permanent bookmark. Tags can be created to point to a
-release version, a major code change, a state of the code that was used
-to produce a paper or a data release, or any other event you (or the
-development team) may want to reference in the future.</p>
+<p>A tag is a marker of a specific commit in the project history. You
+can think of it as a permanent bookmark. Tags can be created to point to
+a release version, a major code change, a state of the code that was
+used to produce a paper or a data release, or any other event you (or
+the development team) may want to reference in the future.</p>
 <p>Once a tag has been created, no other changes can be added to it. But
 you can delete it and create a new one with the same name.</p>
 <p>Don’t name your tags the same as your branches. Or the other way
-around. git fetch can get a tag or a branch and that can be
+around. <code>git fetch</code> can get a tag or a branch and that can be
 confusing.</p>
 <p>The command that allows you to handle git tags is just
 <code>git tag</code>. Without any flags it simply list the existing
@@ -2406,7 +2406,7 @@ tagged:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> push origin <span class="op">&lt;</span>tag<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>And of course you can delete a tag. This does not delete the commit,
-just removes the marker/lable. Delete a tag:</p>
+just removes the marker/label. Delete a tag:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2414,7 +2414,7 @@ just removes the marker/lable. Delete a tag:</p>
 </div>
 <p>Since tags are frequently used to do releases, it is useful to be
 aware that codebases and languages have standards on how release
-versions should be labled. If you are working with an existing code
+versions should be labelled. If you are working with an existing code
 base, follow the standard set by the dev team. If you are developing a
 library by yourself, follow the standards for the language. For example,
 the (Python Packaging Authority)[<a href="https://packaging.python.org/en/latest/specifications/version-specifiers/#version-specifiers" class="external-link uri">https://packaging.python.org/en/latest/specifications/version-specifiers/#version-specifiers</a>]
@@ -2437,7 +2437,7 @@ to.</li>
 </div>
 </div></section><section id="aio-07-branching-models"><p>Content from <a href="07-branching-models.html">Branching Models</a></p>
 <hr>
-<p>Last updated on 2025-11-21 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/07-branching-models.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2523,7 +2523,7 @@ models that can be used. <code>git</code> is very much (fortunately or
 unfortunately) not. This means that there are many different ways to do
 development in a team and the team needs to explicitly agree on how and
 when to merge contributions to the main branch. So the first rule of
-<code>git</code> granching is: “Talk about your branching model.” The
+<code>git</code> branching is: “Talk about your branching model.” The
 second rule is: “Talk about your branching model.” If in doubt, do what
 other people around you are doing. If they don’t do anything, call a
 friend.</p>
@@ -2535,7 +2535,7 @@ limited to:</p>
 to make changes directly to the main branch. Every change is logged into
 the history. In this workflow, the contributors do not use other
 branches. Instead they all make changes on the main branch directly and
-commit to it. This woks for individual developers or small thema which
+commit to it. This woks for individual developers or small teams which
 communicate very well, but can be tricky for larger teams: the code is
 in constant state of flux and developers keep changes local until they
 are ready to release.</p></li>
@@ -2549,27 +2549,27 @@ frequently and is more successful if there is CI/CD.</p></li>
 “feature” gets its own branch where the developers make changes. Once
 the feature is done, they submit a merge/pull request and merge it into
 the main branch. Features branches should be relatively short-lived. The
-benefit of this model is that the main branch is not poluted by
+benefit of this model is that the main branch is not polluted by
 unfinished features. Good for teams.</p></li>
 <li><p><strong>Gitflow</strong>: is a model where the main development
 happens in a develop branch with feature branches. When the develop
 branch is ready for a release (or to go into production), a team member
 creates a release branch which is tested and eventually merged onto the
-dev and eventually main branch.</p></li>
+develop and eventually main branch.</p></li>
 <li><p><strong>GitHub flow</strong> (<a href="https://docs.github.com/en/get-started/quickstart/github-flow" class="external-link uri">https://docs.github.com/en/get-started/quickstart/github-flow</a>):
 similar to the branching workflow.</p></li>
 <li><p><strong>GitLab flow</strong>: is a simplified version of Gitflow
 (<a href="https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/" class="external-link uri">https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/</a>)</p></li>
 <li><p><strong>Oneflow</strong>: is similar to Gitflow but relies on the
-maintanance of one long-lived branch. It is meant to be simpler, without
+maintenance of one long-lived branch. It is meant to be simpler, without
 a develop branch but feature branches still exist (<a href="https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow" class="external-link uri">https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow</a>).</p></li>
 <li><p><strong>Forking workflow</strong> (e.g. astropy): is a model
 where each contributor creates a <code>fork</code> or a complete copy of
-the repository. Every contribitor effectively has two repositories: his
+the repository. Every contributor effectively has two repositories: his
 own and the main (upstream) one. Changes are made as pull requests
-against the main repository. This model is propular with open source
+against the main repository. This model is popular with open source
 projects because the vast majority of contributors do not need to have
-priviledges in the main repository.</p></li>
+privileges in the main repository.</p></li>
 </ul>
 <p>A longer description of some of these can be found here: <a href="https://about.gitlab.com/topics/version-control/what-is-git-workflow/#feature-branching-git-workflow" class="external-link uri">https://about.gitlab.com/topics/version-control/what-is-git-workflow/#feature-branching-git-workflow</a></p>
 <p>In summary, there are many different ways to collaborate on a
@@ -2596,7 +2596,7 @@ changes to a single project.</li>
 </div>
 </section></section><section id="aio-09-forking"><p>Content from <a href="09-forking.html">Forking Workflow</a></p>
 <hr>
-<p>Last updated on 2025-11-28 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/09-forking.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2632,7 +2632,7 @@ committed.</p>
 <p>The forking workflow is popular among open source software projects
 and often used in conjunction with a branching model.</p>
 <p>The main advantage is that you enable people external to your project
-to implementent and suggest changes to your project without the need to
+to implement and suggest changes to your project without the need to
 give them push access to your project. In this workflow developers
 usually interact with multiple (at least two) repositories and remotes:
 the original code repository and the forked repository. It is important
@@ -2902,7 +2902,7 @@ collaborate with.</p>
 <h3 class="callout-title">Exercise 2: Keeping things up-to-date</h3>
 <div class="callout-content">
 <p>Update the copies of your <code>main</code> branch after the
-successfull merge of the pull request.</p>
+successful merge of the pull request.</p>
 <p>You can do this with the UI of the hosting service, but try to use
 the command line.</p>
 </div>
@@ -2995,7 +2995,7 @@ keypoints</p>
 <p>::::::::::::::::::::::::::::::::::::::::::::::::::</p>
 <p>{% include links.md %}</p></section><section id="aio-12-large-files"><p>Content from <a href="12-large-files.html">Large Files</a></p>
 <hr>
-<p>Last updated on 2025-11-21 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/12-large-files.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3054,7 +3054,7 @@ to use Git to track (large) binary files.</strong></p>
 <p>However, the problem of binary files in Git repositories cannot be
 fully neglected: There is a lot of value for a software project in
 keeping things together that belong together: Documentation assets
-belong to the documention they are part of. Therefore we will now
+belong to the documentation they are part of. Therefore we will now
 explore some options on how to integrate large file handling into
 Git.</p>
 <p>The <code>git lfs</code> subcommand is part of an extension to Git.
@@ -3196,9 +3196,9 @@ the Git data model</li>
 </ul>
 </div>
 </div>
-</div></section><section id="aio-13-cherrypick"><p>Content from <a href="13-cherrypick.html">Undo, Move, Cherrypick</a></p>
+</div></section><section id="aio-13-cherrypick"><p>Content from <a href="13-cherrypick.html">Undo, Move, cherry-pick</a></p>
 <hr>
-<p>Last updated on 2025-12-02 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/13-cherrypick.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3231,11 +3231,11 @@ branch.</li>
 </div>
 </div>
 <div class="section level1">
-<h1 id="what-is-a-cherrypick">What is a Cherrypick?<a class="anchor" aria-label="anchor" href="#what-is-a-cherrypick"></a>
+<h1 id="what-is-a-cherry-pick">What is a cherry-pick?<a class="anchor" aria-label="anchor" href="#what-is-a-cherry-pick"></a>
 </h1>
 <p>If there is a specific change present in a different branch that you
-need in another branch, Git lets you “cherrypick” those commits. The
-“cherrypick” command is a way of copying a specific commit from one
+need in another branch, Git lets you “cherry-pick” those commits. The
+“cherry-pick” command is a way of copying a specific commit from one
 branch to another. Each commit in git has a specific identifier (the
 “hash” or “SHA” of the commit) that we can use to refer to that exact
 commit. You can see the hash of your recent commits by running:</p>
@@ -3252,7 +3252,7 @@ commit. You can see the hash of your recent commits by running:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--all</span></span></code></pre>
 </div>
 <p>or checkout the specific branch you want to see.</p>
-<p>So why would I want to cherrypick a commit?</p>
+<p>So why would I want to cherry-pick a commit?</p>
 <ul>
 <li>Imagine you have a branch where you are working on a new feature.
 You make several commits to this branch, but as you work you realize
@@ -3275,12 +3275,12 @@ cherry-picked.</p>
 </div>
 </div>
 </div>
-<p>In these cases, you can use “cherrypick” to move a specific commit
+<p>In these cases, you can use “cherry-pick” to move a specific commit
 from one branch to another.</p>
 <div class="section level2">
-<h2 id="how-to-cherrypick">How to Cherrypick<a class="anchor" aria-label="anchor" href="#how-to-cherrypick"></a>
+<h2 id="how-to-cherry-pick">How to cherry-pick<a class="anchor" aria-label="anchor" href="#how-to-cherry-pick"></a>
 </h2>
-<p>The <code>cherrypick</code> command looks like this:</p>
+<p>The <code>cherry-pick</code> command looks like this:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3324,7 +3324,7 @@ it to the current branch.</p>
 </div>
 <p>Wait though! We actually want this change to happen in the
 <code>main</code> branch instead. We can switch to the <code>main</code>
-branch and cherrypick the commit we just made in the
+branch and cherry-pick the commit we just made in the
 <code>bean-dip</code> branch:</p>
 <p>Use <code>git log --oneline</code> in the <code>bean-dip</code>
 branch to find the commit hash of the commit we just made:</p>
@@ -3337,7 +3337,7 @@ b8732e4 Add bean dip recipe
 79cb366 (origin/bean-dip) Add bean dip recipe.</code></pre>
 </div>
 <p>(Your commit hash will be different.)</p>
-<p>Now switch to the <code>main</code> branch and cherrypick that
+<p>Now switch to the <code>main</code> branch and cherry-pick that
 commit:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3358,10 +3358,10 @@ commit to the current branch, creating a new commit with those
 changes.</p>
 </div>
 <div class="section level2">
-<h2 id="undoing-a-cherrypick">Undoing a Cherrypick<a class="anchor" aria-label="anchor" href="#undoing-a-cherrypick"></a>
+<h2 id="undoing-a-cherry-pick">Undoing a cherry-pick<a class="anchor" aria-label="anchor" href="#undoing-a-cherry-pick"></a>
 </h2>
-<p>If you cherrypick a commit and then realize that you made a mistake,
-you can undo the cherrypick using the <code>git reset</code> command we
+<p>If you cherry-pick a commit and then realize that you made a mistake,
+you can undo the cherry-pick using the <code>git reset</code> command we
 showed earlier:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3370,15 +3370,15 @@ showed earlier:</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="issues-with-cherrypick">Issues with Cherrypick<a class="anchor" aria-label="anchor" href="#issues-with-cherrypick"></a>
+<h2 id="issues-with-cherry-pick">Issues with cherry-pick<a class="anchor" aria-label="anchor" href="#issues-with-cherry-pick"></a>
 </h2>
-<p>Cherrypicking is an infrequent operation, and it can lead to some
+<p>cherry-picking is an infrequent operation, and it can lead to some
 issues if not used carefully. Some things to keep in mind:</p>
 <ul>
 <li>You are creating a new commit on the branch, which means that if the
 original commit is later merged into the branch, you may end up with a
 merge conflict.</li>
-<li>If the commit you are cherrypicking depends on other commits that
+<li>If the commit you are cherry-picking depends on other commits that
 are not present in the target branch, you may run into issues when
 trying to apply the changes or run the code.</li>
 <li>The new commit will look identical to the old commit, but with a
@@ -3428,7 +3428,7 @@ commit from main to the branch.</li>
 </div>
 </div>
 </div>
-<p><img src="fig/43-undo.png" alt="GitFlow 1" class="figure"><img src="fig/42-movebranch.png" alt="GitFlow 1" class="figure"><img src="fig/41-cherrypick.png" alt="GitFlow 1" class="figure"></p>
+<p><img src="fig/43-undo.png" alt="GitFlow 1" class="figure"><img src="fig/42-movebranch.png" alt="GitFlow 1" class="figure"><img src="fig/41-cherry-pick.png" alt="GitFlow 1" class="figure"></p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -3437,8 +3437,8 @@ commit from main to the branch.</li>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>You can cherrypick specific commits from one branch to another using
-<code>git cherry-pick &lt;commit-hash&gt;</code>.</li>
+<li>You can cherry-pick specific commits from one branch to another
+using <code>git cherry-pick &lt;commit-hash&gt;</code>.</li>
 </ul>
 </div>
 </div>
@@ -3446,7 +3446,7 @@ commit from main to the branch.</li>
 </div>
 </div></section><section id="aio-14-squash-rebase"><p>Content from <a href="14-squash-rebase.html">Interactive Rebase and Squash</a></p>
 <hr>
-<p>Last updated on 2025-12-02 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/14-squash-rebase.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3472,7 +3472,7 @@ commit from main to the branch.</li>
 <h3 class="card-title">Objectives</h3>
 <ul>
 <li>Understand the reasons for interactive rebases.</li>
-<li>Remove ammending commits from the history.</li>
+<li>Remove amending commits from the history.</li>
 </ul>
 </div>
 </div>
@@ -3692,7 +3692,7 @@ cleaned up before they are allowed upstream.</li>
 </div>
 <p>{% include links.md %}</p></section><section id="aio-15-hooks-actions"><p>Content from <a href="15-hooks-actions.html">Hooks and Actions</a></p>
 <hr>
-<p>Last updated on 2025-11-21 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/15-hooks-actions.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3766,7 +3766,7 @@ echo "flake8 passed!"</code></pre>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hello world!'')</span></span></code></pre>
 </div>
 <p>The typo is on purpose. Add and commit it to the repository.</p>
-<p>GitHub actions are the equivalent of serverside hooks on GitHub.</p>
+<p>GitHub actions are the equivalent of server-side hooks on GitHub.</p>
 <p>There are lots of things that can be done with GitHub actions: <a href="https://docs.github.com/en/actions" class="external-link uri">https://docs.github.com/en/actions</a></p>
 <p>Here is an example of a simple cron job: <a href="https://github.com/mpi-astronomy/XarXiv" class="external-link uri">https://github.com/mpi-astronomy/XarXiv</a></p>
 <figure><img src="fig/47-hooks.png" alt="GitFlow 1" class="figure mx-auto d-block"><div class="figcaption">GitFlow 1</div>
@@ -3786,7 +3786,7 @@ echo "flake8 passed!"</code></pre>
 </div>
 <p>{% include links.md %}</p></section><section id="aio-16-tools"><p>Content from <a href="16-tools.html">Setting up the Command Prompt</a></p>
 <hr>
-<p>Last updated on 2025-11-21 |
+<p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/16-tools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3847,7 +3847,7 @@ shown as part of the prompt.</p>
 <div class="accordion-body">
 <ul>
 <li>
-<strong>The active branch.</strong> As you can swith between
+<strong>The active branch.</strong> As you can switch between
 different branches of the same repository, it can sometimes be confusing
 to know which branch your working copy currently reflects. Presenting
 the branch name as part of the directory name you are currently in may
@@ -3855,7 +3855,7 @@ help as a reminder.</li>
 <li>
 <strong>The state of the branch.</strong> An indicator on whether
 there are modified or uncommitted files in the repository may help in
-noticing uncommited changes in the repository.</li>
+noticing uncommitted changes in the repository.</li>
 </ul>
 </div>
 </div>
@@ -3977,7 +3977,7 @@ by colon, cwd, dollar and SP, as your prompt.</p>
 information shown in the prompt by setting specific environment
 variables.</p>
 <div class="section level3">
-<h3 id="indicating-unstaged-and-uncommited-changes-in-the-working-copy">Indicating unstaged and uncommited changes in the working copy<a class="anchor" aria-label="anchor" href="#indicating-unstaged-and-uncommited-changes-in-the-working-copy"></a>
+<h3 id="indicating-unstaged-and-uncommitted-changes-in-the-working-copy">Indicating unstaged and uncommitted changes in the working copy<a class="anchor" aria-label="anchor" href="#indicating-unstaged-and-uncommitted-changes-in-the-working-copy"></a>
 </h3>
 <p>By setting the environment variable
 <code>GIT_PS1_SHOWDIRTYSTATE</code> to a non-empty value, the prompt
@@ -4043,7 +4043,7 @@ value, the prompt will indicate wheter something is stashed, with a
 repository<a class="anchor" aria-label="anchor" href="#indicating-the-name-of-and-difference-to-the-upstream-repository"></a>
 </h3>
 <p>The environment variable <code>GIT_PS1_SHOWUPSTREAM</code> can be set
-to a space-seperated list of options to show relation of the local
+to a space-separated list of options to show relation of the local
 working copy to an upstream repository. For basic use, you can select
 between the following options.</p>
 <ul>
@@ -4086,7 +4086,7 @@ depending on the status of the working copy.</li>
 <p>If the environment variable <code>GIT_PS1_SHOWCOLORHINTS</code> is
 set to any value, the Git-related part of the output in the prompt will
 be colorized. If the variable is not set, the output will not be
-colorized.</p>
+colourized.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -4096,7 +4096,7 @@ colorized.</p>
 <div class="callout-content">
 <ul>
 <li>Use available scripts for common shell environments.</li>
-<li>Indicate changes stashed, pending, or commited to the local working
+<li>Indicate changes stashed, pending, or committed to the local working
 copy.</li>
 <li>Indicate current branch name to aid in multi-branch workflows.</li>
 </ul>
