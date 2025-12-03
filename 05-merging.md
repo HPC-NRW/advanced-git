@@ -16,7 +16,7 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-When you are collaborating, you will have to merge a branch independent if your branch may or may not have diverged from the main branch. Most of the Git hosting platform like GiHub or GitLab allows you to merge a branch from their web interface but you can also merge the branches from your machine using `git merge`.
+When you are collaborating, you will have to merge a branch independent if your branch may or may not have diverged from the main branch. Most of the Git hosting platform like GiHub or Gitlab allows you to merge a branch from their web interface but you can also merge the branches from your machine using `git merge`.
 
 There are 2 ways to merge:
 
@@ -30,10 +30,10 @@ There are 2 ways to merge:
 ## Fast-forward Merge
 
 If there are no conflicts with the main branch, we can perform a "fast-forward" merge. This works
-by moving the branch pointer to the latest commit in the target branch. This is the default behavior
+by moving the branch pointer to the latest commit in the target branch. This is the default behaviour
 of `git merge` (when possible).
 
-Let's mergin in our `yaml-format` branch back into `main` using a fast-forward merge:
+Let's merge in our `yaml-format` branch back into `main` using a fast-forward merge:
 
 ```bash
 git checkout main

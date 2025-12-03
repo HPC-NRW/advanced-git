@@ -1,5 +1,5 @@
 ---
-title: "Undo, Move, Cherrypick"
+title: "Undo, Move, cherry-pick"
 teaching: 0
 exercises: 0
 ---
@@ -16,10 +16,10 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-# What is a Cherrypick?
+# What is a cherry-pick?
 
 If there is a specific change present in a different branch that you need in another branch, Git
-lets you "cherrypick" those commits. The "cherrypick" command is a way of copying a specific commit
+lets you "cherry-pick" those commits. The "cherry-pick" command is a way of copying a specific commit
 from one branch to another. Each commit in git has a specific identifier (the "hash" or "SHA" of
 the commit) that we can use to refer to that exact commit. You can see the hash of your recent
 commits by running:
@@ -37,7 +37,7 @@ git log --oneline --all
 
 or checkout the specific branch you want to see.
 
-So why would I want to cherrypick a commit?
+So why would I want to cherry-pick a commit?
 
 - Imagine you have a branch where you are working on a new feature. You make several commits to
   this branch, but as you work you realize that one of the commits you just made would be
@@ -51,11 +51,11 @@ So why would I want to cherrypick a commit?
 The more confined and specific commits are, the better they can be cherry-picked.
 :::
 
-In these cases, you can use "cherrypick" to move a specific commit from one branch to another.
+In these cases, you can use "cherry-pick" to move a specific commit from one branch to another.
 
-## How to Cherrypick
+## How to cherry-pick
 
-The `cherrypick` command looks like this:
+The `cherry-pick` command looks like this:
 
 ```bash
 git cherry-pick <commit-hash>
@@ -89,7 +89,7 @@ git commit -m "Add bean dip ingredients to groceries"
 ```
 
 Wait though! We actually want this change to happen in the `main` branch instead. We can
-switch to the `main` branch and cherrypick the commit we just made in the `bean-dip` branch:
+switch to the `main` branch and cherry-pick the commit we just made in the `bean-dip` branch:
 
 Use `git log --oneline` in the `bean-dip` branch to find the commit hash of the commit we just made:
 
@@ -102,7 +102,7 @@ b8732e4 Add bean dip recipe
 
 (Your commit hash will be different.)
 
-Now switch to the `main` branch and cherrypick that commit:
+Now switch to the `main` branch and cherry-pick that commit:
 
 ```bash
 git checkout main
@@ -119,23 +119,23 @@ $ git cherry-pick 4a473c9
 The command will then apply the changes only from the specified commit to the current branch,
 creating a new commit with those changes.
 
-## Undoing a Cherrypick
+## Undoing a cherry-pick
 
-If you cherrypick a commit and then realize that you made a mistake, you can undo the cherrypick
+If you cherry-pick a commit and then realize that you made a mistake, you can undo the cherry-pick
 using the `git reset` command we showed earlier:
 
 ```bash
 git reset --hard HEAD
 ```
 
-## Issues with Cherrypick
+## Issues with cherry-pick
 
-Cherrypicking is an infrequent operation, and it can lead to some issues if not used carefully.
+cherry-picking is an infrequent operation, and it can lead to some issues if not used carefully.
 Some things to keep in mind:
 
 - You are creating a new commit on the branch, which means that if the original commit is later
   merged into the branch, you may end up with a merge conflict.
-- If the commit you are cherrypicking depends on other commits that are not present in the target
+- If the commit you are cherry-picking depends on other commits that are not present in the target
   branch, you may run into issues when trying to apply the changes or run the code.
 - The new commit will look identical to the old commit, but with a different hash. This can make
   it difficult to visually track changes across branches.
@@ -163,10 +163,10 @@ tbd.
 
 ![GitFlow 1](fig/43-undo.png)
 ![GitFlow 1](fig/42-movebranch.png)
-![GitFlow 1](fig/41-cherrypick.png)
+![GitFlow 1](fig/41-cherry-pick.png)
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- You can cherrypick specific commits from one branch to another using `git cherry-pick <commit-hash>`.
+- You can cherry-pick specific commits from one branch to another using `git cherry-pick <commit-hash>`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -16,11 +16,11 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-A tag is a marker of a specic commit in the project history. You can think of it as a permanent bookmark. Tags can be created to point to a release version, a major code change, a state of the code that was used to produce a paper or a data release, or any other event you (or the development team) may want to reference in the future.
+A tag is a marker of a specific commit in the project history. You can think of it as a permanent bookmark. Tags can be created to point to a release version, a major code change, a state of the code that was used to produce a paper or a data release, or any other event you (or the development team) may want to reference in the future.
 
 Once a tag has been created, no other changes can be added to it. But you can delete it and create a new one with the same name.
 
-Don't name your tags the same as your branches. Or the other way around. git fetch can get a tag or a branch and that can be confusing.
+Don't name your tags the same as your branches. Or the other way around. `git fetch` can get a tag or a branch and that can be confusing.
 
 The command that allows you to handle git tags is just `git tag`. Without any flags it simply list the existing tags:
 
@@ -74,13 +74,13 @@ Push a tag to origin:
 git push origin <tag>
 ```
 
-And of course you can delete a tag. This does not delete the commit, just removes the marker/lable. Delete a tag:
+And of course you can delete a tag. This does not delete the commit, just removes the marker/label. Delete a tag:
 
 ```bash
 git tag -d <tag>
 ```
 
-Since tags are frequently used to do releases, it is useful to be aware that codebases and languages have standards on how release versions should be labled. If you are working with an existing code base, follow the standard set by the dev team. If you are developing a library by yourself, follow the standards for the language. For example, the (Python Packaging Authority)[https://packaging.python.org/en/latest/specifications/version-specifiers/#version-specifiers] (and previously(PEP440)[https://peps.python.org/pep-0440/]) specifies the scheme for identifying versions for `python` libraries.
+Since tags are frequently used to do releases, it is useful to be aware that codebases and languages have standards on how release versions should be labelled. If you are working with an existing code base, follow the standard set by the dev team. If you are developing a library by yourself, follow the standards for the language. For example, the (Python Packaging Authority)[https://packaging.python.org/en/latest/specifications/version-specifiers/#version-specifiers] (and previously(PEP440)[https://peps.python.org/pep-0440/]) specifies the scheme for identifying versions for `python` libraries.
 
 <!--- ![Merging 1](../fig/14-tags.png)--->
 

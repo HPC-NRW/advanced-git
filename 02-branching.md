@@ -31,11 +31,11 @@ The implementation behind Git branches is much more lightweight than other versi
 
 ## What is a branch?
 
-In `git` a branch is effectively a pointer to a snapshot of your changes. It's important to understand that branches are just pointers to commits. When you create a branch, all Git needs to do is create a new pointer, it doesn’t change the repository in any other way. If you start with a repository that looks like this:
+In `git` a branch is effectively a pointer to a snapshot of your changes. It's important to understand that branches are just pointers to commits. When you create a branch, all Git needs to do is create a new pointer, it doesn't change the repository in any other way. If you start with a repository that looks like this:
 
 ![Git Branching: A branch is just a "named pointer" to a commit.  (Source: [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/using-branches))](fig/04-branching.png){alt="A diagram showing several commits on a single branch in a theoretical git repository."}
 
-Lets's say we wanted to reworking our recipes to use a different format. We could continue on our
+Let's say we wanted to reworking our recipes to use a different format. We could continue on our
 existing branch, but we're not so sure about this change, so instead we create a new branch to
 experiment with:
 
@@ -183,7 +183,7 @@ Challenge 1: Renaming a file in a branch
 We updated our guacamole recipe in the `yaml-format` branch to use a different format. But now the
 file extension `.md` doesn't make sense anymore. Rename the file to `guacamole.yaml` and commit the
 change to the `yaml-format` branch. Run `git status` before you commit your changes. Is there
-anything different about the way this commit looks than in our earlier exercies?
+anything different about the way this commit looks than in our earlier exercises?
 
 ::: hint
 

@@ -26,7 +26,7 @@ The git remote command lets you create, view, and delete connections to other re
 
 ![Remote Schematic](fig/06-remote.png){alt="A diagram showing a local git repository with remote connections to two other repositories."}
 
-For example, the diagram above shows two remote connections from your repo into the central repo and another developer’s repo. Instead of referencing them by their full URLs, you can pass the origin and john shortcuts to other Git commands.
+For example, the diagram above shows two remote connections from your repo into the central repo and another developer's repo. Instead of referencing them by their full URLs, you can pass the origin and john shortcuts to other Git commands.
 
 The `git remote` command is essentially an interface for managing a list of remote entries that are stored in the repository's `./.git/config` file. The following commands are used to view the current state of the remote list.
 
@@ -208,7 +208,7 @@ This might be used if, for instance, you have a central repository that you stor
 
 ## Pushing to Remote Repositories
 
-We pulled changes from the remote repository, but if we refresh the page on GitLab, we won't see our local commits there. If we run the `git status` command we can see that git is aware that our local branch has some commits that aren't on the remote branch:
+We pulled changes from the remote repository, but if we refresh the page on Gitlab, we won't see our local commits there. If we run the `git status` command we can see that git is aware that our local branch has some commits that aren't on the remote branch:
 
 ```output
 $ git status
@@ -237,7 +237,7 @@ To <REPOSITORY-URL>
    5be9f46..0622c3a  main -> main
 ```
 
-If we now refresh the page on GitLab, we should see our commits there!
+If we now refresh the page on Gitlab, we should see our commits there!
 
 ::: instructor
 
