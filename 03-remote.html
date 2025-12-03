@@ -413,7 +413,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Remote Repositories</h1>
-        <p>Last updated on 2025-12-02 |
+        <p>Last updated on 2025-12-03 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/03-remote.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -493,7 +493,34 @@ our local repository to that remote repository. The command for this is
 <div class="callout-content">
 <p>You can find the repository URL on the main page of your remote
 repository. It should look something like
-<code>https://gitlab.com/username/repository-name.git</code>.</p>
+<code>https://gitlab.com/username/repository-name.git</code>. The
+location of this URL will depend on the hosting service you are using
+(GitLab, GitHub, Bitbucket, etc.).</p>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-1" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-1" type="button" role="tab" aria-controls="nav-tabpanel-1-1" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-1">
+  Gitlab
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-2" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-2" type="button" role="tab" aria-controls="nav-tabpanel-1-2" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-2">
+  GitHub
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<p>Look for the blue “Code” button on the upper right of the repository
+page. Click it to reveal the URL.</p>
+</div>
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<p>Look for the green “Code” button on the upper right of the repository
+page. Click it to see two tabs: “Local” and “Codespaces”. Under the
+“Local” tab, you will find the URL.</p>
+</div>
+</div>
+</div>
 <p>Most hosting services will provide the URL in two forms: HTTPS and
 SSH. If you are unsure which one to use, choose HTTPS. SSH requires
 additional setup which we do not cover in this training.</p>
@@ -609,6 +636,15 @@ to do:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre>
 </div>
+<div id="did-you-get-an-error-about-unrelated-histories" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="did-you-get-an-error-about-unrelated-histories" class="callout-inner">
+<h3 class="callout-title">Did you get an error about “unrelated
+histories”?</h3>
+<div class="callout-content">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -655,13 +691,6 @@ in the changes from the remote repository.</p>
 68b09d0 (yaml-format) Rename recipe file to use .yaml extension.
 a2b55be Reformat recipe to use YAML.</code></pre>
 </div>
-<div id="callout3" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div class="callout-inner">
-<div class="callout-content">
 <p>Note here that the log command also tells us about the locations of
 the pointers for each branch. We can see that our local
 <code>main</code> branch (HEAD -&gt; main) is now at the merge commit,
@@ -882,9 +911,9 @@ responsibilities.</li>
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/advanced-git/03-remote.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/03-remote.html",
-  "dateCreated": "2025-12-02",
-  "dateModified": "2025-12-02",
-  "datePublished": "2025-12-02"
+  "dateCreated": "2025-12-03",
+  "dateModified": "2025-12-03",
+  "datePublished": "2025-12-03"
 }
 
   </script><script>
