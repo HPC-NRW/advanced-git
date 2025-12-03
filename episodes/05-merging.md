@@ -351,18 +351,9 @@ git merge <branch> [-s <strategy>]
 
 See https://git-scm.com/docs/merge-strategies for a zillion options (“patience”, “octopus”, etc),  But also git is only so smart and you are probably smarter.
 
-
-Merging strategies: https://git-scm.com/docs/merge-strategies
-
-[comment]: <> (![Merging 1](../fig/09-merging-1.png))
-[comment]: <> (![Merging 2](../fig/10-merging-2.png)
-[comment]: <> (![Merging FF](../fig/11-merging-ff.png))
-[comment]: <> (![Merging no FF](../fig/12-merging-noff.png))
-[comment]: <> (![Merging 3 Way](../fig/13-merging-3way.png))
-
-https://nvie.com/posts/a-successful-git-branching-model/
-
-Note: there are a number of external tools that have a graphical interface to allow for merge conflict resolution. Some of these include: kdiff3 (Windows, Mac, Linux), Meld (Windows, Linux), P4Merge (Windows, Mac, Linux),  opendiff (Mac), vimdiff (for Vim users), Beyond Compare, GitHub web interface. We do not endorse any of them and use at your own risk. In any case, using a graphical interface does not substitute for understanding what is happening under the hood.
+::: callout
+There are a number of external tools that have a graphical interface to allow for merge conflict resolution. Some of these include: [kdiff3](https://kdiff3.sourceforge.net) (Windows, Mac, Linux), [Meld](https://meldmerge.org) (Windows, Linux), [P4Merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) (Windows, Mac, Linux),  [opendiff](https://github.com/andrewchaa/opendiff) (Mac), [vimdiff](https://devhints.io/vim-diff) (for Vim users), [Beyond Compare](https://www.scootersoftware.com/download.php?zz=dl3_en), GitHub web interface. **We do not endorse any of them and use at your own risk.** In any case, using a graphical interface does not substitute for understanding what is happening under the hood.
+:::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
