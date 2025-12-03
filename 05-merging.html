@@ -731,7 +731,7 @@ by adding instructions. Then, merge the branch back into
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -781,7 +781,7 @@ merge.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -821,20 +821,24 @@ prompt your to manually resolve</p>
 <p>See <a href="https://git-scm.com/docs/merge-strategies" class="external-link uri">https://git-scm.com/docs/merge-strategies</a> for a zillion
 options (“patience”, “octopus”, etc), But also git is only so smart and
 you are probably smarter.</p>
-<p>Merging strategies: <a href="https://git-scm.com/docs/merge-strategies" class="external-link uri">https://git-scm.com/docs/merge-strategies</a></p>
-<p><a href="" title="![Merging 1](../fig/09-merging-1.png)">comment</a>:
-&lt;&gt; (<img src="fig/10-merging-2.png" alt="Merging 2" class="figure"><a href="" title="![Merging 1](../fig/09-merging-1.png)">comment</a>: &lt;&gt;
-(<img src="fig/11-merging-ff.png" alt="Merging FF" class="figure">) <a href="" title="![Merging 1](../fig/09-merging-1.png)">comment</a>: &lt;&gt;
-(<img src="fig/12-merging-noff.png" alt="Merging no FF" class="figure">) <a href="" title="![Merging 1](../fig/09-merging-1.png)">comment</a>: &lt;&gt;
-(<img src="fig/13-merging-3way.png" alt="Merging 3 Way" class="figure">)</p>
-<p><a href="https://nvie.com/posts/a-successful-git-branching-model/" class="external-link uri">https://nvie.com/posts/a-successful-git-branching-model/</a></p>
-<p>Note: there are a number of external tools that have a graphical
-interface to allow for merge conflict resolution. Some of these include:
-kdiff3 (Windows, Mac, Linux), Meld (Windows, Linux), P4Merge (Windows,
-Mac, Linux), opendiff (Mac), vimdiff (for Vim users), Beyond Compare,
-GitHub web interface. We do not endorse any of them and use at your own
-risk. In any case, using a graphical interface does not substitute for
-understanding what is happening under the hood.</p>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>There are a number of external tools that have a graphical interface
+to allow for merge conflict resolution. Some of these include: <a href="https://kdiff3.sourceforge.net" class="external-link">kdiff3</a> (Windows, Mac, Linux),
+<a href="https://meldmerge.org" class="external-link">Meld</a> (Windows, Linux), <a href="https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge" class="external-link">P4Merge</a>
+(Windows, Mac, Linux), <a href="https://github.com/andrewchaa/opendiff" class="external-link">opendiff</a> (Mac), <a href="https://devhints.io/vim-diff" class="external-link">vimdiff</a> (for Vim users), <a href="https://www.scootersoftware.com/download.php?zz=dl3_en" class="external-link">Beyond
+Compare</a>, GitHub web interface. <strong>We do not endorse any of them
+and use at your own risk.</strong> In any case, using a graphical
+interface does not substitute for understanding what is happening under
+the hood.</p>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
