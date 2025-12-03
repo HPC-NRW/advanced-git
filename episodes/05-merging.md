@@ -140,24 +140,164 @@ The `--no-ff` flag causes the merge to always create a new commit object, even i
 be performed with a fast-forward. This avoids losing information about the historical existence of
 a feature branch and groups together all commits that together added the feature.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+## Merge Conflicts
 
-## Exercise: Creating a fast-forwad merge.
+When merging branches, it's not uncommon to encounter a "merge conflict". This happens when the
+same part of the same has been modified in both the source and target branches. In these cases,
+git will pause the merge and ask you to resolve the conflict manually.
 
-Consider the following Git tree
+Let's create a conflict by modifying the same line in both branches.
 
 ```bash
-* a78b99f (main) Add title
-| * 3d88062 (remote) Add .gitignore
-|/
-* 86c4247 Add README
+git switch main
+git branch modify-guac-instructions
+git switch modify-guac-instructions
+nano guacamole.yaml
 ```
 
-Is possible to run a fast-forward merge to incorporate the branch `remote` into `main`?
+And let's change the final step to something more informative:
+
+```yaml
+instructions: |
+  1. Cut avocados in half and remove pit.
+  2. Slice the avocados and mash them with a fork.
+```
+
+Commit the change:
+
+```bash
+git add guacamole.yaml
+git commit -m "Modify guacamole instructions to include mashing."
+```
+
+Now, let's switch back to the `main` branch and modify the same line differently:
+
+```bash
+git switch main
+nano guacamole.yaml
+```
+
+Change the final step to:
+
+```yaml
+instructions: |
+  1. Cut avocados in half and remove pit.
+  2. Use a food processor to blend the avocados.
+```
+
+Commit the change:
+
+```bash
+git add guacamole.yaml
+git commit -m "Modify guacamole instructions to include food processor."
+```
+
+Now, let's try to merge the `modify-guac-instructions` branch into `main`:
+
+```bash
+git merge modify-guac-instructions
+```
+
+```output
+$ git merge modify-guac-instructions
+Auto-merging guacamole.yaml
+CONFLICT (content): Merge conflict in guacamole.yaml
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+In addition to this message, our branch name in the terminal prompt may also be prefixed with
+`(main|MERGING)` to indicate that we are in the middle of a merge, and not in the normal flow of
+git operations.
+
+Git has marked the conflict in the `guacamole.yaml` file. Let's open it to see what happened:
+
+```
+nano guacamole.yaml
+```
+
+```yaml
+name: Guacamole
+ingredients:
+  avocado: 1.35
+  lime: 0.64
+  salt: 2
+instructions: |
+  1. Cut avocados in half and remove pit.
+<<<<<< HEAD
+  2. Use a food processor to blend the avocados.
+=======
+  2. Slice the avocados and mash them with a fork.
+>>>>>> modify-guac-instructions
+```
+
+The lines between `<<<<<< HEAD` and `=======` show the changes from the `main` branch, while the
+lines between `=======` and `>>>>>> modify-guac-instructions` show the changes from
+the `modify-guac-instructions` branch.
+
+There are tools and editors that can help you resolve merge conflicts, but at its core, all we need
+to do is decide which changes to keep. We can keep one side, the other side, or even combine
+both changes.
+
+You can resolve the conflict however you like - as long as the final file is valid and no longer
+contains the merge conflict markers.
+
+Upon saving the file, however, the merge is not yet complete. We need to stage the resolved file and
+commit the merge:
+
+```bash
+git add guacamole.yaml
+git commit -m "Resolve merge conflict in guacamole.yaml."
+```
+
+We can see the branch / merge process in our log:
+
+```bash
+git log --oneline --graph
+```
+
+```output
+$ git log --oneline --graph
+*   a94e041 (HEAD -> main) Resolve merge conflict in guacamole.yaml.
+|\
+| * 21be5b1 (modify-guac-instructions) Modify guacamole instructions mashing.
+* | c6ae196 Modify guacamole instructions to include food processor.
+|/
+*   d6ade9c Merge add-instructions branch into main.
+|\
+| * 4d1c414 (add-instructions) Add instructions to guacamole recipe.
+|/
+* f36de20 (yaml-format) Rename recipe file to use .yaml extension.
+...
+```
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Creating a fast-forward merge.
+
+Create a branch in your repository for finishing the guacamole recipe by adding instructions.
+Then, merge the branch back into `main` using a fast-forward merge.
 
 :::::::::::::::  solution
 
-No, it is not possible to run a fast-forward merge because of commit `a78b99f`.
+```bash
+git branch finish-guac-recipe
+git switch finish-guac-recipe
+nano guacamole.yaml
+```
+
+```yaml
+instructions: |
+  1. Cut avocados in half and remove pit.
+  2. Mash avocados with a fork.
+  3. Add lime juice and salt to taste.
+```
+
+```bash
+git add guacamole.yaml
+git commit -m "Add instructions to guacamole recipe."
+git switch main
+git merge finish-guac-recipe
+```
 
 :::::::::::::::::::::::::
 
@@ -165,31 +305,34 @@ No, it is not possible to run a fast-forward merge because of commit `a78b99f`.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Exercise: Creating a non-fast-forwad merge.
+## Exercise: Resolving a merge conflict.
 
-Create a new Git repository that has the following tree.
+Create a merge conflict by modifying the same line in both the `main` branch and a new branch.
+Then, merge the new branch into `main`, resolve the conflict, and complete the merge.
 
-```
-*   69fac81 (main) Merge branch 'gitignore'
-|\
-| * 5537012 (gitignore) Add .gitignore
-|/
-* 6ec7c0f Add README
-```
+This is free-form, so there is no single correct solution.
+
 :::::::::::::::  solution
 
 
 ```bash
-git init
-touch README.md
-git add README.md
-git commit -m 'Add README'
-git checkout -b gitignore
-touch .gitignore
-git add .gitignore
-git commit -m "Add .gitignore"
-git checkout main
-git merge --no-ff gitignore
+git switch main
+nano salsa.md
+git add salsa.md
+git commit -m "Add initial salsa recipe."
+git branch modify-salsa
+git switch modify-salsa
+nano salsa.md
+git add salsa.md
+git commit -m "Modify salsa recipe to include tomatoes."
+git switch main
+nano salsa.md
+git add salsa.md
+git commit -m "Modify salsa recipe to include onions."
+git merge modify-salsa
+# Resolve the conflict in salsa.md
+git add salsa.md
+git commit -m "Resolve merge conflict in salsa.md."
 ```
 
 :::::::::::::::::::::::::
@@ -225,5 +368,7 @@ Note: there are a number of external tools that have a graphical interface to al
 
 - `git merge --no-ff` is the best way to merge changes
 - `git merge --ff-only` is a good way to pull down changes from remote
+- merge conflicts happen when the same part of the same file has been modified in both branches
+- merge conflicts must be resolved manually
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

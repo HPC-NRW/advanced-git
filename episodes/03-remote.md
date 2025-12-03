@@ -42,7 +42,19 @@ git remote add origin <REPOSITORY-URL>
 
 ::: callout
 
-You can find the repository URL on the main page of your remote repository. It should look something like `https://gitlab.com/username/repository-name.git`.
+You can find the repository URL on the main page of your remote repository. It should look something like `https://gitlab.com/username/repository-name.git`. The location of this URL will depend on the hosting service you are using (GitLab, GitHub, Bitbucket, etc.).
+
+::: tab
+
+### Gitlab
+
+Look for the blue "Code" button on the upper right of the repository page. Click it to reveal the URL.
+
+### GitHub
+
+Look for the green "Code" button on the upper right of the repository page. Click it to see two tabs: "Local" and "Codespaces". Under the "Local" tab, you will find the URL.
+
+:::
 
 Most hosting services will provide the URL in two forms: HTTPS and SSH. If you are unsure which one to use, choose HTTPS. SSH requires additional setup which we do not cover in this training.
 
@@ -121,6 +133,10 @@ This explicitly tells git that the local `main` branch is the same as the `main`
 git pull
 ```
 
+::: callout
+
+### Did you get an error about "unrelated histories"?
+
 ```output
 fatal: refusing to merge unrelated histories
 ```
@@ -155,8 +171,6 @@ $ git log --oneline
 68b09d0 (yaml-format) Rename recipe file to use .yaml extension.
 a2b55be Reformat recipe to use YAML.
 ```
-
-::: callout
 
 Note here that the log command also tells us about the locations of the pointers for each branch. We can see that our local `main` branch (HEAD -> main) is now at the merge commit, and the `origin/main` branch is at the initial commit from the remote repository. We can also see that our `yaml-format` branch is still at the commit where we renamed the recipe file.
 
