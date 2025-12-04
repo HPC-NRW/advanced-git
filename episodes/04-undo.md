@@ -218,21 +218,22 @@ Step 1:
 ```bash
 git checkout -b soup-recipes
 mkdir -p soups
-touch soups/tomato-soup.md
-echo "# Tomato Soup" > soups/tomato-soup.md
+nano soups/tomato-soup.md
+```
+
+Create a file over 4 commits:
+```markdown
+# Tomato Soup
+## Ingredients
+- tomatoes (6)
+## Instructions
+- Chop tomatoes
+- Add water and boil
+```
+
+```bash
 git add soups/tomato-soup.md
-git commit -m "Add tomato soup recipe file"
-echo "## Ingredients" >> soups/tomato-soup.md
-echo "- tomatoes (6)" >> soups/tomato-soup.md
-git add soups/tomato-soup.md
-git commit -m "Add tomato soup ingredients"
-echo "## Instructions" >> soups/tomato-soup.md
-echo "- Chop tomatoes" >> soups/tomato-soup.md
-git add soups/tomato-soup.md
-git commit -m "Add initial instructions"
-echo "- Add water and boil" >> soups/tomato-soup.md
-git add soups/tomato-soup.md
-git commit -m "Add boiling instructions"
+git commit -m "Finish instructions"
 git status
 git log --oneline
 ```
@@ -263,7 +264,7 @@ git log
 Step 5:
 
 ```bash
-git add .
+git add soups/tomato-soup.md
 git commit -m "Add tomato soup with basic ingredients"
 ```
 
