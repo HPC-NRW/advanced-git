@@ -83,6 +83,12 @@ Resetting is a way to move the tip of a branch to a different commit. This can b
 git reset HEAD~1
 ```
 
+```output
+$ git reset HEAD~1
+Unstaged changes after reset:
+D       bean-dip.md
+```
+
 ![git reset](fig/07-reset.png){alt="A diagram showing a repository before and after resetting the last commit."}
 
 
@@ -106,6 +112,11 @@ Let's discard our changes completely using `--hard`:
 git reset HEAD --hard
 ```
 
+```output
+$ git reset HEAD --hard
+HEAD is now at bb3edf6 Add bean dip recipe
+```
+
 ::: callout
 
 `git reset` can also work on a single file:
@@ -125,6 +136,28 @@ git checkout main
 git checkout HEAD~2
 ```
 
+```output
+$ git checkout HEAD~2
+Note: switching to 'HEAD~2'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at c6ae196 Modify guacamole instructions to include food processor.
+```
+
 ![git checkout](fig/09-checkout.png){alt="A diagram showing a repository before and after using git checkout to move to a previous commit."}
 
 This puts you in a detached HEAD state. AGHRRR!
@@ -142,19 +175,26 @@ git commit -a -m "Add a new line to the file"
 git log --oneline
 ```
 
-If you haven't made any changes or you have made changes but you want to discard them you can recover by switching back to your branch:
-
-```bash
-git checkout hotfix
+```output
+$ git log --oneline
+81c079c (HEAD) Add a new line to the file
+1881c24 Create new file
+c6ae196 Modify guacamole instructions to include food processor.
+...
 ```
 
-Alternatively, you want to keep the changes:
+To save this alternate history, create a new branch:
 
 ```bash
 git branch alt-history
 git checkout alt-history
 ```
 
+If you haven't made any changes or you have made changes but you want to discard them you can recover by switching back to your branch:
+
+```bash
+git checkout hotfix
+```
 
 https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
 Also OMG: http://blog.kfish.org/2010/04/git-lola.html
@@ -165,28 +205,35 @@ Also OMG: http://blog.kfish.org/2010/04/git-lola.html
 
 ## Exercise: Undoing Changes
 
-1. Create a new branch called `hotfix`. Create a new file and make 3-4 commits in that file. Check the log to see the SHA of the last commit.
-2. Revert the last commit that we just inserted. Check the history.
-3. Completely throw away the last two commits [DANGER ZONE!!!]. Check the status and the log.
-4. Undo another commit but leave it in the staging area. Check the status and log.
-5. Wrap it up: add and commit the changes.
+1. Create a new branch called `soup-recipes`. Create a new file `soups/tomato-soup.md` and make 3-4 commits adding ingredients and instructions. Check the log to see the SHA of the last commit.
+2. You realize the last instruction was wrong. Revert the last commit. Check the history.
+3. The recipe isn't working out. Completely throw away the last two commits [DANGER ZONE!!!]. Check the status and the log.
+4. Undo another commit but leave the changes in the staging area so you can review them. Check the status and log.
+5. After reviewing, you decide to keep the changes. Add and commit them with a better commit message.
 
 :::::::::::::::  solution
 
 Step 1:
 
 ```bash
-git checkout -b hotfix
-touch my_file.txt
-echo "First line" > my_file.txt
-git add my_file.txt
-git commit -m "First commit"
-echo "Second line" >> my_file.txt
-git add my_file.txt
-git commit -m "Second commit"
-echo "Third line" >> my_file.txt
-git add my_file.txt
-git commit -m "Third commit"
+git checkout -b soup-recipes
+mkdir -p soups
+nano soups/tomato-soup.md
+```
+
+Create a file over 4 commits:
+```markdown
+# Tomato Soup
+## Ingredients
+- tomatoes (6)
+## Instructions
+- Chop tomatoes
+- Add water and boil
+```
+
+```bash
+git add soups/tomato-soup.md
+git commit -m "Finish instructions"
 git status
 git log --oneline
 ```
@@ -194,7 +241,7 @@ git log --oneline
 Step 2:
 
 ```bash
-git revert -m 1 <SHA>
+git revert HEAD
 git log
 ```
 
@@ -217,8 +264,8 @@ git log
 Step 5:
 
 ```bash
-git add .
-git commit -m "Message"
+git add soups/tomato-soup.md
+git commit -m "Add tomato soup with basic ingredients"
 ```
 
 :::::::::::::::::::::::::
