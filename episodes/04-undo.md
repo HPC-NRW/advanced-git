@@ -83,6 +83,12 @@ Resetting is a way to move the tip of a branch to a different commit. This can b
 git reset HEAD~1
 ```
 
+```output
+$ git reset HEAD~1
+Unstaged changes after reset:
+D       bean-dip.md
+```
+
 ![git reset](fig/07-reset.png){alt="A diagram showing a repository before and after resetting the last commit."}
 
 
@@ -106,6 +112,11 @@ Let's discard our changes completely using `--hard`:
 git reset HEAD --hard
 ```
 
+```output
+$ git reset HEAD --hard
+HEAD is now at bb3edf6 Add bean dip recipe
+```
+
 ::: callout
 
 `git reset` can also work on a single file:
@@ -125,6 +136,28 @@ git checkout main
 git checkout HEAD~2
 ```
 
+```output
+$ git checkout HEAD~2
+Note: switching to 'HEAD~2'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at c6ae196 Modify guacamole instructions to include food processor.
+```
+
 ![git checkout](fig/09-checkout.png){alt="A diagram showing a repository before and after using git checkout to move to a previous commit."}
 
 This puts you in a detached HEAD state. AGHRRR!
@@ -142,19 +175,26 @@ git commit -a -m "Add a new line to the file"
 git log --oneline
 ```
 
-If you haven't made any changes or you have made changes but you want to discard them you can recover by switching back to your branch:
-
-```bash
-git checkout hotfix
+```output
+$ git log --oneline
+81c079c (HEAD) Add a new line to the file
+1881c24 Create new file
+c6ae196 Modify guacamole instructions to include food processor.
+...
 ```
 
-Alternatively, you want to keep the changes:
+To save this alternate history, create a new branch:
 
 ```bash
 git branch alt-history
 git checkout alt-history
 ```
 
+If you haven't made any changes or you have made changes but you want to discard them you can recover by switching back to your branch:
+
+```bash
+git checkout hotfix
+```
 
 https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
 Also OMG: http://blog.kfish.org/2010/04/git-lola.html
