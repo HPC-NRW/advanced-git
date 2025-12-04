@@ -125,7 +125,7 @@ If you cherry-pick a commit and then realize that you made a mistake, you can un
 using the `git reset` command we showed earlier:
 
 ```bash
-git reset --hard HEAD
+git reset --hard HEAD~1
 ```
 
 ## Issues with cherry-pick
@@ -142,21 +142,88 @@ Some things to keep in mind:
 
 ::: challenge
 
-## Cherry-picking a hotfix into a branch
+## Cherry-picking Exercise
 
-An urgent fix to main is also needed in a release branch to issue a bugfix
-release.
+Create a new branch called `cookies` and add a recipe for chocolate chip cookies to
+a new file `cookies/chocolate-chip-cookies.md`. Commit this file. Then add one of the ingredients
+for your cookies to the `groceries.md` file in the same branch. Finally, add the instructions
+for the cookies in another commit.
 
-1. Create a branch off main and add a commit.
-2. Switch back to main and add a commit there, too.
-3. Switch back to your newly created branch and cherry-pick the last commit
-   from main to the branch.
+How can you get just the change to groceries.md into the `main` branch?
 
-:::: hint
-tbd.
-::::
+
 :::: solution
-tbd.
+1. Create and switch to the `cookies` branch:
+
+```bash
+git branch cookies
+git switch cookies
+```
+2. Create the recipe file and add the recipe:
+
+```bash
+nano cookies/chocolate-chip-cookies.md
+```
+
+3. Make your changes to `chocolate-chip-cookies.md` and `groceries.md`, committing each change.
+
+4. Use `git log --oneline` to find the commit hash for the change to `groceries.md`.
+5. Switch to the `main` branch and cherry-pick the commit:
+
+```bash
+git switch main
+git cherry-pick <commit-hash>
+```
+
+::::
+
+:::
+
+::: challenge
+
+## Cherry Pick a Range of Commits
+
+Switch to your cookies branch again. Now let's create the following file:
+
+```markdown
+# Sugar Cookies
+## Ingredients
+- sugar: 200g
+- flour: 300g
+- butter: 150g
+## Instructions
+```
+
+Then in ``groceries.md``, add the sugar to the end of the file and commit this change.
+
+In another commit, add flour and butter to `groceries.md` and commit this change.
+
+Finally, add the instructions for sugar cookies to the sugar cookie file and commit this change.
+
+Checkout the `main` branch again. How can you cherry-pick both of the commits that modified
+`groceries.md` into the `main` branch?
+
+What is different about cherry-picking a range of commits compared to a single commit?
+
+::: hint
+Run `git cherry-pick --help` and look at some of the examples.
+:::
+
+:::: solution
+
+Thy syntax for cherry-picking a range of commits is:
+
+```bash
+git cherry-pick <oldest-commit-hash>..<newest-commit-hash>
+```
+
+So if the two commits that modified `groceries.md` have the hashes `a1b2c3d` and `d4e5f6g`, you
+would run:
+
+```bash
+git cherry-pick a1b2c3d..d4e5f6g
+```
+
 ::::
 
 :::
