@@ -205,28 +205,34 @@ Also OMG: http://blog.kfish.org/2010/04/git-lola.html
 
 ## Exercise: Undoing Changes
 
-1. Create a new branch called `hotfix`. Create a new file and make 3-4 commits in that file. Check the log to see the SHA of the last commit.
-2. Revert the last commit that we just inserted. Check the history.
-3. Completely throw away the last two commits [DANGER ZONE!!!]. Check the status and the log.
-4. Undo another commit but leave it in the staging area. Check the status and log.
-5. Wrap it up: add and commit the changes.
+1. Create a new branch called `soup-recipes`. Create a new file `soups/tomato-soup.md` and make 3-4 commits adding ingredients and instructions. Check the log to see the SHA of the last commit.
+2. You realize the last instruction was wrong. Revert the last commit. Check the history.
+3. The recipe isn't working out. Completely throw away the last two commits [DANGER ZONE!!!]. Check the status and the log.
+4. Undo another commit but leave the changes in the staging area so you can review them. Check the status and log.
+5. After reviewing, you decide to keep the changes. Add and commit them with a better commit message.
 
 :::::::::::::::  solution
 
 Step 1:
 
 ```bash
-git checkout -b hotfix
-touch my_file.txt
-echo "First line" > my_file.txt
-git add my_file.txt
-git commit -m "First commit"
-echo "Second line" >> my_file.txt
-git add my_file.txt
-git commit -m "Second commit"
-echo "Third line" >> my_file.txt
-git add my_file.txt
-git commit -m "Third commit"
+git checkout -b soup-recipes
+mkdir -p soups
+touch soups/tomato-soup.md
+echo "# Tomato Soup" > soups/tomato-soup.md
+git add soups/tomato-soup.md
+git commit -m "Add tomato soup recipe file"
+echo "## Ingredients" >> soups/tomato-soup.md
+echo "- tomatoes (6)" >> soups/tomato-soup.md
+git add soups/tomato-soup.md
+git commit -m "Add tomato soup ingredients"
+echo "## Instructions" >> soups/tomato-soup.md
+echo "- Chop tomatoes" >> soups/tomato-soup.md
+git add soups/tomato-soup.md
+git commit -m "Add initial instructions"
+echo "- Add water and boil" >> soups/tomato-soup.md
+git add soups/tomato-soup.md
+git commit -m "Add boiling instructions"
 git status
 git log --oneline
 ```
@@ -234,7 +240,7 @@ git log --oneline
 Step 2:
 
 ```bash
-git revert -m 1 <SHA>
+git revert HEAD
 git log
 ```
 
@@ -258,7 +264,7 @@ Step 5:
 
 ```bash
 git add .
-git commit -m "Message"
+git commit -m "Add tomato soup with basic ingredients"
 ```
 
 :::::::::::::::::::::::::
