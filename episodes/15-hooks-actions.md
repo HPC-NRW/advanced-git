@@ -19,7 +19,18 @@ exercises: 0
 
 Git hooks are scripts that get run when a specific event occurs in git. The scripts can be written in any language and do anything you like, so any executauble script can be a hook.
 
-Git hooks can trigger events on the server size or locally. Examples of local events that can trigger hooks include `commit` (pre- or post-commit hooks), `checkout` or `rebase`. Pre-commit hooks are perhaps the most common and useful ones: they trigger actions before the code is committed and if the hook script fails, then the command is aborted. This can be very powerful - you can automatically run linters, before the code is even committed.
+Git hooks can trigger events on the server size or locally, and commonly used hooks include:
+- `pre-commit`: Executed before the `git commit` command and is usually used to
+  check the changes with linters or tests.
+- `prepare-commit-msg`: Executed before after the commit message is 
+- `commit-msg`: Validates the commit message, can be used to check whether the
+  commit message adheres to project policies
+- `post-commit`: Runs after the commit, often used for notifications or
+  logging.
+- `pre-receive`: Server-side hook, which runs before a push is accepted,
+  commonly used to enfore project policies
+
+Examples of local events that can trigger hooks include `commit` (pre- or post-commit hooks), `checkout` or `rebase`. Pre-commit hooks are perhaps the most common and useful ones: they trigger actions before the code is committed and if the hook script fails, then the command is aborted. This can be very powerful - you can automatically run linters, before the code is even committed.
 
 List of pre-written pre-commit hooks: https://github.com/pre-commit/pre-commit-hooks
 
