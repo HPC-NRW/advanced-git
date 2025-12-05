@@ -1,19 +1,19 @@
 ---
-title: "Hooks and Actions"
+title: "Hooks"
 teaching: 0
 exercises: 0
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
+:::::::::::::::::::::::::::::::::::::::: questions
 
-- First learning objective. (FIXME)
+- How do I automate checks on my commit?
+- How do I check changes before a commit?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::: questions
+::::::::::::::::::::::::::::::::::::::: objectives
 
-- How do I automate my work locally?
-- How do I add automations to GitHub?
+- Learn about using hooks to improve quality of commits
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -68,7 +68,10 @@ Materials: https://verdantfox.com/blog/how-to-use-git-pre-commit-hooks-the-hard-
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- First key point. Brief Answer to questions. (FIXME)
+- Git provides a list of different hooks for you to run tasks at specific times
+  in the commit
+- Use the `pre-commit` hook to check for change conformity before changes are
+  committed
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
