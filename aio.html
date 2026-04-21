@@ -6,21 +6,27 @@
 <title>Advanced Git Version Control: All in One View</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="assets/styles.css">
-<script src="assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      config: ["MMLorHTML.js"],
-      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/PreviewHTML"],
-      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "fast-preview.js", "AssistiveMML.js", "a11y/accessibility-menu.js"],
-      TeX: {
-        extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
-      },
-      tex2jax: {
-        inlineMath: [['\\(', '\\)']],
-        displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
-        processEscapes: true
-      }
-    });
-    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="favicons/incubator/apple-touch-icon.png">
+<script src="assets/scripts.js" type="text/javascript"></script><!-- mathjax --><!-- NOTE: https://docs.mathjax.org/en/latest/output/mathml.html#mathml-support --><!-- Changes from V2 to V4: https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html
+        Jax output/NativeMML is not yet implemented
+        Jax output/PreviewHTML is not yet implemented
+        Extension fast-preview is not yet implemented (but may be in a future release)
+    --><script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+            processEscapes: true,
+            packages: ['base', 'ams', 'noerrors', 'noundefined']
+        },
+        options: {
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+        },
+        loader: {
+            load: ['a11y/assistive-mml', '[tex]/noerrors']
+        }
+    };
+    </script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="favicons/incubator/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicons/incubator/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicons/incubator/favicon-16x16.png">
 <link rel="manifest" href="favicons/incubator/site.webmanifest">
@@ -47,8 +53,8 @@
       </div>
     </div>
     <div class="selector-container">
-      <div id="theme-selector">
-        <li class="nav-item dropdown" id="theme-button-list">
+      <menu class="theme-selector" id="theme-selector-menu">
+<li class="nav-item dropdown theme-button-list" id="theme-button-list-menu">
           <button class="btn btn-link nav-link px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (auto)">
             <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg><i data-feather="chevron-down"></i>
           </button>
@@ -73,10 +79,8 @@
             </li>
           </ul>
 </li>
-      </div>
-
-
-      <div class="dropdown" id="instructor-dropdown">
+    </menu>
+<div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Learner View <i data-feather="chevron-down"></i>
         </button>
@@ -142,29 +146,18 @@
     <a id="search-button" class="btn btn-primary" href="aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div>
 <!--/div.container-fluid -->
-</nav><div class="col-md-12 mobile-title">
-  Advanced Git Version Control
-</div>
-
-<aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
-    %
-  </div>
-  <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: %" aria-valuenow="" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
-    </div>
-  </div>
-</aside><div class="container">
+</nav><div class="container">
       <div class="row">
         <!-- START: inst/pkgdown/templates/navbar.html -->
 <div id="sidebar-col" class="col-lg-4">
   <div id="sidebar" class="sidebar">
-      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle" data-collapse="Collapse " data-episodes="Episodes ">
+      <nav aria-labelledby="flush-collapse-chapters-toggle"><button role="button" aria-label="Collapse" alt="Collapse" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle" data-collapse="Collapse " data-episodes="Episodes ">
           <i class="search-icon" data-feather="x" role="img"></i>
         </button>
         <div class="sidebar-inner">
           <div class="row mobile-row" id="theme-row-mobile">
-            <div class="col" id="theme-selector">
-              <li class="nav-item dropdown" id="theme-button-list">
+            <menu class="col theme-selector" id="theme-selector-sidebar">
+<li class="nav-item dropdown theme-button-list" id="theme-button-list-sidebar">
                 <button class="btn btn-link nav-link px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (auto)">
                   <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg><span class="d-lg-none ms-1" id="bd-theme-text">Toggle Theme</span>
                 </button>
@@ -189,19 +182,19 @@
                   </li>
                 </ul>
 </li>
-            </div>
-          </div>
+            </menu>
+</div>
           <div class="row mobile-row">
             <div class="col">
               <div class="sidenav-view-selector">
-                <div class="accordion accordion-flush" id="accordionFlush9">
+                <div class="accordion accordion-flush" id="accordion-instructor-toggle">
                   <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingNine">
-                      <button class="accordion-button collapsed" id="instructor" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                    <h2 class="accordion-header" id="flush-heading-instructor-toggle">
+                      <button class="accordion-button collapsed" id="instructor" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-instructor-toggle" aria-expanded="false" aria-controls="flush-collapse-instructor-toggle">
                         <i id="eye" aria-hidden="true" class="icon" data-feather="eye"></i> Learner View
                       </button>
                     </h2>
-                    <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlush2">
+                    <div id="flush-collapse-instructor-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-instructor-toggle">
                       <div class="accordion-body">
                         <a href="instructor/aio.html">Instructor View</a>
                       </div>
@@ -219,15 +212,15 @@
 </div>
 <!--/div.mobile-row -->
 
-          <div class="accordion accordion-flush" id="accordionFlush11">
+          <div class="accordion accordion-flush" id="accordion-chapters-toggle">
             <div class="accordion-item">
 
-              <button id="chapters" class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEleven" aria-expanded="false" aria-controls="flush-collapseEleven">
-                <h2 class="accordion-header chapters" id="flush-headingEleven">
+              <button id="chapters" class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-chapters-toggle" aria-expanded="false" aria-controls="flush-collapse-chapters-toggle">
+                <h2 class="accordion-header chapters" id="flush-heading-chapters-toggle">
                   EPISODES
                 </h2>
               </button>
-              <div id="flush-collapseEleven" class="accordion-collapse show collapse" aria-labelledby="flush-headingEleven" data-bs-parent="#accordionFlush11">
+              <div id="flush-collapse-chapters-toggle" class="accordion-collapse show collapse" data-bs-parent="#accordion-chapters-toggle">
 
                 <div class="accordion-body">
                   <div class="accordion accordion-flush" id="accordionFlush1">
@@ -427,14 +420,14 @@
             </div>
 
             <hr class="half-width">
-<div class="accordion accordion-flush lesson-resources" id="accordionFlush12">
+<div class="accordion accordion-flush lesson-resources" id="accordion-resources-toggle">
               <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwelve">
-                  <button class="accordion-button collapsed" id="lesson-resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
+                <h2 class="accordion-header" id="flush-heading-resources-toggle">
+                  <button class="accordion-button collapsed" id="lesson-resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-resources-toggle" aria-expanded="false" aria-controls="flush-collapse-resources-toggle">
                     RESOURCES
                   </button>
                 </h2>
-                <div id="flush-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="flush-headingTwelve" data-bs-parent="#accordionFlush12">
+                <div id="flush-collapse-resources-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-resources-toggle">
                   <div class="accordion-body">
                     <ul>
 <li>
@@ -475,7 +468,7 @@
         <!-- START: inst/pkgdown/templates/content-extra.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <main id="main-content" class="main-content"><div class="container lesson-content">
-        
+        <h1>All in One View</h1>
         
 <section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction</a></p>
 <hr>
@@ -563,14 +556,14 @@ basic git workflow.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> init</span></code></pre>
 </div>
 <figure><img src="fig/02-staging-area.png" alt="A diagram showing the relationship between the working directory, staging area, and repository in git." class="figure mx-auto d-block"><div class="figcaption">Staging Area</div>
 </figure><div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> add file.txt</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Message"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> add file.txt</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Message"</span></span></code></pre>
 </div>
 <p>A commit, or “revision”, is an individual change to a file or set of
 files. It’s like when you save a file, except with <code>git</code>,
@@ -603,11 +596,11 @@ repository.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> log</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">git</span> diff</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">git</span> checkout HEAD file.txt</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">git</span> revert</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">git</span> log</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">git</span> status</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="fu">git</span> diff</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="fu">git</span> checkout HEAD file.txt</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="fu">git</span> revert</span></code></pre>
 </div>
 <p><code>git checkout</code> returns the files not yet committed within
 the local repository to a previous state, whereas
@@ -616,17 +609,17 @@ project repositories.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> clone http://....</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> clone http://....</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> push</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">git</span> pull</span></code></pre>
 </div>
 <p>Finally, the <code>git fetch</code> command downloads commits, files,
 and refs from a remote repository into your local repository. When
@@ -645,7 +638,7 @@ remote:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> fetch</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">git</span> fetch</span></code></pre>
 </div>
 <p>It is sometimes useful to only pull the changes from a certain
 branch, e.g., <code>main</code>. For a repository that has a lot of
@@ -654,7 +647,7 @@ overwhelming:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> fetch origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">git</span> fetch origin main</span></code></pre>
 </div>
 <p><a href="https://www.atlassian.com/git/tutorials/syncing/git-fetch" class="external-link uri">https://www.atlassian.com/git/tutorials/syncing/git-fetch</a></p>
 <figure><img src="fig/03-recap.png%20alt=%22A%20diagram%20showing%20alternate%20diagrams%20for%20understanding%20the%20working%20directory,%20staging%20area,%20and%20repository%20in%20git,%20as%20well%20as%20commits%20on%20a%20branch.%22" alt="Review 2" class="figure mx-auto d-block"><div class="figcaption">Review 2</div>
@@ -756,7 +749,7 @@ with:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> branch yaml-format</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> branch yaml-format</span></code></pre>
 </div>
 <p>The repository history remains unchanged. All you get is a new
 pointer to the current commit:</p>
@@ -784,7 +777,7 @@ a summary of the commands:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> branch</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> branch</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -799,7 +792,7 @@ branch, use the <code>-avv</code> flags:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-avv</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> branch <span class="at">-avv</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -823,7 +816,7 @@ branch, use the <code>-avv</code> flags:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">git</span> branch <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>To create a new branch named <code>&lt;branch&gt;</code>, referencing
 <code>&lt;start-point&gt;</code>, which may be specified any way you
@@ -831,7 +824,7 @@ like, including using a branch name or a tag name:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="op">&lt;</span>branch<span class="op">&gt;</span> <span class="op">&lt;</span>start-point<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">git</span> branch <span class="op">&lt;</span>branch<span class="op">&gt;</span> <span class="op">&lt;</span>start-point<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>To delete the branch <code>&lt;branch&gt;</code>; if the branch is
 not fully merged in its upstream branch or contained in the current
@@ -839,20 +832,20 @@ branch, this command will fail with a warning:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">git</span> branch <span class="at">-d</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>To delete the branch <code>&lt;branch&gt;</code> irrespective of its
 merged status:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">git</span> branch <span class="at">-D</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>Renaming a branch can be done with the <code>-m</code> tag:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-m</span> <span class="op">&lt;</span>old-branch-name<span class="op">&gt;</span> <span class="op">&lt;</span>new-branch-name<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> branch <span class="at">-m</span> <span class="op">&lt;</span>old-branch-name<span class="op">&gt;</span> <span class="op">&lt;</span>new-branch-name<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -863,7 +856,7 @@ changes:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> switch yaml-format</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">git</span> switch yaml-format</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -888,7 +881,7 @@ files, etc).</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> <span class="op">&lt;</span>new<span class="op">&gt;</span> <span class="op">&lt;</span>start-point<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">git</span> switch <span class="at">-c</span> <span class="op">&lt;</span>new<span class="op">&gt;</span> <span class="op">&lt;</span>start-point<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -899,14 +892,14 @@ the <code>.git</code> directory to remember which branch is current:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> cat .git/HEAD</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">ref:</span> refs/heads/master</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">$</span> cat .git/HEAD</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a><span class="ex">ref:</span> refs/heads/master</span></code></pre>
 </div>
 <p>Let’s reformat our recipe to use YAML and commit the changes:</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">nano</span> guacamole.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">nano</span> guacamole.md</span></code></pre>
 </div>
 <pre><code><span><span class="va">name</span><span class="op">:</span> <span class="va">Guacamole</span></span>
 <span><span class="va">ingredients</span><span class="op">:</span></span>
@@ -917,14 +910,14 @@ the <code>.git</code> directory to remember which branch is current:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">git</span> add guacamole.md</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Reformat recipe to use YAML."</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">git</span> add guacamole.md</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Reformat recipe to use YAML."</span></span></code></pre>
 </div>
 <p>Now let’s check our branches again:</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-avv</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="fu">git</span> branch <span class="at">-avv</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -964,7 +957,7 @@ terminal:</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">mv</span> old-filename new-filename</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="fu">mv</span> old-filename new-filename</span></code></pre>
 </div>
 </div>
 </div>
@@ -980,9 +973,9 @@ terminal:</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">mv</span> guacamole.md guacamole.yaml</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">git</span> add guacamole.yaml guacamole.md</span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="fu">mv</span> guacamole.md guacamole.yaml</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1" aria-label="code-block-21-2"></a><span class="fu">git</span> add guacamole.yaml guacamole.md</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1" aria-label="code-block-21-3"></a><span class="fu">git</span> status</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -999,7 +992,7 @@ renamed the file, rather than deleting one and adding another.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Rename recipe file to use .yaml extension."</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Rename recipe file to use .yaml extension."</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1121,7 +1114,7 @@ our local repository to that remote repository. The command for this is
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="op">&lt;</span>REPOSITORY-URL<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> remote add origin <span class="op">&lt;</span>REPOSITORY-URL<span class="op">&gt;</span></span></code></pre>
 </div>
 <div id="callout1" class="callout">
 <div class="callout-square">
@@ -1149,11 +1142,11 @@ location of this URL will depend on the hosting service you are using
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
 <p>Look for the blue “Code” button on the upper right of the repository
 page. Click it to reveal the URL.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
 <p>Look for the green “Code” button on the upper right of the repository
 page. Click it to see two tabs: “Local” and “Codespaces”. Under the
 “Local” tab, you will find the URL.</p>
@@ -1174,14 +1167,14 @@ repositories you can use the <code>git remote</code> command:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> remote</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> remote</span></code></pre>
 </div>
 <p>If you test this in our training repository, you should get only one
 connection, <code>origin</code>:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">origin</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">origin</span></span></code></pre>
 </div>
 <div id="callout2" class="callout">
 <div class="callout-square">
@@ -1202,7 +1195,7 @@ answer which gives us the URLs for the connections:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1235,7 +1228,7 @@ the remote repository:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> pull</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1270,7 +1263,7 @@ information:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">--set-upstream-to</span><span class="op">=</span>origin/main main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">git</span> branch <span class="at">--set-upstream-to</span><span class="op">=</span>origin/main main</span></code></pre>
 </div>
 <p>This explicitly tells git that the local <code>main</code> branch is
 the same as the <code>main</code> branch on the <code>origin</code>
@@ -1279,7 +1272,7 @@ to do:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">git</span> pull</span></code></pre>
 </div>
 <div id="did-you-get-an-error-about-unrelated-histories" class="callout">
 <div class="callout-square">
@@ -1305,7 +1298,7 @@ go ahead and merge the two histories:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--allow-unrelated-histories</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> pull <span class="at">--allow-unrelated-histories</span></span></code></pre>
 </div>
 <p>You should be asked to provide a merge commit message. Save and close
 the editor to complete the merge.</p>
@@ -1325,7 +1318,7 @@ in the changes from the remote repository.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1355,7 +1348,7 @@ name of the remote. For example, to see information about the
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">git</span> remote show origin</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="fu">git</span> remote show origin</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1414,7 +1407,7 @@ commits to the remote repository:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">git</span> push</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1464,12 +1457,12 @@ branch on the remote?</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">git</span> branch bean-dip</span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">git</span> switch bean-dip</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="fu">nano</span> bean-dip.md</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="fu">git</span> add bean-dip.md</span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add bean dip recipe."</span></span>
-<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="fu">git</span> branch bean-dip</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1" aria-label="code-block-28-2"></a><span class="fu">git</span> switch bean-dip</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1" aria-label="code-block-28-3"></a><span class="fu">nano</span> bean-dip.md</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1" aria-label="code-block-28-4"></a><span class="fu">git</span> add bean-dip.md</span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1" aria-label="code-block-28-5"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add bean dip recipe."</span></span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1" aria-label="code-block-28-6"></a><span class="fu">git</span> push</span></code></pre>
 </div>
 <p>What happens here can depend on the version of git you are using. In
 more recent versions, git will automatically create the remote branch
@@ -1479,7 +1472,7 @@ explicitly:</p>
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin bean-dip</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin bean-dip</span></code></pre>
 </div>
 </div>
 </div>
@@ -1551,22 +1544,22 @@ it.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">nano</span> bean-dip.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">nano</span> bean-dip.md</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu"># Bean Dip</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">## Ingredients</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ss">- </span>beans</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">## Instructions</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ss">- </span>Purchase the bean dip.</span></code></pre>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu"># Bean Dip</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="fu">## Ingredients</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="ss">- </span>beans</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a><span class="fu">## Instructions</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="ss">- </span>Purchase the bean dip.</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> add bean-dip.md</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add bean dip recipe"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">git</span> add bean-dip.md</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add bean dip recipe"</span></span></code></pre>
 </div>
 <p>After making that commit, maybe we second guess and decide we don’t
 want that change after all. We can use <code>git revert</code> to back
@@ -1574,7 +1567,7 @@ out that last commit.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> revert HEAD</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> revert HEAD</span></code></pre>
 </div>
 <p>We get a text editor window asking us for a commit message for the
 revert commit. Save and close the editor to complete the revert.</p>
@@ -1582,7 +1575,7 @@ revert commit. Save and close the editor to complete the revert.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1625,7 +1618,7 @@ the following command moves the branch backwards by two commits.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> reset HEAD~1</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">git</span> reset HEAD~1</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1659,7 +1652,7 @@ reset operation.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">git</span> reset HEAD <span class="at">--hard</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">git</span> reset HEAD <span class="at">--hard</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1678,7 +1671,7 @@ HEAD is now at bb3edf6 Add bean dip recipe</code></pre>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> reset HEAD~2 foo.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">git</span> reset HEAD~2 foo.txt</span></code></pre>
 </div>
 </div>
 </div>
@@ -1692,8 +1685,8 @@ repository to a specific point in the projects history.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">git</span> checkout HEAD~2</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="fu">git</span> checkout HEAD~2</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1734,12 +1727,12 @@ here and see how they affect the project.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Welcome to the alternate timeline, Marty!"</span> <span class="op">&gt;</span> new-file.txt</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Create new file"</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Another line"</span> <span class="op">&gt;&gt;</span> new-file.txt</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">"Add a new line to the file"</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="bu">echo</span> <span class="st">"Welcome to the alternate timeline, Marty!"</span> <span class="op">&gt;</span> new-file.txt</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a><span class="fu">git</span> add .</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1" aria-label="code-block-14-3"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Create new file"</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1" aria-label="code-block-14-4"></a><span class="bu">echo</span> <span class="st">"Another line"</span> <span class="op">&gt;&gt;</span> new-file.txt</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1" aria-label="code-block-14-5"></a><span class="fu">git</span> commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">"Add a new line to the file"</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1" aria-label="code-block-14-6"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1754,15 +1747,15 @@ c6ae196 Modify guacamole instructions to include food processor.
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">git</span> branch alt-history</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">git</span> checkout alt-history</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="fu">git</span> branch alt-history</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1" aria-label="code-block-16-2"></a><span class="fu">git</span> checkout alt-history</span></code></pre>
 </div>
 <p>If you haven’t made any changes or you have made changes but you want
 to discard them you can recover by switching back to your branch:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">git</span> checkout hotfix</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">git</span> checkout hotfix</span></code></pre>
 </div>
 <p><a href="https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting" class="external-link uri">https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting</a>
 Also OMG: <a href="http://blog.kfish.org/2010/04/git-lola.html" class="external-link uri">http://blog.kfish.org/2010/04/git-lola.html</a></p>
@@ -1805,58 +1798,58 @@ with a better commit message.</li>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> soup-recipes</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> soups</span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="fu">nano</span> soups/tomato-soup.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> soup-recipes</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a><span class="fu">mkdir</span> <span class="at">-p</span> soups</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1" aria-label="code-block-18-3"></a><span class="fu">nano</span> soups/tomato-soup.md</span></code></pre>
 </div>
 <p>Create a file over 4 commits:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu"># Tomato Soup</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">## Ingredients</span></span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="ss">- </span>tomatoes (6)</span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="fu">## Instructions</span></span>
-<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="ss">- </span>Chop tomatoes</span>
-<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="ss">- </span>Add water and boil</span></code></pre>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="fu"># Tomato Soup</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a><span class="fu">## Ingredients</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1" aria-label="code-block-19-3"></a><span class="ss">- </span>tomatoes (6)</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1" aria-label="code-block-19-4"></a><span class="fu">## Instructions</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1" aria-label="code-block-19-5"></a><span class="ss">- </span>Chop tomatoes</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1" aria-label="code-block-19-6"></a><span class="ss">- </span>Add water and boil</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> add soups/tomato-soup.md</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Finish instructions"</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="fu">git</span> add soups/tomato-soup.md</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1" aria-label="code-block-20-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Finish instructions"</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1" aria-label="code-block-20-3"></a><span class="fu">git</span> status</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1" aria-label="code-block-20-4"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
 </div>
 <p>Step 2:</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">git</span> revert HEAD</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="fu">git</span> revert HEAD</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1" aria-label="code-block-21-2"></a><span class="fu">git</span> log</span></code></pre>
 </div>
 <p>Step 3:</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">git</span> reset HEAD~2 <span class="at">--hard</span></span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="fu">git</span> reset HEAD~2 <span class="at">--hard</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1" aria-label="code-block-22-2"></a><span class="fu">git</span> status</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1" aria-label="code-block-22-3"></a><span class="fu">git</span> log</span></code></pre>
 </div>
 <p>Step 4:</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">git</span> reset HEAD~1</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="fu">git</span> reset HEAD~1</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a><span class="fu">git</span> status</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a><span class="fu">git</span> log</span></code></pre>
 </div>
 <p>Step 5:</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">git</span> add soups/tomato-soup.md</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add tomato soup with basic ingredients"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="fu">git</span> add soups/tomato-soup.md</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1" aria-label="code-block-24-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add tomato soup with basic ingredients"</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1949,8 +1942,8 @@ latest commit in the target branch. This is the default behaviour of
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">git</span> merge yaml-format</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">git</span> merge yaml-format</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2017,22 +2010,22 @@ histories of both branches.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> branch add-instructions</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">git</span> switch add-instructions</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> branch add-instructions</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="fu">git</span> switch add-instructions</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  1. Cut avocados in half and remove pit.</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  2. Make guacamole.</span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>  1. Cut avocados in half and remove pit.</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>  2. Make guacamole.</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> add guacamole.yaml</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add instructions to guacamole recipe."</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">git</span> add guacamole.yaml</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add instructions to guacamole recipe."</span></span></code></pre>
 </div>
 <p>Now, let’s move back to the main branch and merge the changes from
 the <code>add-instructions</code> branch using a non-fast-forward
@@ -2040,8 +2033,8 @@ merge:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> add-instructions <span class="at">-m</span> <span class="st">"Merge add-instructions branch into main."</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="fu">git</span> merge <span class="at">--no-ff</span> add-instructions <span class="at">-m</span> <span class="st">"Merge add-instructions branch into main."</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2081,55 +2074,55 @@ branches.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">git</span> branch modify-guac-instructions</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">git</span> switch modify-guac-instructions</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="fu">git</span> branch modify-guac-instructions</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a><span class="fu">git</span> switch modify-guac-instructions</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
 </div>
 <p>And let’s change the final step to something more informative:</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  1. Cut avocados in half and remove pit.</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  2. Slice the avocados and mash them with a fork.</span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a>  1. Cut avocados in half and remove pit.</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a>  2. Slice the avocados and mash them with a fork.</span></code></pre>
 </div>
 <p>Commit the change:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> add guacamole.yaml</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify guacamole instructions to include mashing."</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">git</span> add guacamole.yaml</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify guacamole instructions to include mashing."</span></span></code></pre>
 </div>
 <p>Now, let’s switch back to the <code>main</code> branch and modify the
 same line differently:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
 </div>
 <p>Change the final step to:</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  1. Cut avocados in half and remove pit.</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  2. Use a food processor to blend the avocados.</span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a>  1. Cut avocados in half and remove pit.</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1" aria-label="code-block-15-3"></a>  2. Use a food processor to blend the avocados.</span></code></pre>
 </div>
 <p>Commit the change:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">git</span> add guacamole.yaml</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify guacamole instructions to include food processor."</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="fu">git</span> add guacamole.yaml</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1" aria-label="code-block-16-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify guacamole instructions to include food processor."</span></span></code></pre>
 </div>
 <p>Now, let’s try to merge the <code>modify-guac-instructions</code>
 branch into <code>main</code>:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">git</span> merge modify-guac-instructions</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">git</span> merge modify-guac-instructions</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2149,18 +2142,18 @@ Let’s open it to see what happened:</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Guacamole</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">ingredients</span><span class="kw">:</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="at">  </span><span class="fu">avocado</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.35</span></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="at">  </span><span class="fu">lime</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.64</span></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="at">  </span><span class="fu">salt</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>  1. Cut avocados in half and remove pit.</span>
-<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="at">&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span></span>
-<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a><span class="at">  2. Use a food processor to blend the avocados.</span></span>
-<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a><span class="at">=======</span></span>
-<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="at">  2. Slice the avocados and mash them with a fork.</span></span>
-<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a><span class="at">&gt;&gt;&gt;&gt;&gt;&gt; modify-guac-instructions</span></span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Guacamole</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1" aria-label="code-block-20-2"></a><span class="fu">ingredients</span><span class="kw">:</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1" aria-label="code-block-20-3"></a><span class="at">  </span><span class="fu">avocado</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.35</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1" aria-label="code-block-20-4"></a><span class="at">  </span><span class="fu">lime</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.64</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1" aria-label="code-block-20-5"></a><span class="at">  </span><span class="fu">salt</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1" aria-label="code-block-20-6"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1" aria-label="code-block-20-7"></a>  1. Cut avocados in half and remove pit.</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1" aria-label="code-block-20-8"></a><span class="at">&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1" aria-label="code-block-20-9"></a><span class="at">  2. Use a food processor to blend the avocados.</span></span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1" aria-label="code-block-20-10"></a><span class="at">=======</span></span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1" aria-label="code-block-20-11"></a><span class="at">  2. Slice the avocados and mash them with a fork.</span></span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1" aria-label="code-block-20-12"></a><span class="at">&gt;&gt;&gt;&gt;&gt;&gt; modify-guac-instructions</span></span></code></pre>
 </div>
 <p>The lines between <code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and
 <code>=======</code> show the changes from the <code>main</code> branch,
@@ -2178,14 +2171,14 @@ to stage the resolved file and commit the merge:</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">git</span> add guacamole.yaml</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Resolve merge conflict in guacamole.yaml."</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="fu">git</span> add guacamole.yaml</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1" aria-label="code-block-21-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Resolve merge conflict in guacamole.yaml."</span></span></code></pre>
 </div>
 <p>We can see the branch / merge process in our log:</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2222,30 +2215,30 @@ by adding instructions. Then, merge the branch back into
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">git</span> branch finish-guac-recipe</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">git</span> switch finish-guac-recipe</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="fu">git</span> branch finish-guac-recipe</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1" aria-label="code-block-24-2"></a><span class="fu">git</span> switch finish-guac-recipe</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1" aria-label="code-block-24-3"></a><span class="fu">nano</span> guacamole.yaml</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>  1. Cut avocados in half and remove pit.</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>  2. Mash avocados with a fork.</span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>  3. Add lime juice and salt to taste.</span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="fu">instructions</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a>  1. Cut avocados in half and remove pit.</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1" aria-label="code-block-25-3"></a>  2. Mash avocados with a fork.</span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1" aria-label="code-block-25-4"></a>  3. Add lime juice and salt to taste.</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">git</span> add guacamole.yaml</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add instructions to guacamole recipe."</span></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="fu">git</span> merge finish-guac-recipe</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="fu">git</span> add guacamole.yaml</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1" aria-label="code-block-26-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add instructions to guacamole recipe."</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1" aria-label="code-block-26-3"></a><span class="fu">git</span> switch main</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1" aria-label="code-block-26-4"></a><span class="fu">git</span> merge finish-guac-recipe</span></code></pre>
 </div>
 </div>
 </div>
@@ -2272,28 +2265,28 @@ merge.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">nano</span> salsa.md</span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="fu">git</span> add salsa.md</span>
-<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add initial salsa recipe."</span></span>
-<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="fu">git</span> branch modify-salsa</span>
-<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a><span class="fu">git</span> switch modify-salsa</span>
-<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a><span class="fu">nano</span> salsa.md</span>
-<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a><span class="fu">git</span> add salsa.md</span>
-<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify salsa recipe to include tomatoes."</span></span>
-<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a><span class="fu">nano</span> salsa.md</span>
-<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a><span class="fu">git</span> add salsa.md</span>
-<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify salsa recipe to include onions."</span></span>
-<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a><span class="fu">git</span> merge modify-salsa</span>
-<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a><span class="co"># Resolve the conflict in salsa.md</span></span>
-<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a><span class="fu">git</span> add salsa.md</span>
-<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Resolve merge conflict in salsa.md."</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="fu">nano</span> salsa.md</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1" aria-label="code-block-27-3"></a><span class="fu">git</span> add salsa.md</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1" aria-label="code-block-27-4"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add initial salsa recipe."</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1" aria-label="code-block-27-5"></a><span class="fu">git</span> branch modify-salsa</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1" aria-label="code-block-27-6"></a><span class="fu">git</span> switch modify-salsa</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1" aria-label="code-block-27-7"></a><span class="fu">nano</span> salsa.md</span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1" aria-label="code-block-27-8"></a><span class="fu">git</span> add salsa.md</span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1" aria-label="code-block-27-9"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify salsa recipe to include tomatoes."</span></span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1" aria-label="code-block-27-10"></a><span class="fu">git</span> switch main</span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1" aria-label="code-block-27-11"></a><span class="fu">nano</span> salsa.md</span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1" aria-label="code-block-27-12"></a><span class="fu">git</span> add salsa.md</span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1" aria-label="code-block-27-13"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Modify salsa recipe to include onions."</span></span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1" aria-label="code-block-27-14"></a><span class="fu">git</span> merge modify-salsa</span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1" aria-label="code-block-27-15"></a><span class="co"># Resolve the conflict in salsa.md</span></span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1" aria-label="code-block-27-16"></a><span class="fu">git</span> add salsa.md</span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1" aria-label="code-block-27-17"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Resolve merge conflict in salsa.md."</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -2308,7 +2301,7 @@ prompt your to manually resolve</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">git</span> merge <span class="op">&lt;</span>branch<span class="op">&gt;</span> [-s <span class="op">&lt;</span>strategy<span class="op">&gt;</span>]</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="fu">git</span> merge <span class="op">&lt;</span>branch<span class="op">&gt;</span> [-s <span class="op">&lt;</span>strategy<span class="op">&gt;</span>]</span></code></pre>
 </div>
 <p>See <a href="https://git-scm.com/docs/merge-strategies" class="external-link uri">https://git-scm.com/docs/merge-strategies</a> for a zillion
 options (“patience”, “octopus”, etc), But also git is only so smart and
@@ -2401,14 +2394,14 @@ tags:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> tag</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> tag</span></code></pre>
 </div>
 <p>You can create a new tag based on the current state of the repository
 by providing a tag name to the <code>git tag</code> command:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> tag 1.0.0</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> tag 1.0.0</span></code></pre>
 </div>
 <p>This however creates what is called a <code>lightweight tag</code>.
 Lightweight tags are like a branch that doesn’t change.</p>
@@ -2416,7 +2409,7 @@ Lightweight tags are like a branch that doesn’t change.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> show 1.0.0</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">git</span> show 1.0.0</span></code></pre>
 </div>
 <p>Lightweight tags are not recommended in most use cases because they
 do not save all the information. Instead, use
@@ -2428,14 +2421,14 @@ can be signed and verified with GNU Privacy Guard (GPG).</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> 2.0.0 <span class="at">-m</span> <span class="op">&lt;</span>message<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> tag <span class="at">-a</span> 2.0.0 <span class="at">-m</span> <span class="op">&lt;</span>message<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>It is also possible to tag a past commit by providing that commit’s
 SHA:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> <span class="op">&lt;</span>tag<span class="op">&gt;</span> [<span class="op">&lt;</span>SHA<span class="op">&gt;</span>] <span class="at">-m</span> <span class="op">&lt;</span>message<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> tag <span class="at">-a</span> <span class="op">&lt;</span>tag<span class="op">&gt;</span> [<span class="op">&lt;</span>SHA<span class="op">&gt;</span>] <span class="at">-m</span> <span class="op">&lt;</span>message<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>To get more information about an existing tag you can “verify” it,
 which displays that tag’s details, including the tagger, date, and
@@ -2443,8 +2436,8 @@ message. This only works for annotated commits:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-v</span> 1.0.0</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-v</span> 2.0.0</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">git</span> tag <span class="at">-v</span> 1.0.0</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="fu">git</span> tag <span class="at">-v</span> 2.0.0</span></code></pre>
 </div>
 <p>A tag allows you to switch to the version of the code that was
 tagged, to use that version of the code, or to see what the code looked
@@ -2453,20 +2446,20 @@ tagged:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> checkout <span class="op">&lt;</span>tag<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">git</span> checkout <span class="op">&lt;</span>tag<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>Push a tag to origin:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> push origin <span class="op">&lt;</span>tag<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">git</span> push origin <span class="op">&lt;</span>tag<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>And of course you can delete a tag. This does not delete the commit,
 just removes the marker/label. Delete a tag:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-d</span> <span class="op">&lt;</span>tag<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">git</span> tag <span class="at">-d</span> <span class="op">&lt;</span>tag<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>Since tags are frequently used to do releases, it is useful to be
 aware that codebases and languages have standards on how release
@@ -2768,13 +2761,13 @@ to, you can create a fork of this repository.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-Github" class="tab-pane show active" aria-labelledby="nav-tab-1-Github" role="tabpanel">
+<div id="nav-tabpanel-1-Github" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-Github">
 <p><img src="fig/github_fork_button.png" alt="Screenshot of the button array in the top right corner of the Github interface with the fork button highlighted." class="figure">{alt=A
 cropped screenshot of the Github UI showing the array of buttons on the
 top right of the project home page with the fork button
 highlighted.}</p>
 </div>
-<div id="nav-tabpanel-1-Gitlab" class="tab-pane" aria-labelledby="nav-tab-1-Gitlab" role="tabpanel">
+<div id="nav-tabpanel-1-Gitlab" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Gitlab">
 <p><img src="fig/gitlab_fork_button.png" alt="Screenshot of the button array in the top right corner of the Gitlab interface with the fork button highlighted." class="figure">{alt=A
 cropped screenshot of the Gitlab UI showing the array of buttons on the
 top right of the project home page with the fork button
@@ -2852,7 +2845,7 @@ project.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Fork the repository</li>
@@ -2861,13 +2854,13 @@ project.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>repository-url<span class="op">&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">git</span> branch myfeature</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">git</span> switch myfeature</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># make changes</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>changed-files<span class="op">&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add feature X"</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin myfeature</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>repository-url<span class="op">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">git</span> branch myfeature</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="fu">git</span> switch myfeature</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="co"># make changes</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">git</span> add <span class="op">&lt;</span>changed-files<span class="op">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add feature X"</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin myfeature</span></code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a merge request to the <strong>upstream</strong>
@@ -2890,7 +2883,7 @@ working copy. For this it is best to add the original source, the
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> remote add upstream <span class="op">&lt;</span>url-to-upstream-repository<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> remote add upstream <span class="op">&lt;</span>url-to-upstream-repository<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>As you never modify the <code>main</code> branch, it remains straight
 forward to pull in any change from upstream. First you switch to the
@@ -2900,9 +2893,9 @@ repository on <em>origin</em>.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> pull upstream main</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">git</span> pull upstream main</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin main</span></code></pre>
 </div>
 <p>Updating your branch is a bit more intricate. Here, we want our
 contributed changes to be the last on the branch, so we need to
@@ -2914,10 +2907,10 @@ diverged and you will have to update the <em>origin</em>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> switch mybranch</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--rebase</span> upstream main</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># resolve potential conflicts</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span> origin mybranch</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> switch mybranch</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="fu">git</span> pull <span class="at">--rebase</span> upstream main</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="co"># resolve potential conflicts</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="fu">git</span> push <span class="at">--force</span> origin mybranch</span></code></pre>
 </div>
 <div id="caution2" class="callout caution">
 <div class="callout-square">
@@ -2969,16 +2962,16 @@ the command line.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>After the merge request is complete, you need to update your
 <code>main</code> branches from <em>upstream</em></p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">git</span> pull upstream main</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="fu">git</span> pull upstream main</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin main</span></code></pre>
 </div>
 </div>
 </div>
@@ -3127,13 +3120,13 @@ order to show how to handle it with <code>git lfs</code>:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This is a very large report."</span> <span class="op">&gt;</span> report.pdf</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="bu">echo</span> <span class="st">"This is a very large report."</span> <span class="op">&gt;</span> report.pdf</span></code></pre>
 </div>
 <p>Next, we tell Git, that this file should be treated with LFS:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> lfs track report.pdf</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> lfs track report.pdf</span></code></pre>
 </div>
 <pre><code>Tracking "report.pdf"</code></pre>
 <p>Having done so, we can inspect the repository and we learn that a new
@@ -3141,7 +3134,7 @@ file <code>.gitattributes</code> was added to the repository.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> status</span></code></pre>
 </div>
 <pre><code>On branch main
 
@@ -3152,7 +3145,7 @@ Untracked files:
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">cat</span> .gitattributes</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">cat</span> .gitattributes</span></code></pre>
 </div>
 <pre><code>report.pdf filter=lfs diff=lfs merge=lfs -text</code></pre>
 <p>Similar to <code>.gitignore</code> this file is part of the
@@ -3161,16 +3154,16 @@ this project. We therefore craft a commit that contains it:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> add .gitattributes</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Setup LFS tracking"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">git</span> add .gitattributes</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Setup LFS tracking"</span></span></code></pre>
 </div>
 <p>Now, we are ready to add the large file to the repository the same
 way we would with any other file:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">git</span> add report.pdf</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add final report to the repository"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">git</span> add report.pdf</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add final report to the repository"</span></span></code></pre>
 </div>
 <p>Pushing our commits to the remote repository, we can see in the
 console output, that our LFS data was transferred to the remote server
@@ -3178,7 +3171,7 @@ separately.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> push origin main</span></code></pre>
 </div>
 <pre><code>Uploading LFS objects: 100% (1/1), 17 B | 0 B/s, done.</code></pre>
 <div id="tracking-with-wildcard-patterns" class="callout">
@@ -3198,7 +3191,7 @@ command:</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pdf"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pdf"</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -3298,14 +3291,14 @@ commit. You can see the hash of your recent commits by running:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre>
 </div>
 <p>Note that this only shows the commits that are present on this
 “branch”. If you want to see commits from all branches, you can run:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--all</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--all</span></span></code></pre>
 </div>
 <p>or checkout the specific branch you want to see.</p>
 <p>So why would I want to cherry-pick a commit?</p>
@@ -3340,7 +3333,7 @@ from one branch to another.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
 </div>
 <div id="callout2" class="callout">
 <div class="callout-square">
@@ -3361,22 +3354,22 @@ it to the current branch.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">nano</span> groceries.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">nano</span> groceries.md</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu"># Market A</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ss">* </span>avocado: 1.35 per unit.</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ss">* </span>lime: 0.64 per unit</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ss">* </span>salt: 2 per kg</span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="ss">* </span>black beans: 0.99 per can</span></code></pre>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu"># Market A</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="ss">* </span>avocado: 1.35 per unit.</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="ss">* </span>lime: 0.64 per unit</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a><span class="ss">* </span>salt: 2 per kg</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a><span class="ss">* </span>black beans: 0.99 per can</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> add groceries.md</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add bean dip ingredients to groceries"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">git</span> add groceries.md</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add bean dip ingredients to groceries"</span></span></code></pre>
 </div>
 <p>Wait though! We actually want this change to happen in the
 <code>main</code> branch instead. We can switch to the <code>main</code>
@@ -3398,8 +3391,8 @@ commit:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3422,7 +3415,7 @@ showed earlier:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1</span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -3473,8 +3466,8 @@ instructions for the cookies in another commit.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> branch cookies</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">git</span> switch cookies</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">git</span> branch cookies</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="fu">git</span> switch cookies</span></code></pre>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create the recipe file and add the recipe:</li>
@@ -3482,7 +3475,7 @@ instructions for the cookies in another commit.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">nano</span> cookies/chocolate-chip-cookies.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">nano</span> cookies/chocolate-chip-cookies.md</span></code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Make your changes to <code>chocolate-chip-cookies.md</code> and
@@ -3495,8 +3488,8 @@ commit:</p></li>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -3515,12 +3508,12 @@ file:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu"># Sugar Cookies</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">## Ingredients</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ss">- </span>sugar: 200g</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ss">- </span>flour: 300g</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="ss">- </span>butter: 150g</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">## Instructions</span></span></code></pre>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="fu"># Sugar Cookies</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a><span class="fu">## Ingredients</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1" aria-label="code-block-14-3"></a><span class="ss">- </span>sugar: 200g</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1" aria-label="code-block-14-4"></a><span class="ss">- </span>flour: 300g</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1" aria-label="code-block-14-5"></a><span class="ss">- </span>butter: 150g</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1" aria-label="code-block-14-6"></a><span class="fu">## Instructions</span></span></code></pre>
 </div>
 <p>Then in <code>groceries.md</code>, add the sugar to the end of the
 file and commit this change.</p>
@@ -3560,7 +3553,7 @@ examples.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>oldest-commit-hash<span class="op">&gt;</span>..<span class="op">&lt;</span>newest-commit-hash<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">git</span> cherry-pick <span class="op">&lt;</span>oldest-commit-hash<span class="op">&gt;</span>..<span class="op">&lt;</span>newest-commit-hash<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>So if the two commits that modified <code>groceries.md</code> have
 the hashes <code>a1b2c3d</code> and <code>d4e5f6g</code>, you would
@@ -3568,7 +3561,7 @@ run:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">git</span> cherry-pick a1b2c3d..d4e5f6g</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="fu">git</span> cherry-pick a1b2c3d..d4e5f6g</span></code></pre>
 </div>
 </div>
 </div>
@@ -3642,8 +3635,8 @@ the history.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> switch pie-recipes</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> pie-recipes</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> switch pie-recipes</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">git</span> log <span class="at">--oneline</span> pie-recipes</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3661,7 +3654,7 @@ branch.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">-i</span> HEAD~4</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">git</span> rebase <span class="at">-i</span> HEAD~4</span></code></pre>
 </div>
 <p>Git will open an editor with a list of the requested commits in the
 format</p>
@@ -3741,7 +3734,7 @@ rebase is complete, you can look at the rewritten history.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> pie-recipes</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> pie-recipes</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3772,7 +3765,7 @@ safe to force-push the changes to <em>origin</em>.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span> origin</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> push <span class="at">--force</span> origin</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3809,7 +3802,7 @@ request/merge request is merged.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>tbd.</p>
 </div>
@@ -3899,8 +3892,8 @@ examples. Let’s create a new one</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">touch</span> .git/hooks/pre-commit</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">nano</span> .git/hooks/pre-commit</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">touch</span> .git/hooks/pre-commit</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">nano</span> .git/hooks/pre-commit</span></code></pre>
 </div>
 <p>And add the following text to it:</p>
 <pre><code>#!/usr/bin/env bash
@@ -3912,14 +3905,14 @@ echo "flake8 passed!"</code></pre>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">touch</span> hello.py</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">nano</span> hello.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">touch</span> hello.py</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">nano</span> hello.py</span></code></pre>
 </div>
 <p>And add some text to it:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hello world!'')</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="bu">print</span>(<span class="st">'Hello world!'')</span></span></code></pre>
 </div>
 <p>The typo is on purpose. Add and commit it to the repository.</p>
 <p>GitHub actions are the equivalent of server-side hooks on GitHub.</p>
@@ -4030,8 +4023,8 @@ the following code to identify the shell you are running.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">you@computer:~$</span> basename <span class="va">$SHELL</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">bash</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">you@computer:~$</span> basename <span class="va">$SHELL</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">bash</span></span></code></pre>
 </div>
 <p>As the idea to augment the command prompt with Git information is not
 new, the Git repository on Github (i.e., the repository hosting the
@@ -4041,7 +4034,7 @@ the following commands.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">you@computer:~$</span> curl https://raw.githubusercontent.com/git/git/refs/heads/master/contrib/completion/git-prompt.sh <span class="at">-o</span> <span class="va">$HOME</span>/.git-prompt.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">you@computer:~$</span> curl https://raw.githubusercontent.com/git/git/refs/heads/master/contrib/completion/git-prompt.sh <span class="at">-o</span> <span class="va">$HOME</span>/.git-prompt.sh</span></code></pre>
 </div>
 <div id="bash" class="callout">
 <div class="callout-square">
@@ -4056,7 +4049,7 @@ following line to <code>$HOME/.bashrc</code>.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">source</span> ~/.git-prompt.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="bu">source</span> ~/.git-prompt.sh</span></code></pre>
 </div>
 </div>
 </div>
@@ -4074,7 +4067,7 @@ following line to <code>$HOME/.zshrc</code>.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">source</span> ~/.git-prompt.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="bu">source</span> ~/.git-prompt.sh</span></code></pre>
 </div>
 <p>}</p>
 </div>
@@ -4102,7 +4095,7 @@ our prompt.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="va">PROMPT_COMMAND</span><span class="op">=</span><span class="st">'__git_ps1 "\u@\h:\w" "\\\$ "'</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="va">PROMPT_COMMAND</span><span class="op">=</span><span class="st">'__git_ps1 "\u@\h:\w" "\\\$ "'</span></span></code></pre>
 </div>
 <p>will show username, at-sign, host, colon, cwd, then various status
 string, followed by dollar and SP, as your prompt.</p>
@@ -4121,8 +4114,8 @@ string, followed by dollar and SP, as your prompt.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">setopt</span> PROMPT_SUBST</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="va">PS1</span><span class="op">=</span><span class="st">'[%n@%m %c$(__git_ps1 " (%s)")]\$ '</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">setopt</span> PROMPT_SUBST</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="va">PS1</span><span class="op">=</span><span class="st">'[%n@%m %c$(__git_ps1 " (%s)")]\$ '</span></span></code></pre>
 </div>
 <p>This will show username, pipe, then various status string, followed
 by colon, cwd, dollar and SP, as your prompt.</p>
@@ -4145,17 +4138,17 @@ character.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">user@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">)</span><span class="op">&gt;</span> git <span class="ex">status</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">On</span> branch main</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/main'</span>.</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git restore &lt;file&gt;..."</span> to discard changes in working directory<span class="kw">)</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>        <span class="ex">modified:</span>   a_file.py</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="ex">no</span> changes added to commit <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> and/or <span class="st">"git commit -a"</span><span class="kw">)</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="ex">user@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">)</span><span class="ex">$</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">user@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">)</span><span class="op">&gt;</span> git <span class="ex">status</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="ex">On</span> branch main</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/main'</span>.</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git restore &lt;file&gt;..."</span> to discard changes in working directory<span class="kw">)</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1" aria-label="code-block-7-8"></a>        <span class="ex">modified:</span>   a_file.py</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1" aria-label="code-block-7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1" aria-label="code-block-7-10"></a><span class="ex">no</span> changes added to commit <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> and/or <span class="st">"git commit -a"</span><span class="kw">)</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1" aria-label="code-block-7-11"></a><span class="ex">user@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">)</span><span class="ex">$</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -4168,16 +4161,16 @@ will indicate the presence of untracked files in the working copy with a
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">user@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> %<span class="kw">)</span><span class="op">&gt;</span> git <span class="ex">status</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">On</span> branch main</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/main'</span>.</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="ex">Untracked</span> files:</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to include in what will be committed<span class="kw">)</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>        <span class="ex">untracked.pdf</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="ex">no</span> changes added to commit <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> and/or <span class="st">"git commit -a"</span><span class="kw">)</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="ex">user@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> %<span class="kw">)</span><span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">user@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> %<span class="kw">)</span><span class="op">&gt;</span> git <span class="ex">status</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="ex">On</span> branch main</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/main'</span>.</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a><span class="ex">Untracked</span> files:</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to include in what will be committed<span class="kw">)</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a>        <span class="ex">untracked.pdf</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a><span class="ex">no</span> changes added to commit <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> and/or <span class="st">"git commit -a"</span><span class="kw">)</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a><span class="ex">user@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> %<span class="kw">)</span><span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -4191,10 +4184,10 @@ value, the prompt will indicate wheter something is stashed, with a
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> $<span class="kw">)</span><span class="op">&gt;</span> git <span class="ex">stash</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">Saved</span> working directory and index state WIP on main: 33528c7 Added report</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> $<span class="kw">)</span><span class="op">&gt;</span> git <span class="ex">stash</span> clear</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span><span class="kw">)</span><span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> $<span class="kw">)</span><span class="op">&gt;</span> git <span class="ex">stash</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="ex">Saved</span> working directory and index state WIP on main: 33528c7 Added report</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> $<span class="kw">)</span><span class="op">&gt;</span> git <span class="ex">stash</span> clear</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span><span class="kw">)</span><span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -4219,12 +4212,12 @@ depending on the status of the working copy.</li>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">you@itc19060:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">)</span><span class="op">&gt;</span> echo <span class="va">$GIT_PS1_SHOWUPSTREAM</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">)</span><span class="op">&gt;</span> GIT_PS1_SHOWUPSTREAM=<span class="st">"verbose"</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">|</span><span class="ex">u+3</span><span class="kw">)</span><span class="op">&gt;</span> GIT_PS1_SHOWUPSTREAM=<span class="st">"verbose name"</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">|</span><span class="ex">u+3</span> origin/main<span class="kw">)</span><span class="op">&gt;</span> GIT_PS1_SHOWUPSTREAM=<span class="st">"auto"</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="op">&gt;</span><span class="kw">)</span><span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">you@itc19060:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">)</span><span class="op">&gt;</span> echo <span class="va">$GIT_PS1_SHOWUPSTREAM</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">)</span><span class="op">&gt;</span> GIT_PS1_SHOWUPSTREAM=<span class="st">"verbose"</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">|</span><span class="ex">u+3</span><span class="kw">)</span><span class="op">&gt;</span> GIT_PS1_SHOWUPSTREAM=<span class="st">"verbose name"</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="kw">|</span><span class="ex">u+3</span> origin/main<span class="kw">)</span><span class="op">&gt;</span> GIT_PS1_SHOWUPSTREAM=<span class="st">"auto"</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a><span class="ex">you@computer:my_repo</span> <span class="er">(</span><span class="ex">main</span> <span class="pp">*</span><span class="op">&gt;</span><span class="kw">)</span><span class="op">&gt;</span></span></code></pre>
 </div>
 <div id="callout5" class="callout">
 <div class="callout-square">
@@ -4339,7 +4332,7 @@ easier.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.0" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.1" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.1.0" class="external-link">varnish (1.1.0)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -4362,8 +4355,8 @@ easier.</li>
   "url": "https://carpentries-incubator.github.io/advanced-git/aio.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/aio.html",
   "dateCreated": "2025-12-05",
-  "dateModified": "2026-04-14",
-  "datePublished": "2026-04-14"
+  "dateModified": "2026-04-21",
+  "datePublished": "2026-04-21"
 }
 
   </script><script>
