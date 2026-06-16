@@ -808,7 +808,7 @@ branch, use the <code>-avv</code> flags:</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>To create a new branch named <code>&lt;branch&gt;</code>, which
 <em>references the same point in history as the current branch.</em></p>
@@ -949,7 +949,7 @@ commit looks than in our earlier exercises?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>You can use the <code>mv</code> command to rename files in the
 terminal:</p>
@@ -967,7 +967,7 @@ terminal:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1014,7 +1014,7 @@ renamed the file, rather than deleting one and adding another.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 
 </div>
@@ -1141,11 +1141,11 @@ location of this URL will depend on the hosting service you are using
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <p>Look for the blue “Code” button on the upper right of the repository
 page. Click it to reveal the URL.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <p>Look for the green “Code” button on the upper right of the repository
 page. Click it to see two tabs: “Local” and “Codespaces”. Under the
 “Local” tab, you will find the URL.</p>
@@ -1497,7 +1497,7 @@ responsibilities.</li>
 </div>
 </section></section><section id="aio-04-undo"><p>Content from <a href="04-undo.html">Undoing Changes</a></p>
 <hr>
-<p>Last updated on 2025-12-04 |
+<p>Last updated on 2026-06-16 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/04-undo.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1679,7 +1679,7 @@ HEAD is now at bb3edf6 Add bean dip recipe</code></pre>
 </h2>
 <hr class="half-width">
 <p>We already saw that <code>git checkout</code> is used to move to a
-different branch but is can also be used to update the state of the
+different branch but can also be used to update the state of the
 repository to a specific point in the projects history.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1887,7 +1887,7 @@ commits.</li>
 </div>
 </section></section><section id="aio-05-merging"><p>Content from <a href="05-merging.html">Merging</a></p>
 <hr>
-<p>Last updated on 2025-12-03 |
+<p>Last updated on 2026-06-16 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/05-merging.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2000,7 +2000,7 @@ headache in the latter situation, whereas it is easily done if the
 –no-ff flag was used.</p>
 <p>For a good illustration of fast-forward merge (and other concepts),
 see this thread: <a href="https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge" class="external-link uri">https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge</a></p>
-</section><section><h2 class="section-heading" id="non-fast-forwad-merge">Non-fast-forwad Merge<a class="anchor" aria-label="anchor" href="#non-fast-forwad-merge"></a>
+</section><section><h2 class="section-heading" id="non-fast-forward-merge">Non-fast-forward Merge<a class="anchor" aria-label="anchor" href="#non-fast-forward-merge"></a>
 </h2>
 <hr class="half-width">
 <p>A non fast-forward merge makes a new commit that ties together the
@@ -2214,7 +2214,7 @@ by adding instructions. Then, merge the branch back into
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2264,7 +2264,7 @@ merge.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2296,7 +2296,7 @@ merge.</p>
 </h3>
 <p>Similar to <code>--no-ff</code>, but there may be dragons. Forced
 upon you when there’s an intermediate change since you branched. May
-prompt your to manually resolve</p>
+prompt you to manually resolve</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2760,13 +2760,13 @@ to, you can create a fork of this repository.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-Github" class="tab-pane show active" aria-labelledby="nav-tab-1-Github" role="tabpanel">
+<div id="nav-tabpanel-1-Github" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-Github">
 <p><img src="fig/github_fork_button.png" alt="Screenshot of the button array in the top right corner of the Github interface with the fork button highlighted." class="figure">{alt=A
 cropped screenshot of the Github UI showing the array of buttons on the
 top right of the project home page with the fork button
 highlighted.}</p>
 </div>
-<div id="nav-tabpanel-1-Gitlab" class="tab-pane" aria-labelledby="nav-tab-1-Gitlab" role="tabpanel">
+<div id="nav-tabpanel-1-Gitlab" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Gitlab">
 <p><img src="fig/gitlab_fork_button.png" alt="Screenshot of the button array in the top right corner of the Gitlab interface with the fork button highlighted." class="figure">{alt=A
 cropped screenshot of the Gitlab UI showing the array of buttons on the
 top right of the project home page with the fork button
@@ -2844,7 +2844,7 @@ project.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Fork the repository</li>
@@ -2961,7 +2961,7 @@ the command line.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>After the merge request is complete, you need to update your
 <code>main</code> branches from <em>upstream</em></p>
@@ -3457,7 +3457,7 @@ instructions for the cookies in another commit.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Create and switch to the <code>cookies</code> branch:</li>
@@ -3533,7 +3533,7 @@ a single commit?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>Run <code>git cherry-pick --help</code> and look at some of the
 examples.</p>
@@ -3546,7 +3546,7 @@ examples.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Thy syntax for cherry-picking a range of commits is:</p>
 <div class="codewrapper sourceCode" id="cb15">
@@ -3994,7 +3994,7 @@ shown as part of the prompt.</p>
   Some ideas.
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -4353,7 +4353,7 @@ easier.</li>
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/advanced-git/aio.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/aio.html",
-  "dateCreated": "2025-12-05",
+  "dateCreated": "2026-06-16",
   "dateModified": "2026-06-16",
   "datePublished": "2026-06-16"
 }
