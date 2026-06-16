@@ -85,7 +85,7 @@ If using the fast-forward merge, it is impossible to see from the `git` history 
 
 For a good illustration of fast-forward merge (and other concepts), see this thread: https://stackoverflow.com/questions/9069061/what-effect-does-the-no-ff-flag-have-for-git-merge
 
-## Non-fast-forwad Merge
+## Non-fast-forward Merge
 
 A non fast-forward merge makes a new commit that ties together the histories of both branches.
 
@@ -343,7 +343,7 @@ git commit -m "Resolve merge conflict in salsa.md."
 ### Three-way Merge
 
 Similar to `--no-ff`, but there may be dragons. Forced upon you when there's an intermediate change since you branched.
-May prompt your to manually resolve
+May prompt you to manually resolve
 
 ```bash
 git merge <branch> [-s <strategy>]

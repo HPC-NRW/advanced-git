@@ -129,7 +129,7 @@ git reset HEAD~2 foo.txt
 
 ## Git Checkout: A Gentle Way
 
-We already saw that `git checkout` is used to move to a different branch but is can also be used to update the state of the repository to a specific point in the projects history.
+We already saw that `git checkout` is used to move to a different branch but can also be used to update the state of the repository to a specific point in the projects history.
 
 ```bash
 git checkout main
