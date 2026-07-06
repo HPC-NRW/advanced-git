@@ -224,7 +224,21 @@ git commit -m "Rename recipe file to use .yaml extension."
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-Challenge 2:
+Challenge 2: Deleting an Unmerged Branch
+
+We think about adding new dessert recipes to our recipe collection.
+To avoid affecting the main branch we need to create a new branch named dessert-recipes and switch to this branch.
+
+After that, we create a simple cookie recipe with the name cookies.md and commit it.
+
+Later we decide that it’s not the right time to start with the dessert recipes and cookies and we don’t want the cookie recipe to remain in our repository.
+
+What happens when we use git branch -d?
+Why does git react this way and how can we force the deletion?
+
+::: hint
+Check the documentation of git branch with `git branch --help`
+:::
 
 :::::::::::::::  solution
 
