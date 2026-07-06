@@ -260,6 +260,9 @@ error: the branch 'dessert-recipes' is not fully merged
 hint: If you are sure you want to delete it, run 'git branch -D dessert-recipes'
 ```
 
+Git uses `-d` as a safety net - it will not delete a branch that has not been merged into the current branch, as that would mean losing commits that exist nowhere else.
+`-D` bypasses this check and deletes the branch even if it is not merged.
+
 ```bash
 git branch -D dessert-recipes
 ```
