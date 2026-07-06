@@ -82,6 +82,38 @@ git tag -d <tag>
 
 Since tags are frequently used to do releases, it is useful to be aware that codebases and languages have standards on how release versions should be labelled. If you are working with an existing code base, follow the standard set by the dev team. If you are developing a library by yourself, follow the standards for the language. For example, the [Python Packaging Authority](https://packaging.python.org/en/latest/specifications/version-specifiers/#version-specifiers) (and previously [PEP440](https://peps.python.org/pep-0440/)) specifies the scheme for identifying versions for `python` libraries.
 
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Tagging a Past Commit
+
+We made many commits during the workshop. Inspect the commit history using `git log --oneline` and find the commit where we converted the guacamole recipe into a YAML format. Tag it with `3.0.0` with a suitable message. Then verify that the tag landed on the right commit using `git log --oneline --decorate`.
+
+::: hint
+You can tag a past commit by providing its SHA: `git tag -a <tag> [<SHA>] -m <message>`
+:::
+
+:::::::::::::::  solution
+
+```bash
+git log --oneline
+```
+
+```bash
+git tag -a 3.0.0 <commit-hash> -m "Reformat recipe to use YAML"
+
+git log --oneline --decorate
+```
+```output
+<commit-hash> (HEAD -> main, tag: 3.0.0) Reformat recipe to use YAML
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
 <!--- ![Merging 1](../fig/14-tags.png)--->
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
