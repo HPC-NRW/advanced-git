@@ -222,7 +222,34 @@ git commit -m "Rename recipe file to use .yaml extension."
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-Challenge 2: Deleting an Unmerged Branch
+Challenge 2: Renaming a branch
+You realize the branch name `yaml-format` is not descriptive enough. Rename it to `feature/yaml-format` without losing any of your work.
+
+::: hint
+
+You can check `git branch --help` for the renaming flag.
+
+:::
+
+:::::::::::::::  solution
+```bash
+git branch -m yaml-format feature/yaml-format
+git branch
+```
+```output
+* feature/yaml-format
+  main
+```
+
+The `-m` flag changes the name of the branch without removing it, so the whole commit history remains intact.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+Challenge 3: Deleting an Unmerged Branch
 
 We think about adding new dessert recipes to our recipe collection.
 To avoid affecting the main branch we need to create a new branch named dessert-recipes and switch to this branch.
@@ -267,33 +294,6 @@ git branch -D dessert-recipes
 ```output
 Deleted branch dessert-recipes (was <commit-hash>).
 ```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-Challenge 3: Renaming a branch
-You realize the branch name `yaml-format` is not descriptive enough. Rename it to `feature/yaml-format` without losing any of your work.
-
-::: hint
-
-You can check `git branch --help` for the renaming flag.
-
-:::
-
-:::::::::::::::  solution
-```bash
-git branch -m yaml-format feature/yaml-format
-git branch
-```
-```output
-* feature/yaml-format
-  main
-```
-
-The `-m` flag changes the name of the branch without removing it, so the whole commit history remains intact.
 
 :::::::::::::::::::::::::
 
