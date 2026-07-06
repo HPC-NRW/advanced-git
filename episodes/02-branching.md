@@ -33,7 +33,7 @@ The implementation behind Git branches is much more lightweight than other versi
 
 In `git` a branch is effectively a pointer to a snapshot of your changes. It's important to understand that branches are just pointers to commits. When you create a branch, all Git needs to do is create a new pointer, it doesn't change the repository in any other way. If you start with a repository that looks like this:
 
-![Git Branching: A branch is just a "named pointer" to a commit.  (Source: [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/using-branches))](fig/04-branching.png){alt="A diagram showing several commits on a single branch in a theoretical git repository."}
+![Git Branching: A branch is just a "named pointer" to a commit.  (Source: [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/using-branches))](fig/04-branching.png "A diagram showing several commits on a single branch in a theoretical git repository.")
 
 Let's say we wanted to reworking our recipes to use a different format. We could continue on our
 existing branch, but we're not so sure about this change, so instead we create a new branch to
