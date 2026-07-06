@@ -227,7 +227,7 @@ You realize the branch name `yaml-format` is not descriptive enough. Rename it t
 
 ::: hint
 
-You can check `git branch --help` for the renaming flag.
+You can check the documentation of git branch with `git branch --help`
 
 :::
 
@@ -262,7 +262,7 @@ What happens when we use git branch -d?
 Why does git react this way and how can we force the deletion?
 
 ::: hint
-Check the documentation of git branch with `git branch --help`
+Think about how you checked the documentation in the previous challenge.
 :::
 
 :::::::::::::::  solution
