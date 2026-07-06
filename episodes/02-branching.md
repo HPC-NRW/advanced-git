@@ -241,6 +241,32 @@ Check the documentation of git branch with `git branch --help`
 :::
 
 :::::::::::::::  solution
+```bash
+git switch -c dessert-recipes
+nano cookies.md
+
+(add recipe content)
+CTRL+O to save, CTRL+X to exit
+
+git add cookies.md
+git commit -m "Add chocolate chip cookies recipe."
+git switch main
+
+git branch -d dessert-recipes
+```
+```output
+$ git branch -d dessert-recipes
+error: the branch 'dessert-recipes' is not fully merged
+hint: If you are sure you want to delete it, run 'git branch -D dessert-recipes'
+```
+
+```bash
+git branch -D dessert-recipes
+```
+
+```output
+Deleted branch dessert-recipes (was <commit-hash>).
+```
 
 :::::::::::::::::::::::::
 
