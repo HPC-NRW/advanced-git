@@ -58,7 +58,7 @@ git tag -a <tag> [<SHA>] -m <message>
 To get more information about an existing tag you can "verify" it, which displays that tag's details, including the tagger, date, and message. This only works for annotated commits:
 
 ```bash
-git tag -v 1.0.0
+git tag -v 1.0.0    # this will fail
 git tag -v 2.0.0
 ```
 
