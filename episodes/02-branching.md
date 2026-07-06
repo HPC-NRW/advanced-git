@@ -244,7 +244,6 @@ git switch -c dessert-recipes
 nano cookies.md
 
 (add recipe content)
-CTRL+O to save, CTRL+X to exit
 
 git add cookies.md
 git commit -m "Add chocolate chip cookies recipe."
@@ -268,6 +267,33 @@ git branch -D dessert-recipes
 ```output
 Deleted branch dessert-recipes (was <commit-hash>).
 ```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+Challenge 3: Renaming a branch
+You realize the branch name `yaml-format` is not descriptive enough. Rename it to `feature/yaml-format` without losing any of your work.
+
+::: hint
+
+You can check `git branch --help` for the renaming flag.
+
+:::
+
+:::::::::::::::  solution
+```bash
+git branch -m yaml-format feature/yaml-format
+git branch
+```
+```output
+* feature/yaml-format
+  main
+```
+
+The `-m` flag changes the name of the branch without removing it, so the whole commit history remains intact.
 
 :::::::::::::::::::::::::
 
