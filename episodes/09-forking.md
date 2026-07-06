@@ -101,7 +101,7 @@ Remember to **only work on branches**.
 
 #### Create a pull request
 
-After pushing
+After pushing your branch onto your own fork, you can create a pull request in order to propose your modifications to the original repository. The maintainers of the project will review the changes and may ask for additional changes before merging them into the upstream repository.
 
 ::: challenge
 
