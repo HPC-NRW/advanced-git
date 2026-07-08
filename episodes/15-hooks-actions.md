@@ -80,6 +80,73 @@ print('Hello world!'')
 
 The typo is on purpose. Add and commit it to the repository.
 
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Challenge 1: Enforcing commit message format with a hook
+
+Create a file called `commit-msg` within the directory `.git/hooks/`. It must
+be able to determine if the commit message is prefixed by `feat:`, `fix:`, or `docs:`; otherwise, it will prevent the commit from being made and provide feedback. Run `chmod` on the file to make it executable. To test, initially do an attempt at committing using an invalid message like "updated stuff" and see that it will fail. Then commit again using a valid commit message such as
+"feat: add new recipe" and verify that it succeeds.
+
+::: hint
+
+The `commit-msg` hook receives the path to a temporary file containing the
+commit message as its first argument. Inside the script, you can access it
+with `$1`. To read the contents of that file: `cat "$1"`
+:::
+
+::: hint
+
+You can use `grep` with regex to check the message format. For example:
+
+```bash
+grep -qE "^(feat|fix|docs):"
+```
+
+`-q` runs grep quietly (no output), `-E` enables extended regex, and
+`^(feat|fix|docs):` matches lines that start with one of these three words
+followed by a colon.
+
+In a hook script, if a command exits with a non-zero status, the commit is
+aborted. So `exit 1` rejects the commit.
+:::
+
+:::::::::::::::  solution
+
+```bash
+nano .git/hooks/commit-msg
+```
+
+```bash
+commit_msg=$(cat "$1")
+
+if ! echo "$commit_msg" | grep -qE "^(feat|fix|docs):"; then
+    echo "ERROR: Commit message must start with 'feat:', 'fix:' or 'docs:'"
+    exit 1
+fi
+```
+
+```bash
+chmod +x .git/hooks/commit-msg
+```
+
+```bash
+git commit -m "updated stuff"
+```
+```output
+ERROR: Commit message must start with 'feat:', 'fix:' or 'docs:'
+```
+
+```bash
+git commit -m "feat: add test file"
+```
+```output
+[main <hash>] feat: add test file
+```
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 GitHub actions are the equivalent of server-side hooks on GitHub.
 
 There are lots of things that can be done with GitHub actions: https://docs.github.com/en/actions
