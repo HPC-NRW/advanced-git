@@ -181,7 +181,50 @@ Clean up the history of your feature branch before the pull request/merge
 request is merged.
 
 :::: solution
-tbd.
+Follow the same steps we did earlier in the lesson:
+
+1. Check your branch history:
+  ```bash
+  git log --oneline
+  ```
+  ```output
+   7c77bba (HEAD -> pie-recipes) Complete pecan pie recipe instructions
+   f203cce Additional instructions to pecan pie recipe
+   c65036e Fix typo in ingredients
+   8613dde Add recipe for Pecan Pie with ingredients
+   3f40052 Add Apple Pie recipe
+   9761864 Initial commit with recipe files
+```
+
+2. Start an interactive rebase for the last 4 commits:
+  ```bash
+    git rebase -i HEAD~4
+  ```
+3. In the editor, squash the typo fix into the first commit:
+  ```bash
+    pick 8613dde Add recipe for Pecan Pie with ingredients
+    fixup c65036e Fix typo in ingredients
+    pick f203cce Additional instructions to pecan pie recipe
+    pick 7c77bba Complete pecan pie recipe instructions
+  ```
+
+4. Save and exit. Verify the new history:
+  ```bash
+    git log --oneline
+  ```
+
+  ```output
+    a03a64c (HEAD -> pie-recipes) Complete pecan pie recipe instructions
+    6c4a44a Additional instructions to pecan pie recipe
+    cf155bb Add recipe for Pecan Pie with ingredients
+    3f40052 Add Apple Pie recipe
+    9761864 Initial commit with recipe files
+  ```
+
+5. Force-push the cleaned branch:
+  ```bash
+    git push --force origin pie-recipes
+  ```
 ::::
 :::
 
