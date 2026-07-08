@@ -22,7 +22,7 @@ Git hooks are scripts that get run when a specific event occurs in git. The scri
 Git hooks can trigger events on the server side or locally, and commonly used hooks include:
 - `pre-commit`: Executed before the `git commit` command and is usually used to
   check the changes with linters or tests.
-- `prepare-commit-msg`: Executed before after the commit message is
+- `prepare-commit-msg`: Executed before after the commit message is created, but before the commit message editor is started. Good for changing the default commit message programmatically before the user sees it.
 - `commit-msg`: Validates the commit message, can be used to check whether the
   commit message adheres to project policies
 - `post-commit`: Runs after the commit, often used for notifications or
