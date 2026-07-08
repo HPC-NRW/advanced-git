@@ -66,6 +66,12 @@ touch hello.py
 nano hello.py
 ```
 
+Make the hook file executable, otherwise Git will silently ignore it:
+
+```bash
+chmod +x .git/hooks/pre-commit
+```
+
 And add some text to it:
 
 ```python
