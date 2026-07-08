@@ -56,6 +56,12 @@ is a large, binary file in order to show how to handle it with `git lfs`:
 echo "This is a very large report." > report.pdf
 ```
 
+First, we need to install LFS. This is something that should only be done once per machine.
+
+```bash
+git lfs install
+```
+
 Next, we tell Git, that this file should be treated with LFS:
 
 ```bash
