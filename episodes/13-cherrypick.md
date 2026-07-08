@@ -211,7 +211,7 @@ Run `git cherry-pick --help` and look at some of the examples.
 
 :::: solution
 
-Thy syntax for cherry-picking a range of commits is:
+The syntax for cherry-picking a range of commits is:
 
 ```bash
 git cherry-pick <oldest-commit-hash>..<newest-commit-hash>
