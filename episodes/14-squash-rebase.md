@@ -301,8 +301,8 @@ In the editor, change `pick` to `s` for the last two commits:
 
 ```bash
 pick <hash> Add flour
-s <hash> Add milk
-s <hash> Add egg
+squash <hash> Add milk
+squash <hash> Add egg
 ```
 
 Save and exit. In the next editor, write a single commit message:
