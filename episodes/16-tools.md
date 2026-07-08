@@ -110,7 +110,7 @@ various status string, followed by dollar and SP, as
 
 ## zsh
 
-Add the following to your `$HOME/.bashrc`.
+Add the following to your `$HOME/.zshrc`.
 
 ```bash
 setopt PROMPT_SUBST
