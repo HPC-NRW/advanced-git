@@ -34,7 +34,15 @@ Examples of local events that can trigger hooks include `commit` (pre- or post-c
 
 List of pre-written pre-commit hooks: https://github.com/pre-commit/pre-commit-hooks
 
-The executable files are stored in the `.git/hooks/` directory in your project directory. A pre-commit hooks will be an executable file in this directory stored with the magic name `pre-commit`. Check the directory, there are already several examples. Let's create a new one
+The executable files are stored in the `.git/hooks/` directory in your project directory. A pre-commit hooks will be an executable file in this directory stored with the magic name `pre-commit`. Check the directory, there are already several examples.
+
+Before creating the hook, make sure `flake8` is installed in your environment:
+
+```bash
+pip install flake8
+```
+
+Now, let's create the hook:
 
 ```bash
 touch .git/hooks/pre-commit
