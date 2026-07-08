@@ -79,7 +79,7 @@ To use the `git-prompt.sh` in `zsh` add the following line to `$HOME/.zshrc`.
 ```bash
 source ~/.git-prompt.sh
 ```
-}
+
 :::
 
 Some shells, such as fish, xonsh, and others already have support for displaying Git repository information built-in.
