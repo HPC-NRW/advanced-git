@@ -94,4 +94,3 @@ Materials: https://verdantfox.com/blog/how-to-use-git-pre-commit-hooks-the-hard-
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-{% include links.md %}
