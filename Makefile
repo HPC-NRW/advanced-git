@@ -275,3 +275,39 @@ git-13-cherrypick-exercise-02: git-13-cherrypick-exercise-01
 	git commit -m "Add instructions to sugar cookies recipe"
 	git switch main
 	git cherry-pick cookies~3..cookies~1
+
+# 13-cherrypick exercise: cherry-pick from a local "upstream" remote - a single commit, then a PR merge commit
+git-13-cherrypick-exercise-upstream: git-13-cherrypick
+	rm -rf $(WORKING_DIR)/upstream-cherry
+	mkdir -p $(WORKING_DIR)/upstream-cherry
+	cd $(WORKING_DIR)/upstream-cherry
+	git init -q -b master
+	printf '%s\n' "# Toast" "## Ingredients" "- bread" > toast.md
+	git add toast.md
+	git commit -q -m "Add toast recipe"
+	git branch add-butter
+	git switch -q add-butter
+	printf '%s\n' "# Toast" "## Ingredients" "- bread" "- butter" > toast.md
+	git add toast.md
+	git commit -q -m "Add butter to toast"
+	git switch -q master
+	git merge --no-ff add-butter -m "Merge pull request #42 from upstream-org/add-butter" -q
+	cd ../$(REPO_NAME)
+	git branch develop main
+	git checkout -b cherry develop
+	git remote remove upstream 2>/dev/null || true
+	git remote add upstream ../upstream-cherry
+	git fetch upstream master
+	git cherry-pick upstream/master~1
+	git cherry-pick -m 1 --no-edit upstream/master
+
+# 13-cherrypick exercise: revert the PR merge commit we just cherry-picked, hard-reset it away, then redo a commit via reset+recommit
+git-13-cherrypick-exercise-undoing-commits: git-13-cherrypick-exercise-upstream
+	cd $(REPO_PATH)
+	git switch cherry
+	git revert -m 1 --no-edit HEAD
+	git reset HEAD~2 --hard
+	git reset HEAD~1
+	git add toast.md
+	git commit -m "Add toast recipe"
+
