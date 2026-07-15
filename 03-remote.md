@@ -355,6 +355,62 @@ git push --set-upstream origin bean-dip
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Fetching Remote Changes
+
+We need to visit GitHub to make our edits directly on the `README.md` file using the web UI and commit the change.
+
+Now back in our local git repo, we will first fetch the changes but not merge them yet, see what was fetched, compare both local and remote statuses, then finally pull the changes.
+
+How does `git fetch` differ from `git pull` based on what you observed?
+
+::: hint
+
+You can use `git log --oneline --all` to see commits across all branches, including remote-tracking branches like `origin/main`.
+
+:::
+
+:::::::::::::::  solution
+
+```bash
+git fetch origin
+git status
+```
+```output
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+nothing to commit, working tree clean
+```
+
+```bash
+git log --oneline --all
+```
+
+```output
+a4275da (origin/main, origin/HEAD) Change title in README.md
+4eef8f7 (HEAD -> main) Init commit
+b02715d Initial commit
+```
+
+```bash
+git pull
+```
+
+```output
+Updating 4eef8f7..a4275da
+Fast-forward
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+`git fetch` pulls the updates from the remote, it does not move the local branches and leaves the remote branch updated (`origin/main`), while the local is not touched (`HEAD -> main`), as shown by the log. The `git pull` command executes fetch and merge at once.
+
+:::::::::::::::::::::::::
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
