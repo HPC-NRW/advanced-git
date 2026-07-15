@@ -106,7 +106,7 @@ git fetch origin main
 
 https://www.atlassian.com/git/tutorials/syncing/git-fetch
 
-![Review 2](fig/03-recap.png alt="A diagram showing alternate diagrams for understanding the working directory, staging area, and repository in git, as well as commits on a branch.")
+![Review 2](fig/03-recap.png "A diagram showing alternate diagrams for understanding the working directory, staging area, and repository in git, as well as commits on a branch.")
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
