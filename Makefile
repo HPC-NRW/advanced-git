@@ -142,3 +142,14 @@ git-05-merging: git-04-undo
 		"  2. Use a food processor to blend the avocados, then mash by hand to finish." > guacamole.yaml
 	git add guacamole.yaml
 	git commit -m "Resolve merge conflict in guacamole.yaml."
+
+# 06-tags: a lightweight tag and an annotated tag
+git-06-tags: git-05-merging
+	cd $(REPO_PATH)
+	git tag 1.0.0
+	git tag -a 2.0.0 -m "Second Release"
+	if [ -n "$(REMOTE_REPO)" ]; then
+		git push origin 1.0.0
+		git push origin 2.0.0
+	fi
+
