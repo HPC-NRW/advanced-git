@@ -91,7 +91,7 @@ git-03-remote: git-02-branching
 # 03-remote challenge
 # 04-undo assumes this challenge already exists
 # A participant who wants to attempt the challenge themselves should start from `git-03-remote` and do this part by hand instead
-git-03-remote-challenge: git-03-remote
+git-03-remote-challenge-01: git-03-remote
 	cd $(REPO_PATH)
 	git branch bean-dip
 	git switch bean-dip
@@ -102,8 +102,23 @@ git-03-remote-challenge: git-03-remote
 		git push --set-upstream origin bean-dip
 	fi
 
+# 03-remote exercise: simulate someone editing README.md directly on the remote
+git-03-remote-challenge-02: git-03-remote-challenge-01
+	cd $(REPO_PATH)
+	git switch main
+	if [ -n "$(REMOTE_REPO)" ]; then
+		rm -rf ../remote-edit-clone
+		git clone -q "$(REMOTE_REPO)" ../remote-edit-clone
+		cd ../remote-edit-clone
+		printf '%s\n' "# Workshop Repo" > README.md
+		git add README.md
+		git commit -q -m "Change title in README.md"
+		git push -q
+		cd ../$(REPO_NAME)
+	fi
+
 # 04-undo: a commit worth reverting/resetting live
-git-04-undo: git-03-remote-challenge
+git-04-undo: git-03-remote-challenge-02
 	cd $(REPO_PATH)
 	printf '%s\n' "- Purchase the bean dip." >> bean-dip.md
 	git add bean-dip.md
