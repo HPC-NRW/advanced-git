@@ -211,3 +211,23 @@ git-12-large-files: git-09-forking
 		git push origin main
 	fi
 
+# 13-cherrypick: cherry-pick a commit from bean-dip into main
+git-13-cherrypick: git-12-large-files
+	cd $(REPO_PATH)
+	git switch bean-dip
+	printf '%s\n' \
+		"# Market A" \
+		"* avocado: 1.35 per unit." \
+		"* lime: 0.64 per unit" \
+		"* salt: 2 per kg" \
+		"* black beans: 0.99 per can" > groceries.md
+	git add groceries.md
+	git commit -m "Add bean dip ingredients to groceries"
+	if [ -n "$(REMOTE_REPO)" ]; then
+		git push
+	fi
+	git checkout main
+	git cherry-pick bean-dip
+	if [ -n "$(REMOTE_REPO)" ]; then
+		git push
+	fi
