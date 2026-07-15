@@ -79,7 +79,7 @@ To use the `git-prompt.sh` in `zsh` add the following line to `$HOME/.zshrc`.
 ```bash
 source ~/.git-prompt.sh
 ```
-}
+
 :::
 
 Some shells, such as fish, xonsh, and others already have support for displaying Git repository information built-in.
@@ -110,7 +110,7 @@ various status string, followed by dollar and SP, as
 
 ## zsh
 
-Add the following to your `$HOME/.bashrc`.
+Add the following to your `$HOME/.zshrc`.
 
 ```bash
 setopt PROMPT_SUBST
@@ -164,7 +164,7 @@ user@computer:my_repo (main %)>
 ### Indicating a stash in the working copy
 
 Git supports saving modifications to the working copy in a so-called stash that can later be reapplied to the working copy.
-By setting the environment variable `GIT_PS1_SHOWSTASHSTATE` to a nonempty value, the prompt will indicate wheter something is stashed,
+By setting the environment variable `GIT_PS1_SHOWSTASHSTATE` to a nonempty value, the prompt will indicate whether something is stashed,
 with a `$` next to the branch name.
 
 ```bash
