@@ -37,17 +37,29 @@ Case in point, three of the top five highest voted questions on Stack Overflow a
 
 [![XKCD Git](fig/01-xkcd-git.png){alt="An XKCD comic about the git control system."}](https://xkcd.com/1597/)
 
-Mouse-over text: If that doesn't fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of 'It's really pretty simple, just think of branches as...' and eventually you'll learn the commands that will fix everything.
+*Mouse-over text: If that doesn't fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of 'It's really pretty simple, just think of branches as...' and eventually you'll learn the commands that will fix everything.*
 
 With this lesson our goal is to give a you a more in-depth understanding of the conceptual model of git, to guide you through increasingly complex workflows and to give you the confidence to participate in larger projects.
 
-## Review of Intro Git Commands
+## Quick Review
 
-First, lets review the concepts and commands that constitute the basic git workflow.
+Let's take a moment to review some of the basic git commands.
+
+### Initializing a Repository
 
 ```bash
 git init
 ```
+git init creates a new git repository in the current directory.
+Specifically, this means creating a subdirectory named `.git` that contains your repository's metadata and object database.
+Generally speaking, we don't tinker with this directory, but it's useful to know that it exists and that is is the marker of a folder on our computer being a git repository.
+
+### The Git Workflow
+
+git has a three-stage workflow: the working directory, the staging area, and the repository.
+When we make changes to files in our working directory, they are not included in the next commit until we stage them, which is done by adding them to the staging area.
+The staging area allows us to prepare a snapshot of the changes before committing them to the repository.
+Once we are satisfied with the changes in the staging area, we can commit them to the repository, which records the changes and creates a new commit object.
 
 ![Staging Area](fig/02-staging-area.png){alt="A diagram showing the relationship between the working directory, staging area, and repository in git."}
 
@@ -78,39 +90,33 @@ Each commit contains several key pieces of information that uniquely define its 
 
 All these elements together generate a unique **commit hash**, which identifies the commit across the Git repository.
 
-```bash
-git log
-git status
-git diff
-git checkout HEAD file.txt
-git revert
-```
+### Exploring the Repository
 
-`git checkout` returns the files not yet committed within the local repository to a previous state, whereas `git revert` reverses changes committed to the local and project repositories.
+We can move around the repository and explore its history using the following commands:
 
-```bash
-git clone http://....
-```
+- `git log`: Shows the commit history for the current branch, displaying commit hashes, authors, dates, and messages.
+- `git status`: Displays the current state of the working directory and staging area, indicating which files are modified, staged, or untracked.
+- `git diff`: Shows the differences between the working directory and the staging area, or between commits, allowing you to see what changes have been made.
+- `git checkout HEAD file.txt`: Reverts the specified file in the working directory to the state of the last commit, discarding any changes made since then.
 
-```bash
-git push
-```
+### Interacting with Remote Repositories
 
-```bash
-git pull
-```
+To collaborate with others, we often work with remote repositories.
 
-Finally, the `git fetch` command downloads commits, files, and refs from a remote repository into your local repository.
-When downloading content from a remote repository, `git pull` and `git fetch` commands are available to accomplish the task.
+- `git clone http://....`: Creates a local copy of a remote repository, allowing you to work on it locally.
+- `git push`: Uploads your local commits to a remote repository, sharing your changes with others.
+- `git pull`: Fetches and integrates changes from a remote repository into your local branch, keeping your local copy up to date.
+- `git fetch`: Downloads commits, files, and refs from a remote repository into your local repository without merging them into your current branch.
+
+
+::: callout
+
 You can consider git fetch the 'safe' version of the two commands.
 It will download the remote content but not update your local repository's working state, leaving your current work intact.
 `git pull` is the more aggressive alternative; it will download the remote content for the active local branch and immediately execute `git merge` to create a merge commit for the new remote content.
 If you have pending changes in progress this will cause conflicts and kick-off the merge conflict resolution flow.
-The following command will bring down __all__ the changes from the remote:
 
-```bash
-git fetch
-```
+:::
 
 It is sometimes useful to only pull the changes from a certain branch, e.g., `main`.
 For a repository that has a lot of contributors and branches, all the changes may be unnecessary and overwhelming:
