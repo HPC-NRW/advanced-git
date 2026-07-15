@@ -174,3 +174,25 @@ git-06-tags: git-05-merging
 		git push origin 2.0.0
 	fi
 
+# 09-forking: simulate the forking workflow via an `upstream` remote
+# Requires REMOTE_REPO to already be a fork of UPSTREAM_REPO for the push/fetch steps to do anything
+git-09-forking: git-06-tags
+	cd $(REPO_PATH)
+	git switch main
+	if [ -n "$(UPSTREAM_REPO)" ]; then
+		git remote add upstream "$(UPSTREAM_REPO)"
+		git pull upstream main
+		if [ -n "$(REMOTE_REPO)" ]; then
+			git push --set-upstream origin main
+		fi
+	fi
+	git branch myfeature
+	git switch myfeature
+	printf '%s\n' "# Chips" "## Ingredients" "## Instructions" > chips.md
+	git add chips.md
+	git commit -m "Add chips recipe"
+	if [ -n "$(REMOTE_REPO)" ]; then
+		git push --set-upstream origin myfeature
+	fi
+	git switch main
+
