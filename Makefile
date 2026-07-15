@@ -19,16 +19,14 @@ init-repo:
 	git init -b main
 
 # 01-introduction: git init, add, commit
-git-01-introduction:
-	init-repo
+git-01-introduction: init-repo
 	cd $(REPO_PATH)
 	printf '%s\n' "# Guacamole" "## Ingredients" "## Instructions" > guacamole.md
 	git add guacamole.md
 	git commit -m "Add guacamole recipe"
 
 # 02-branching: branch, switch, reformat recipe as YAML
-git-02-branching:
-	git-01-introduction
+git-02-branching: git-01-introduction
 	cd $(REPO_PATH)
 	git branch yaml-format
 	git switch yaml-format
@@ -68,8 +66,7 @@ git-03-remote: git-02-branching
 # 03-remote challenge
 # 04-undo assumes this challenge already exists
 # A participant who wants to attempt the challenge themselves should start from `git-03-remote` and do this part by hand instead
-git-03-remote-challenge:
-	git-03-remote
+git-03-remote-challenge: git-03-remote
 	cd $(REPO_PATH)
 	git branch bean-dip
 	git switch bean-dip
@@ -81,8 +78,7 @@ git-03-remote-challenge:
 	fi
 
 # 04-undo: a commit worth reverting/resetting live
-git-04-undo:
-	git-03-remote-challenge
+git-04-undo: git-03-remote-challenge
 	cd $(REPO_PATH)
 	printf '%s\n' "- Purchase the bean dip." >> bean-dip.md
 	git add bean-dip.md
