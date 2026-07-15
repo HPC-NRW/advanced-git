@@ -231,3 +231,47 @@ git-13-cherrypick: git-12-large-files
 	if [ -n "$(REMOTE_REPO)" ]; then
 		git push
 	fi
+
+# 13-cherrypick exercise: create a cookies branch, cherry-pick just the groceries.md change into main
+git-13-cherrypick-exercise-01: git-13-cherrypick
+	cd $(REPO_PATH)
+	git switch main
+	git branch cookies
+	git switch cookies
+	mkdir -p cookies
+	printf '%s\n' "# Chocolate Chip Cookies" "## Ingredients" "## Instructions" > cookies/chocolate-chip-cookies.md
+	git add cookies/chocolate-chip-cookies.md
+	git commit -m "Add chocolate chip cookies recipe"
+	printf '%s\n' "* chocolate chips: 3.49 per bag" >> groceries.md
+	git add groceries.md
+	git commit -m "Add chocolate chips to groceries"
+	printf '%s\n' \
+		"1. Cream the butter and sugar." \
+		"2. Mix in the chocolate chips." \
+		"3. Bake at 375F for 10 minutes." >> cookies/chocolate-chip-cookies.md
+	git add cookies/chocolate-chip-cookies.md
+	git commit -m "Add instructions to chocolate chip cookies recipe"
+	git switch main
+	git cherry-pick cookies~1
+
+# 13-cherrypick exercise: cherry-pick a range of 2 commits touching groceries.md
+git-13-cherrypick-exercise-02: git-13-cherrypick-exercise-01
+	cd $(REPO_PATH)
+	git switch cookies
+	printf '%s\n' "# Sugar Cookies" "## Ingredients" "- sugar: 200g" "- flour: 300g" "- butter: 150g" "## Instructions" > cookies/sugar-cookies.md
+	git add cookies/sugar-cookies.md
+	git commit -m "Add sugar cookies recipe"
+	printf '%s\n' "* sugar: 1.20 per kg" >> groceries.md
+	git add groceries.md
+	git commit -m "Add sugar to groceries"
+	printf '%s\n' "* flour: 2.50 per kg" "* butter: 3.00 per kg" >> groceries.md
+	git add groceries.md
+	git commit -m "Add flour and butter to groceries"
+	printf '%s\n' \
+		"1. Cream the butter and sugar." \
+		"2. Mix in the flour." \
+		"3. Bake at 350F for 12 minutes." >> cookies/sugar-cookies.md
+	git add cookies/sugar-cookies.md
+	git commit -m "Add instructions to sugar cookies recipe"
+	git switch main
+	git cherry-pick cookies~3..cookies~1
