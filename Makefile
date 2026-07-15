@@ -196,3 +196,18 @@ git-09-forking: git-06-tags
 	fi
 	git switch main
 
+# 12-large-files: track a "large" file with git lfs
+git-12-large-files: git-09-forking
+	cd $(REPO_PATH)
+	git switch main
+	git lfs install
+	echo "This is a very large report." > report.pdf
+	git lfs track report.pdf
+	git add .gitattributes
+	git commit -m "Setup LFS tracking"
+	git add report.pdf
+	git commit -m "Add final report to the repository"
+	if [ -n "$(REMOTE_REPO)" ]; then
+		git push origin main
+	fi
+
