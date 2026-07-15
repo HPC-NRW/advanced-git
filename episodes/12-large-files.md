@@ -56,6 +56,12 @@ is a large, binary file in order to show how to handle it with `git lfs`:
 echo "This is a very large report." > report.pdf
 ```
 
+First, we need to install LFS. This is something that should only be done once per machine.
+
+```bash
+git lfs install
+```
+
 Next, we tell Git, that this file should be treated with LFS:
 
 ```bash
@@ -123,7 +129,7 @@ Uploading LFS objects: 100% (1/1), 17 B | 0 B/s, done.
 
 LFS tracking is not limited to explicitly spelled out filenames. Instead, wildcard
 patterns can be passed to `git lfs track`. However, you should be careful to quote
-these patterns, as they might otherwise get expanded by to existing files by your shell.
+these patterns, as they might otherwise get expanded by your shell.
 For example, tracking all PDFs with LFS could be achieved with the following command:
 
 ```bash
