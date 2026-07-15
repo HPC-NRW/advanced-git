@@ -393,7 +393,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Large Files</h1>
-        <p>Last updated on 2025-12-03 |
+        <p>Last updated on 2026-07-15 |
 
         <a href="https://github.com/carpentries-incubator/advanced-git/edit/main/episodes/12-large-files.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -473,19 +473,26 @@ order to show how to handle it with <code>git lfs</code>:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="bu">echo</span> <span class="st">"This is a very large report."</span> <span class="op">&gt;</span> report.pdf</span></code></pre>
 </div>
-<p>Next, we tell Git, that this file should be treated with LFS:</p>
+<p>First, we need to install LFS. This is something that should only be
+done once per machine.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> lfs track report.pdf</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">git</span> lfs install</span></code></pre>
+</div>
+<p>Next, we tell Git, that this file should be treated with LFS:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">git</span> lfs track report.pdf</span></code></pre>
 </div>
 <pre><code>Tracking "report.pdf"</code></pre>
 <p>Having done so, we can inspect the repository and we learn that a new
 file <code>.gitattributes</code> was added to the repository.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> status</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> status</span></code></pre>
 </div>
 <pre><code>On branch main
 
@@ -493,36 +500,36 @@ Untracked files:
   (use "git add &lt;file&gt;..." to include in what will be committed)
 	.gitattributes
 	report.pdf</code></pre>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">cat</span> .gitattributes</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">cat</span> .gitattributes</span></code></pre>
 </div>
 <pre><code>report.pdf filter=lfs diff=lfs merge=lfs -text</code></pre>
 <p>Similar to <code>.gitignore</code> this file is part of the
 repository itself in order to share it with all your collaborators on
 this project. We therefore craft a commit that contains it:</p>
-<div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">git</span> add .gitattributes</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Setup LFS tracking"</span></span></code></pre>
-</div>
-<p>Now, we are ready to add the large file to the repository the same
-way we would with any other file:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">git</span> add report.pdf</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add final report to the repository"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">git</span> add .gitattributes</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Setup LFS tracking"</span></span></code></pre>
+</div>
+<p>Now, we are ready to add the large file to the repository the same
+way we would with any other file:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> add report.pdf</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add final report to the repository"</span></span></code></pre>
 </div>
 <p>Pushing our commits to the remote repository, we can see in the
 console output, that our LFS data was transferred to the remote server
 separately.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> push origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">git</span> push origin main</span></code></pre>
 </div>
 <pre><code>Uploading LFS objects: 100% (1/1), 17 B | 0 B/s, done.</code></pre>
 <div id="tracking-with-wildcard-patterns" class="callout">
@@ -536,13 +543,12 @@ separately.</p>
 <p>LFS tracking is not limited to explicitly spelled out filenames.
 Instead, wildcard patterns can be passed to <code>git lfs track</code>.
 However, you should be careful to quote these patterns, as they might
-otherwise get expanded by to existing files by your shell. For example,
-tracking all PDFs with LFS could be achieved with the following
-command:</p>
-<div class="codewrapper sourceCode" id="cb12">
+otherwise get expanded by your shell. For example, tracking all PDFs
+with LFS could be achieved with the following command:</p>
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pdf"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pdf"</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -656,7 +662,7 @@ the Git data model</li>
   "url": "https://carpentries-incubator.github.io/advanced-git/instructor/12-large-files.html",
   "identifier": "https://carpentries-incubator.github.io/advanced-git/instructor/12-large-files.html",
   "dateCreated": "2026-07-15",
-  "dateModified": "2025-12-03",
+  "dateModified": "2026-07-15",
   "datePublished": "2026-07-15"
 }
 
