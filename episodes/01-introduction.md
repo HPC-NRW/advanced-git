@@ -32,7 +32,7 @@ Instead, users share code back and forth to synchronize their repositories, and 
 
 Git is powerful and flexible to fit a wide range of use cases and workflows from simple projects written by a single contributor to projects that are millions of lines and have hundreds of co-authors.
 Furthermore, it does a task that is quite complex. As a result, many users may find it challenging to navigate this complexity.
-While committing and sharing changes is fairly straightforward, for instance, but recovering from situations such as accidental commits, pushes or bad merges is difficult without a solid understanding of the rather large and complex conceptual model.
+While committing and sharing changes is fairly straightforward, recovering from situations such as accidental commits, pushes or bad merges is difficult without a solid understanding of the rather large and complex conceptual model.
 Case in point, three of the top five highest voted questions on Stack Overflow are questions about how to carry out relatively simple tasks: undoing the last commit, changing the last commit message, and deleting a remote branch.
 
 [![XKCD Git](fig/01-xkcd-git.png){alt="An XKCD comic about the git control system."}](https://xkcd.com/1597/)
