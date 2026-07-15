@@ -311,3 +311,45 @@ git-13-cherrypick-exercise-undoing-commits: git-13-cherrypick-exercise-upstream
 	git add toast.md
 	git commit -m "Add toast recipe"
 
+# 14-squash-rebase: build a messy commit history on `pie-recipes` for a live interactive rebase demo
+git-14-squash-rebase: git-13-cherrypick
+	cd $(REPO_PATH)
+	git branch pie-recipes
+	git switch pie-recipes
+	printf '%s\n' "# Pie Recipes" > pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Initial commit with recipe files"
+	printf '%s\n' "" "## Apple Pie" "### Ingredients" "- apples" "### Instructions" >> pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Add Apple Pie recipe"
+	printf '%s\n' "" "## Pecan Pie" "### Ingredients" "- pecens" "- corn syrup" >> pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Add recipe for Pecan Pie with ingredients"
+	sed -i 's/pecens/pecans/' pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Fix typo in ingredients"
+	printf '%s\n' "### Instructions" "1. Preheat oven to 350F." >> pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Additional instructions to pecan pie recipe"
+	printf '%s\n' "2. Bake for 45 minutes." >> pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Complete pecan pie recipe instructions"
+	if [ -n "$(REMOTE_REPO)" ]; then
+		git push --set-upstream origin pie-recipes
+	fi
+
+# 14-squash-rebase exercise 2: 3 commits (one with a typo'd message), fixed via non-interactive amend
+git-14-squash-rebase-exercise-02: git-14-squash-rebase
+	cd $(REPO_PATH)
+	git switch main
+	printf '%s\n' "flour" > pancake.md
+	git add pancake.md
+	git commit -m "Add flour"
+	printf '%s\n' "milk" >> pancake.md
+	git add pancake.md
+	git commit -m "Add milk"
+	printf '%s\n' "egg" >> pancake.md
+	git add pancake.md
+	git commit -m "Add eg"
+	git commit --amend -m "Add egg"
+
