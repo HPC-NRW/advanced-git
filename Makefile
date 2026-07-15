@@ -13,12 +13,71 @@ REPO_PATH   := $(WORKING_DIR)/$(REPO_NAME)
 
 reset:
 	rm -rf $(REPO_PATH)
+	rm -rf $(BASIC_REPO_PATH)
 
 init-repo:
 	mkdir -p $(REPO_PATH)
 	cd $(REPO_PATH)
 	git init -b main
 
+init-basic-repo:
+	mkdir -p $(BASIC_REPO_PATH)
+
+
+# --- Basic Git Workshop ---
+git-basic-03-create: init-basic-repo
+	cd $(BASIC_REPO_PATH)
+	mkdir recipes
+	cd recipes
+	git init
+
+git-basic-04-tracking-changes: git-basic-03-create
+	cd $(BASIC_REPO_PATH)/recipes
+	printf '%s\n' "# Guacamole" "## Ingredients" "## Instructions" > guacamole.md
+	git add guacamole.md
+	git commit -m "Create initial structure for a Guacamole recipe"
+	printf '%s\n' "# Guacamole" "## Ingredients" "* avocado" "* lemon" "* salt" "## Instructions" > guacamole.md
+	git add guacamole.md
+	git commit -m "Add ingredients for basic guacamole"
+	printf '%s\n' "# Guacamole" "## Ingredients" "* avocado" "* lime" "* salt" "## Instructions" > guacamole.md
+	git add guacamole.md
+	git commit -m "Modify guacamole to the traditional recipe"
+	mkdir -p cakes
+	touch cakes/brownie cakes/lemon_drizzle
+	git add cakes
+	git commit -m "Add some initial cakes"
+	printf '%s\n' "# Guacamole" "## Ingredients" "* avocado (1.35)" "* lime (0.64)" "* salt (2)" "## Instructions" > guacamole.md
+	printf '%s\n' "# Market A" "* avocado: 1.35 per unit." "* lime: 0.64 per unit." "* salt: 2 per unit." > groceries.md
+	git add guacamole.md groceries.md
+	git commit -m "Write prices for ingredients and their source"
+	git branch git-basic-05-exploring-history
+	git branch git-basic-06-ignore
+
+git-basic-06-ignore: git-basic-04-tracking-changes
+	cd $(BASIC_REPO_PATH)/recipes
+	mkdir pictures
+	touch a.png b.png c.png pictures/cake1.jpg pictures/cake2.jpg
+	printf '%s\n' "*.png" "pictures/" > .gitignore
+	git add .gitignore
+	git commit -m "Ignore png files and the pictures folder."
+	git branch git-basic-07-remotes
+	git branch git-basic-08-collab
+
+git-basic-08-collab: git-basic-06-ignore
+	cd $(BASIC_REPO_PATH)/recipes
+	printf '%s\n' "# Hummus" "## Ingredients" "* chickpeas" "* lemon" "* olive oil" "* salt" > hummus.md
+	git add hummus.md
+	git commit -m "Add ingredients for hummus"
+	git branch git-basic-09-conflict
+
+git-basic-09-conflict: git-basic-08-collab
+	cd $(BASIC_REPO_PATH)/recipes
+	printf '%s\n' "# Guacamole" "## Ingredients" "* avocado (1.35)" "* lime (0.64)" "* salt (2)" "## Instructions" "* peel the avocados and put them into a bowl." > guacamole.md
+	git add guacamole.md
+	git commit -m "Merge changes from remote repository"
+
+
+# --- Advanced Git Workshop ---
 # 01-introduction: git init, add, commit
 git-adv-01-introduction: init-repo
 	cd $(REPO_PATH)
