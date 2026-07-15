@@ -353,3 +353,36 @@ git-14-squash-rebase-exercise-02: git-14-squash-rebase
 	git commit -m "Add eg"
 	git commit --amend -m "Add egg"
 
+# 15-hooks-actions: a pre-commit hook running flake8, plus a file with an intentional lint error
+# Committing hello.py (and watching the hook block it) is demoed live
+git-15-hooks-actions: git-14-squash-rebase
+	cd $(REPO_PATH)
+	git switch main
+	pip install flake8
+	printf '%s\n' \
+		"#!/usr/bin/env bash" \
+		"" \
+		"set -eo pipefail" \
+		"flake8 hello.py" \
+		"echo \"flake8 passed!\"" > .git/hooks/pre-commit
+	chmod +x .git/hooks/pre-commit
+	printf '%s\n' "print('Hello world!'')" > hello.py
+
+# 15-hooks-actions exercise 1 (Challenge 1): a commit-msg hook enforcing feat:/fix:/docs: prefixes
+# pre-commit is temporarily moved aside so the flake8/hello.py failure doesn't mask this hook's own test
+git-15-hooks-actions-challenge-01: git-15-hooks-actions
+	cd $(REPO_PATH)
+	printf '%s\n' \
+		"commit_msg=\$$(cat \"\$$1\")" \
+		"" \
+		"if ! echo \"\$$commit_msg\" | grep -qE \"^(feat|fix|docs):\"; then" \
+		"    echo \"ERROR: Commit message must start with 'feat:', 'fix:' or 'docs:'\"" \
+		"    exit 1" \
+		"fi" > .git/hooks/commit-msg
+	chmod +x .git/hooks/commit-msg
+	mv .git/hooks/pre-commit .git/hooks/pre-commit.bak
+	printf '%s\n' "test file" > testfile.txt
+	git add testfile.txt
+	git commit -m "updated stuff"
+	git commit -m "feat: add test file"
+	mv .git/hooks/pre-commit.bak .git/hooks/pre-commit
