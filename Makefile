@@ -2,6 +2,7 @@
 WORKING_DIR ?= files
 REPO_NAME   ?= workshop-repo
 REMOTE_REPO ?=
+UPSTREAM_REPO ?=
 REPO_PATH   := $(WORKING_DIR)/$(REPO_NAME)
 
 
