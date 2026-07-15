@@ -27,8 +27,6 @@ The diagram above visualizes a repository with two isolated lines of development
 
 The implementation behind Git branches is much more lightweight than other version control system models. Instead of copying files from directory to directory, Git stores a branch as a reference to a commit. In this sense, a branch represents the tip of a series of commits—it's not a container for commits. The history for a branch is extrapolated through the commit relationships.
 
-()
-
 ## What is a branch?
 
 In `git` a branch is effectively a pointer to a snapshot of your changes. It's important to understand that branches are just pointers to commits. When you create a branch, all Git needs to do is create a new pointer, it doesn't change the repository in any other way. If you start with a repository that looks like this:
@@ -224,9 +222,78 @@ git commit -m "Rename recipe file to use .yaml extension."
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-Challenge 2:
+Challenge 2: Renaming a branch
+You realize the branch name `yaml-format` is not descriptive enough. Rename it to `feature/yaml-format` without losing any of your work.
+
+::: hint
+
+You can check the documentation of git branch with `git branch --help`
+
+:::
 
 :::::::::::::::  solution
+```bash
+git branch -m yaml-format feature/yaml-format
+git branch
+```
+```output
+* feature/yaml-format
+  main
+```
+
+The `-m` flag changes the name of the branch without removing it, so the whole commit history remains intact.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+Challenge 3: Deleting an Unmerged Branch
+
+We think about adding new dessert recipes to our recipe collection.
+To avoid affecting the main branch we need to create a new branch named dessert-recipes and switch to this branch.
+
+After that, we create a simple cookie recipe with the name cookies.md and commit it.
+
+Later we decide that it’s not the right time to start with the dessert recipes and cookies and we don’t want the cookie recipe to remain in our repository.
+
+What happens when we use git branch -d?
+Why does git react this way and how can we force the deletion?
+
+::: hint
+Think about how you checked the documentation in the previous challenge.
+:::
+
+:::::::::::::::  solution
+```bash
+git switch -c dessert-recipes
+nano cookies.md
+
+(add recipe content)
+
+git add cookies.md
+git commit -m "Add chocolate chip cookies recipe."
+git switch main
+
+git branch -d dessert-recipes
+```
+```output
+$ git branch -d dessert-recipes
+error: the branch 'dessert-recipes' is not fully merged
+hint: If you are sure you want to delete it, run 'git branch -D dessert-recipes'
+```
+
+Git uses `-d` as a safety net - it will not delete a branch that has not been merged into the current branch, as that would mean losing commits that exist nowhere else.
+`-D` bypasses this check and deletes the branch even if it is not merged.
+
+```bash
+git branch -D dessert-recipes
+```
+
+```output
+Deleted branch dessert-recipes (was <commit-hash>).
+```
 
 :::::::::::::::::::::::::
 
