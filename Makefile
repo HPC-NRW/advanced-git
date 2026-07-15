@@ -25,6 +25,7 @@ git-adv-01-introduction: init-repo
 	printf '%s\n' "# Guacamole" "## Ingredients" "## Instructions" > guacamole.md
 	git add guacamole.md
 	git commit -m "Add guacamole recipe"
+	git branch git-adv-02-branching
 
 # 02-branching: branch, switch, reformat recipe as YAML
 git-adv-02-branching: git-adv-01-introduction
@@ -41,6 +42,7 @@ git-adv-02-branching: git-adv-01-introduction
 	git add guacamole.md
 	git commit -m "Reformat recipe to use YAML."
 	git switch main
+	git branch git-adv-03-remote
 
 # 02-branching challenge: rename guacamole.md to guacamole.yaml on the yaml-format branch
 git-adv-02-branching-challenge-01: git-adv-02-branching
@@ -116,6 +118,7 @@ git-adv-03-remote-challenge-02: git-adv-03-remote-challenge-01
 		git push -q
 		cd ../$(REPO_NAME)
 	fi
+	git branch git-adv-04-undo
 
 # 04-undo: a commit worth reverting/resetting live
 git-adv-04-undo: git-adv-03-remote-challenge-02
@@ -123,6 +126,7 @@ git-adv-04-undo: git-adv-03-remote-challenge-02
 	printf '%s\n' "- Purchase the bean dip." >> bean-dip.md
 	git add bean-dip.md
 	git commit -m "Add bean dip recipe"
+	git branch git-adv-05-merging
 
 # 05-merging: fast-forward merge, non-fast-forward merge, and a conflict to resolve live
 # The exercises have no single solution, so they are excluded on purpose
@@ -182,6 +186,7 @@ git-adv-05-merging: git-adv-04-undo
 		"  2. Use a food processor to blend the avocados, then mash by hand to finish." > guacamole.yaml
 	git add guacamole.yaml
 	git commit -m "Resolve merge conflict in guacamole.yaml."
+	git branch git-adv-06-tags
 
 # 05-merging exercise 1: fast-forward merge challenge (exercise 2 stays free-form, excluded)
 git-adv-05-merging-exercise-01: git-adv-05-merging
@@ -212,6 +217,7 @@ git-adv-06-tags: git-adv-05-merging
 		git push origin 1.0.0
 		git push origin 2.0.0
 	fi
+	git branch git-adv-09-forking
 
 # 06-tags exercise: tag the "Reformat recipe to use YAML." commit as 3.0.0
 git-adv-06-tags-exercise-01: git-adv-06-tags
@@ -242,6 +248,7 @@ git-adv-09-forking: git-adv-06-tags
 		git push --set-upstream origin myfeature
 	fi
 	git switch main
+	git branch git-adv-12-large-files
 
 # 12-large-files: track a "large" file with git lfs
 git-adv-12-large-files: git-adv-09-forking
@@ -257,6 +264,7 @@ git-adv-12-large-files: git-adv-09-forking
 	if [ -n "$(REMOTE_REPO)" ]; then
 		git push origin main
 	fi
+	git branch git-adv-13-cherrypick
 
 # 13-cherrypick: cherry-pick a commit from bean-dip into main
 git-adv-13-cherrypick: git-adv-12-large-files
@@ -278,6 +286,7 @@ git-adv-13-cherrypick: git-adv-12-large-files
 	if [ -n "$(REMOTE_REPO)" ]; then
 		git push
 	fi
+	git branch git-adv-14-squash-rebase
 
 # 13-cherrypick exercise: create a cookies branch, cherry-pick just the groceries.md change into main
 git-adv-13-cherrypick-exercise-01: git-adv-13-cherrypick
@@ -384,6 +393,7 @@ git-adv-14-squash-rebase: git-adv-13-cherrypick
 	if [ -n "$(REMOTE_REPO)" ]; then
 		git push --set-upstream origin pie-recipes
 	fi
+	git branch git-adv-15-hooks-actions
 
 # 14-squash-rebase exercise 2: 3 commits (one with a typo'd message), fixed via non-interactive amend
 git-adv-14-squash-rebase-exercise-02: git-adv-14-squash-rebase
