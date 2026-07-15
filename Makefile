@@ -144,6 +144,26 @@ git-05-merging: git-04-undo
 	git add guacamole.yaml
 	git commit -m "Resolve merge conflict in guacamole.yaml."
 
+# 05-merging exercise 1: fast-forward merge challenge (exercise 2 stays free-form, excluded)
+git-05-merging-exercise-01: git-05-merging
+	cd $(REPO_PATH)
+	git branch finish-guac-recipe
+	git switch finish-guac-recipe
+	printf '%s\n' \
+		"name: Guacamole" \
+		"ingredients:" \
+		"  avocado: 1.35" \
+		"  lime: 0.64" \
+		"  salt: 2" \
+		"instructions: |" \
+		"  1. Cut avocados in half and remove pit." \
+		"  2. Mash avocados with a fork." \
+		"  3. Add lime juice and salt to taste." > guacamole.yaml
+	git add guacamole.yaml
+	git commit -m "Add instructions to guacamole recipe."
+	git switch main
+	git merge finish-guac-recipe
+
 # 06-tags: a lightweight tag and an annotated tag
 git-06-tags: git-05-merging
 	cd $(REPO_PATH)
