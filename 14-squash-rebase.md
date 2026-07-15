@@ -181,9 +181,156 @@ Clean up the history of your feature branch before the pull request/merge
 request is merged.
 
 :::: solution
-tbd.
+Follow the same steps we did earlier in the lesson:
+
+1. Check your branch history:
+  ```bash
+  git log --oneline
+  ```
+  ```output
+   7c77bba (HEAD -> pie-recipes) Complete pecan pie recipe instructions
+   f203cce Additional instructions to pecan pie recipe
+   c65036e Fix typo in ingredients
+   8613dde Add recipe for Pecan Pie with ingredients
+   3f40052 Add Apple Pie recipe
+   9761864 Initial commit with recipe files
+```
+
+2. Start an interactive rebase for the last 4 commits:
+  ```bash
+    git rebase -i HEAD~4
+  ```
+3. In the editor, squash the typo fix into the first commit:
+  ```bash
+    pick 8613dde Add recipe for Pecan Pie with ingredients
+    fixup c65036e Fix typo in ingredients
+    pick f203cce Additional instructions to pecan pie recipe
+    pick 7c77bba Complete pecan pie recipe instructions
+  ```
+
+4. Save and exit. Verify the new history:
+  ```bash
+    git log --oneline
+  ```
+
+  ```output
+    a03a64c (HEAD -> pie-recipes) Complete pecan pie recipe instructions
+    6c4a44a Additional instructions to pecan pie recipe
+    cf155bb Add recipe for Pecan Pie with ingredients
+    3f40052 Add Apple Pie recipe
+    9761864 Initial commit with recipe files
+  ```
+
+5. Force-push the cleaned branch:
+  ```bash
+    git push --force origin pie-recipes
+  ```
 ::::
 :::
+
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise 2: Squashing Commits and Amending
+
+You are working on a pancake recipe and adding ingredients one by one, each as a separate commit.
+You can track your history with `git log --oneline` at each step.
+
+1. Create `pancake.md` and add the following ingredients as separate commits:
+   - flour -> commit message: `Add flour`
+   - milk -> commit message: `Add milk`
+   - egg -> commit message: `Add eg` (this typo is intentional)
+   - Fix the typo in the commit message before moving on.
+
+::: hint
+
+To correct only the commit message without touching the files, check `git commit --amend --help`.
+:::
+
+2. Squash all three commits into one.
+
+::: hint
+To squash multiple commits, look into `git rebase -i`.
+:::
+
+3. Oh, you forgot to butter. Add it to `pancake.md` and amend the existing commit without changing the commit message.
+
+:::::::::::::::  solution
+
+**Step 1:**
+
+```bash
+echo "flour" > pancake.md
+git add pancake.md
+git commit -m "Add flour"
+
+echo "milk" >> pancake.md
+git add pancake.md
+git commit -m "Add milk"
+
+echo "egg" >> pancake.md
+git add pancake.md
+git commit -m "Add eg"
+
+git log --oneline
+```
+```output
+<hash> (HEAD -> main) Add eg
+<hash> Add milk
+<hash> Add flour
+```
+
+```bash
+git commit --amend -m "Add egg"
+
+git log --oneline
+```
+```output
+<hash> (HEAD -> main) Add egg
+<hash> Add milk
+<hash> Add flour
+```
+
+**Step 2:**
+
+```bash
+git rebase -i HEAD~3
+```
+
+In the editor, change `pick` to `s` for the last two commits:
+
+```bash
+pick <hash> Add flour
+squash <hash> Add milk
+squash <hash> Add egg
+```
+
+Save and exit. In the next editor, write a single commit message:
+`Add ingredients to pancake recipe`
+
+```bash
+git log --oneline
+```
+```output
+<hash> (HEAD -> main) Add ingredients to pancake recipe
+```
+
+**Step 3:**
+
+```bash
+echo "butter" >> pancake.md
+git add pancake.md
+git commit --amend --no-edit
+
+git log --oneline
+```
+```output
+<hash> (HEAD -> main) Add ingredients to pancake recipe
+```
+:::::::::::::::::::::::::
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ![GitFlow 1](fig/44-rebase.png)
 ![GitFlow 1](fig/45-squash.png)
