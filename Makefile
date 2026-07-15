@@ -84,3 +84,61 @@ git-04-undo: git-03-remote-challenge
 	git add bean-dip.md
 	git commit -m "Add bean dip recipe"
 
+# 05-merging: fast-forward merge, non-fast-forward merge, and a conflict to resolve live
+# The exercises have no single solution, so they are excluded on purpose
+git-05-merging: git-04-undo
+	cd $(REPO_PATH)
+	git checkout main
+	git merge yaml-format
+	git branch add-instructions
+	git switch add-instructions
+	printf '%s\n' \
+		"name: Guacamole" \
+		"ingredients:" \
+		"  avocado: 1.35" \
+		"  lime: 0.64" \
+		"  salt: 2" \
+		"instructions: |" \
+		"  1. Cut avocados in half and remove pit." \
+		"  2. Make guacamole." > guacamole.yaml
+	git add guacamole.yaml
+	git commit -m "Add instructions to guacamole recipe."
+	git switch main
+	git merge --no-ff add-instructions -m "Merge add-instructions branch into main."
+	git branch modify-guac-instructions
+	git switch modify-guac-instructions
+	printf '%s\n' \
+		"name: Guacamole" \
+		"ingredients:" \
+		"  avocado: 1.35" \
+		"  lime: 0.64" \
+		"  salt: 2" \
+		"instructions: |" \
+		"  1. Cut avocados in half and remove pit." \
+		"  2. Slice the avocados and mash them with a fork." > guacamole.yaml
+	git add guacamole.yaml
+	git commit -m "Modify guacamole instructions to include mashing."
+	git switch main
+	printf '%s\n' \
+		"name: Guacamole" \
+		"ingredients:" \
+		"  avocado: 1.35" \
+		"  lime: 0.64" \
+		"  salt: 2" \
+		"instructions: |" \
+		"  1. Cut avocados in half and remove pit." \
+		"  2. Use a food processor to blend the avocados." > guacamole.yaml
+	git add guacamole.yaml
+	git commit -m "Modify guacamole instructions to include food processor."
+	git merge modify-guac-instructions
+	printf '%s\n' \
+		"name: Guacamole" \
+		"ingredients:" \
+		"  avocado: 1.35" \
+		"  lime: 0.64" \
+		"  salt: 2" \
+		"instructions: |" \
+		"  1. Cut avocados in half and remove pit." \
+		"  2. Use a food processor to blend the avocados, then mash by hand to finish." > guacamole.yaml
+	git add guacamole.yaml
+	git commit -m "Resolve merge conflict in guacamole.yaml."
