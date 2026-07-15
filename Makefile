@@ -42,6 +42,30 @@ git-02-branching: git-01-introduction
 	git commit -m "Reformat recipe to use YAML."
 	git switch main
 
+# 02-branching challenge: rename guacamole.md to guacamole.yaml on the yaml-format branch
+git-02-branching-challenge-01: git-02-branching
+	cd $(REPO_PATH)
+	git switch yaml-format
+	git mv guacamole.md guacamole.yaml
+	git commit -m "Rename recipe file to use .yaml extension."
+	git switch main
+
+# 02-branching challenge: rename yaml-format to feature/yaml-format
+git-02-branching-challenge-02: git-02-branching
+	cd $(REPO_PATH)
+	git branch -m yaml-format feature/yaml-format
+
+# 02-branching challenge: create an unmerged branch, then delete it (-d fails, -D forces it)
+git-02-branching-challenge-03: git-02-branching
+	cd $(REPO_PATH)
+	git switch main
+	git switch -c dessert-recipes
+	printf '%s\n' "# Chocolate Chip Cookies" "## Ingredients" "## Instructions" > cookies.md
+	git add cookies.md
+	git commit -m "Add chocolate chip cookies recipe."
+	git switch main
+	git branch -D dessert-recipes
+
 # 03-remote (challenges excluded on purpose).
 # Requires a real, already-created remote (REMOTE_REPO) - without it,this just switches back to `main` and does nothing else
 git-03-remote: git-02-branching
