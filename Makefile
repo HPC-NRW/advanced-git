@@ -475,8 +475,11 @@ git-adv-14-squash-rebase-exercise-02: git-adv-14-squash-rebase
 	git add pancake.md
 	git commit -m "Add eg"
 	git commit --amend -m "Add egg"
-
-# TODO: Challenges at the end of the section
+	git reset --soft HEAD~3
+	git commit -m "Add ingredients to pancake recipe"
+	printf '%s\n' "butter" >> pancake.md
+	git add pancake.md
+	git commit --amend --no-edit
 
 # 15-hooks-actions: a pre-commit hook running flake8, plus a file with an intentional lint error
 # Committing hello.py (and watching the hook block it) is demoed live
