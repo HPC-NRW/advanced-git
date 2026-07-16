@@ -125,6 +125,7 @@ git-adv-02-branching-challenge-03: git-adv-02-branching
 	git add cookies.md
 	git commit -m "Add chocolate chip cookies recipe."
 	git switch main
+	git branch -d dessert-recipes
 	git branch -D dessert-recipes
 
 # 03-remote (challenges excluded on purpose)
