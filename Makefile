@@ -145,6 +145,7 @@ git-adv-03-remote-challenge-01: git-adv-03-remote
 	printf '%s\n' "# Bean Dip" "## Ingredients" "- beans" "## Instructions" > bean-dip.md
 	git add bean-dip.md
 	git commit -m "Add bean dip recipe."
+	git push --set-upstream origin bean-dip
 
 # 03-remote exercise: simulate someone editing README.md directly on the remote
 git-adv-03-remote-challenge-02: git-adv-03-remote-challenge-01
