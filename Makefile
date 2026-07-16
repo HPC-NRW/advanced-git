@@ -164,6 +164,7 @@ git-adv-03-remote-challenge-02: git-adv-03-remote-challenge-01
 git-adv-04-undo: git-adv-03-remote-challenge-02
 	cd $(REPO_PATH)
 	git branch git-adv-04-undo
+	git switch bean-dip
 	printf '%s\n' "- Purchase the bean dip." >> bean-dip.md
 	git add bean-dip.md
 	git commit -m "Add bean dip recipe"
