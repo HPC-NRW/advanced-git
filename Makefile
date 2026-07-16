@@ -7,7 +7,7 @@ REPO_PATH      := $(WORKING_DIR)/$(REPO_NAME)
 BASIC_REPO_PATH := $(WORKING_DIR)/basic-repo
 
 
-.PHONY: reset init-repo init-basic-repo git-basic-03-create git-basic-04-tracking-changes git-basic-06-ignore git-basic-08-collab git-basic-09-conflict git-adv-01-introduction git-adv-02-branching git-adv-02-branching-challenge-01 git-adv-02-branching-challenge-02 git-adv-02-branching-challenge-03 git-adv-03-remote git-adv-03-remote-challenge-01 git-adv-03-remote-challenge-02 git-adv-04-undo git-adv-05-merging git-adv-05-merging-exercise-01 git-adv-06-tags git-adv-06-tags-exercise-01 git-adv-09-forking git-adv-12-large-files git-adv-13-cherrypick git-adv-13-cherrypick-exercise-01 git-adv-13-cherrypick-exercise-02 git-adv-13-cherrypick-exercise-upstream git-adv-13-cherrypick-exercise-undoing-commits git-adv-14-squash-rebase git-adv-14-squash-rebase-exercise-01 git-adv-14-squash-rebase-exercise-02 git-adv-15-hooks-actions git-adv-15-hooks-actions-challenge-01
+.PHONY: reset init-repo init-basic-repo git-basic-03-create git-basic-04-tracking-changes git-basic-06-ignore git-basic-08-collab git-basic-09-conflict git-adv-01-introduction git-adv-02-branching git-adv-02-branching-challenge-01 git-adv-02-branching-challenge-02 git-adv-02-branching-challenge-03 git-adv-03-remote git-adv-03-remote-challenge-01 git-adv-03-remote-challenge-02 git-adv-04-undo git-adv-04-undo-exercise-01 git-adv-05-merging git-adv-05-merging-exercise-01 git-adv-06-tags git-adv-06-tags-exercise-01 git-adv-09-forking git-adv-12-large-files git-adv-13-cherrypick git-adv-13-cherrypick-exercise-01 git-adv-13-cherrypick-exercise-02 git-adv-13-cherrypick-exercise-upstream git-adv-13-cherrypick-exercise-undoing-commits git-adv-14-squash-rebase git-adv-14-squash-rebase-exercise-01 git-adv-14-squash-rebase-exercise-02 git-adv-15-hooks-actions git-adv-15-hooks-actions-challenge-01
 
 
 .ONESHELL:
@@ -168,6 +168,30 @@ git-adv-04-undo: git-adv-03-remote-challenge-02
 	printf '%s\n' "- Purchase the bean dip." >> bean-dip.md
 	git add bean-dip.md
 	git commit -m "Add bean dip recipe"
+
+# 04-undo exercise: soup-recipes branch - revert, reset --hard , reset (leave staged), recommit
+git-adv-04-undo-exercise-01: git-adv-04-undo
+	cd $(REPO_PATH)
+	git switch bean-dip
+	git checkout -b soup-recipes
+	mkdir -p soups
+	printf '%s\n' "# Tomato Soup" > soups/tomato-soup.md
+	git add soups/tomato-soup.md
+	git commit -m "Create tomato soup recipe"
+	printf '%s\n' "## Ingredients" "- tomatoes (6)" >> soups/tomato-soup.md
+	git add soups/tomato-soup.md
+	git commit -m "Add tomato soup ingredients"
+	printf '%s\n' "## Instructions" "- Chop tomatoes" >> soups/tomato-soup.md
+	git add soups/tomato-soup.md
+	git commit -m "Add chopping instructions"
+	printf '%s\n' "- Add water and boil" >> soups/tomato-soup.md
+	git add soups/tomato-soup.md
+	git commit -m "Finish instructions"
+	git revert --no-edit HEAD
+	git reset HEAD~2 --hard
+	git reset HEAD~1
+	git add soups/tomato-soup.md
+	git commit -m "Add tomato soup with basic ingredients"
 
 # 05-merging: fast-forward merge, non-fast-forward merge, and a conflict to resolve live
 # The exercises have no single solution, so they are excluded on purpose
