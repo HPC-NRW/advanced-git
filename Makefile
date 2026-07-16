@@ -384,6 +384,7 @@ git-adv-13-cherrypick-exercise-02: git-adv-13-cherrypick-exercise-01
 	git cherry-pick cookies~3..cookies~1
 
 # 13-cherrypick exercise: cherry-pick from a local "upstream" remote - a single commit, then a PR merge commit
+# TODO: This is the Exercise: Cherry-picking at the bottom of the page, I changed the order since it looks like the 'Undoing Commits' exercise needs the merge commit that this one creates first
 git-adv-13-cherrypick-exercise-upstream: git-adv-13-cherrypick
 	rm -rf $(WORKING_DIR)/upstream-cherry
 	mkdir -p $(WORKING_DIR)/upstream-cherry
