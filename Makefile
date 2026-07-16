@@ -483,6 +483,7 @@ git-adv-14-squash-rebase-exercise-02: git-adv-14-squash-rebase
 
 # 15-hooks-actions: a pre-commit hook running flake8, plus a file with an intentional lint error
 # Committing hello.py (and watching the hook block it) is demoed live
+# TODO: Challenges at the end of the section
 git-adv-15-hooks-actions: git-adv-14-squash-rebase
 	cd $(REPO_PATH)
 	git branch git-adv-15-hooks-actions
