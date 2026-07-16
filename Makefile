@@ -519,3 +519,5 @@ git-adv-15-hooks-actions-challenge-01: git-adv-15-hooks-actions
 	git commit -m "updated stuff"
 	git commit -m "feat: add test file"
 	mv .git/hooks/pre-commit.bak .git/hooks/pre-commit
+
+entire-repository: git-adv-15-hooks-actions-challenge-01
