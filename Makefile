@@ -1,10 +1,9 @@
 # variables
 WORKING_DIR    ?= files
-REPO_NAME      ?= workshop-repo
+REPO_NAME      ?= recipes
 REMOTE_REPO    ?=
 UPSTREAM_REPO  ?=
 REPO_PATH      := $(WORKING_DIR)/$(REPO_NAME)
-BASIC_REPO_PATH := $(WORKING_DIR)/basic-repo
 
 
 .PHONY: reset init-repo init-basic-repo git-basic-03-create git-basic-04-tracking-changes git-basic-06-ignore git-basic-08-collab git-basic-09-conflict git-adv-01-introduction git-adv-02-branching git-adv-02-branching-challenge-01 git-adv-02-branching-challenge-02 git-adv-02-branching-challenge-03 git-adv-03-remote git-adv-03-remote-challenge-01 git-adv-03-remote-challenge-02 git-adv-04-undo git-adv-04-undo-exercise-01 git-adv-05-merging git-adv-05-merging-exercise-01 git-adv-06-tags git-adv-06-tags-exercise-01 git-adv-09-forking git-adv-12-large-files git-adv-13-cherrypick git-adv-13-cherrypick-exercise-01 git-adv-13-cherrypick-exercise-02 git-adv-13-cherrypick-exercise-upstream git-adv-13-cherrypick-exercise-undoing-commits git-adv-14-squash-rebase git-adv-14-squash-rebase-exercise-01 git-adv-14-squash-rebase-exercise-02 git-adv-15-hooks-actions git-adv-15-hooks-actions-challenge-01
@@ -14,26 +13,22 @@ BASIC_REPO_PATH := $(WORKING_DIR)/basic-repo
 
 reset:
 	rm -rf $(REPO_PATH)
-	rm -rf $(BASIC_REPO_PATH)
 
 init-repo:
 	mkdir -p $(REPO_PATH)
 	cd $(REPO_PATH)
 	git init -b main
 
-init-basic-repo:
-	mkdir -p $(BASIC_REPO_PATH)
-
 
 # --- Basic Git Workshop ---
-git-basic-03-create: init-basic-repo
-	cd $(BASIC_REPO_PATH)
+git-basic-03-create: init-repo
+	cd $(REPO_PATH)
 	mkdir recipes
 	cd recipes
 	git init
 
 git-basic-04-tracking-changes: git-basic-03-create
-	cd $(BASIC_REPO_PATH)/recipes
+	cd $(REPO_PATH)
 	printf '%s\n' "# Guacamole" "## Ingredients" "## Instructions" > guacamole.md
 	git add guacamole.md
 	git commit -m "Create initial structure for a Guacamole recipe"
@@ -51,28 +46,34 @@ git-basic-04-tracking-changes: git-basic-03-create
 	printf '%s\n' "# Market A" "* avocado: 1.35 per unit." "* lime: 0.64 per unit." "* salt: 2 per unit." > groceries.md
 	git add guacamole.md groceries.md
 	git commit -m "Write prices for ingredients and their source"
+
+git-basic-05-exploring-history: git-basic-04-tracking-changes
+	cd $(REPO_PATH)
 	git branch git-basic-05-exploring-history
-	git branch git-basic-06-ignore
 
 git-basic-06-ignore: git-basic-04-tracking-changes
-	cd $(BASIC_REPO_PATH)/recipes
+	cd $(REPO_PATH)
+	git branch git-basic-06-ignore
 	mkdir pictures
 	touch a.png b.png c.png pictures/cake1.jpg pictures/cake2.jpg
 	printf '%s\n' "*.png" "pictures/" > .gitignore
 	git add .gitignore
 	git commit -m "Ignore png files and the pictures folder."
-	git branch git-basic-07-remotes
-	git branch git-basic-08-collab
 
-git-basic-08-collab: git-basic-06-ignore
-	cd $(BASIC_REPO_PATH)/recipes
+git-basic-07-remotes: git-basic-06-ignore
+	cd $(REPO_PATH)
+	git branch git-basic-07-remotes
+
+git-basic-08-collab: git-basic-07-remotes
+	cd $(REPO_PATH)
+	git branch git-basic-08-collab
 	printf '%s\n' "# Hummus" "## Ingredients" "* chickpeas" "* lemon" "* olive oil" "* salt" > hummus.md
 	git add hummus.md
 	git commit -m "Add ingredients for hummus"
-	git branch git-basic-09-conflict
 
 git-basic-09-conflict: git-basic-08-collab
-	cd $(BASIC_REPO_PATH)/recipes
+	cd $(REPO_PATH)
+	git branch git-basic-09-conflict
 	printf '%s\n' "# Guacamole" "## Ingredients" "* avocado (1.35)" "* lime (0.64)" "* salt (2)" "## Instructions" "* peel the avocados and put them into a bowl." > guacamole.md
 	git add guacamole.md
 	git commit -m "Merge changes from remote repository"
@@ -82,6 +83,7 @@ git-basic-09-conflict: git-basic-08-collab
 # 01-introduction: git init, add, commit
 git-adv-01-introduction: git-basic-09-conflict
 	cd $(REPO_PATH)
+	git branch git-adv-01-introduction
 	printf '%s\n' "# Guacamole" "## Ingredients" "## Instructions" > guacamole.md
 	git add guacamole.md
 	git commit -m "Add guacamole recipe"
