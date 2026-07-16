@@ -18,7 +18,8 @@ init-repo:
 	mkdir -p $(REPO_PATH)
 	cd $(REPO_PATH)
 	git init -b main
-
+	git config --local user.name "Example User"
+	git config --local user.email "example@email.com"
 
 # --- Basic Git Workshop ---
 git-basic-03-create: init-repo
@@ -108,6 +109,7 @@ git-adv-02-branching: git-adv-01-introduction
 # 02-branching challenge: rename guacamole.md to guacamole.yaml on the yaml-format branch
 git-adv-02-branching-challenge-01: git-adv-02-branching
 	cd $(REPO_PATH)
+	git branch git-adv-02-branching-challenge-01
 	git switch yaml-format
 	git mv guacamole.md guacamole.yaml
 	git commit -m "Rename recipe file to use .yaml extension."
@@ -116,11 +118,13 @@ git-adv-02-branching-challenge-01: git-adv-02-branching
 # 02-branching challenge: rename yaml-format to feature/yaml-format
 git-adv-02-branching-challenge-02: git-adv-02-branching
 	cd $(REPO_PATH)
+	git branch git-adv-02-branching-challenge-02
 	git branch -m yaml-format feature/yaml-format
 
 # 02-branching challenge: create an unmerged branch, then delete it (-d fails, -D forces it)
 git-adv-02-branching-challenge-03: git-adv-02-branching
 	cd $(REPO_PATH)
+	git branch git-adv-02-branching-challenge-03
 	git switch main
 	git switch -c dessert-recipes
 	printf '%s\n' "# Chocolate Chip Cookies" "## Ingredients" "## Instructions" > cookies.md
