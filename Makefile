@@ -291,6 +291,7 @@ git-adv-06-tags-exercise-01: git-adv-06-tags
 
 # 09-forking: simulate the forking workflow via an `upstream` remote
 # Requires REMOTE_REPO to already be a fork of UPSTREAM_REPO for the push/fetch steps to do anything
+# TODO: this may not be needed. (In the real workshop, each student forks REMOTE_REPO themselves on GitHub, so REMOTE_REPO becomes their own "upstream" - we don't need a separate UPSTREAM_REPO here either)
 git-adv-09-forking: git-adv-06-tags
 	cd $(REPO_PATH)
 	git branch git-adv-09-forking
