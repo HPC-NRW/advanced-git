@@ -161,6 +161,8 @@ git-adv-03-remote-challenge-02: git-adv-03-remote-challenge-01
 	cd ../$(REPO_NAME)
 
 # 04-undo: a commit worth reverting/resetting live
+# TODO (?): the rest of episode 04 (git reset --hard, detached HEAD, alt-history) is not scripted here
+# git reset --hard and the detached HEAD demo reuse the same commit and don't affect the main branch, so the next episode still starts from a clean state
 git-adv-04-undo: git-adv-03-remote-challenge-02
 	cd $(REPO_PATH)
 	git branch git-adv-04-undo
