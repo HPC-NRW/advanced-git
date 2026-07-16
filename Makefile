@@ -460,7 +460,8 @@ git-adv-14-squash-rebase-exercise-01: git-adv-14-squash-rebase
 	git add pie-recipes.md
 	git commit -m "Complete pecan pie recipe instructions"
 
-# 14-squash-rebase exercise 2: 3 commits (one with a typo'd message), fixed via non-interactive amend
+# 14-squash-rebase exercise 2: 3 commits (one with a typo'd message, fixed via amend), then squashed
+# TODO: On the 14-squash-rebase.md file that is public right now there are two challenge blocks for the Exercise 2.
 git-adv-14-squash-rebase-exercise-02: git-adv-14-squash-rebase
 	cd $(REPO_PATH)
 	git switch main
