@@ -7,7 +7,7 @@ REPO_PATH      := $(WORKING_DIR)/$(REPO_NAME)
 BASIC_REPO_PATH := $(WORKING_DIR)/basic-repo
 
 
-.PHONY: reset init-repo init-basic-repo git-basic-03-create git-basic-04-tracking-changes git-basic-06-ignore git-basic-08-collab git-basic-09-conflict git-adv-01-introduction git-adv-02-branching git-adv-02-branching-challenge-01 git-adv-02-branching-challenge-02 git-adv-02-branching-challenge-03 git-adv-03-remote git-adv-03-remote-challenge-01 git-adv-03-remote-challenge-02 git-adv-04-undo git-adv-05-merging git-adv-05-merging-exercise-01 git-adv-06-tags git-adv-06-tags-exercise-01 git-adv-09-forking git-adv-12-large-files git-adv-13-cherrypick git-adv-13-cherrypick-exercise-01 git-adv-13-cherrypick-exercise-02 git-adv-13-cherrypick-exercise-upstream git-adv-13-cherrypick-exercise-undoing-commits git-adv-14-squash-rebase git-adv-14-squash-rebase-exercise-02 git-adv-15-hooks-actions git-adv-15-hooks-actions-challenge-01
+.PHONY: reset init-repo init-basic-repo git-basic-03-create git-basic-04-tracking-changes git-basic-06-ignore git-basic-08-collab git-basic-09-conflict git-adv-01-introduction git-adv-02-branching git-adv-02-branching-challenge-01 git-adv-02-branching-challenge-02 git-adv-02-branching-challenge-03 git-adv-03-remote git-adv-03-remote-challenge-01 git-adv-03-remote-challenge-02 git-adv-04-undo git-adv-05-merging git-adv-05-merging-exercise-01 git-adv-06-tags git-adv-06-tags-exercise-01 git-adv-09-forking git-adv-12-large-files git-adv-13-cherrypick git-adv-13-cherrypick-exercise-01 git-adv-13-cherrypick-exercise-02 git-adv-13-cherrypick-exercise-upstream git-adv-13-cherrypick-exercise-undoing-commits git-adv-14-squash-rebase git-adv-14-squash-rebase-exercise-01 git-adv-14-squash-rebase-exercise-02 git-adv-15-hooks-actions git-adv-15-hooks-actions-challenge-01
 
 
 .ONESHELL:
@@ -416,6 +416,21 @@ git-adv-14-squash-rebase: git-adv-13-cherrypick
 	git add pie-recipes.md
 	git commit -m "Complete pecan pie recipe instructions"
 	git push --set-upstream origin pie-recipes
+
+# 14-squash-rebase exercise 1: squash the typo-fix commit into the pecan pie commit
+git-adv-14-squash-rebase-exercise-01: git-adv-14-squash-rebase
+	cd $(REPO_PATH)
+	git switch pie-recipes
+	git reset --hard HEAD~4
+	printf '%s\n' "" "## Pecan Pie" "### Ingredients" "- pecans" "- corn syrup" >> pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Add recipe for Pecan Pie with ingredients"
+	printf '%s\n' "### Instructions" "1. Preheat oven to 350F." >> pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Additional instructions to pecan pie recipe"
+	printf '%s\n' "2. Bake for 45 minutes." >> pie-recipes.md
+	git add pie-recipes.md
+	git commit -m "Complete pecan pie recipe instructions"
 
 # 14-squash-rebase exercise 2: 3 commits (one with a typo'd message), fixed via non-interactive amend
 git-adv-14-squash-rebase-exercise-02: git-adv-14-squash-rebase
