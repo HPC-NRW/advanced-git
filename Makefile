@@ -128,26 +128,12 @@ git-adv-02-branching-challenge-03: git-adv-02-branching
 	git switch main
 	git branch -D dessert-recipes
 
-# 03-remote (challenges excluded on purpose).
-# Requires a real, already-created remote (REMOTE_REPO) - without it,this just switches back to `main` and does nothing else
+# 03-remote (challenges excluded on purpose)
 git-adv-03-remote: git-adv-02-branching
 	cd $(REPO_PATH)
 	git switch main
 	git remote add origin "$(REMOTE_REPO)"
-	# fetch first so refs/remotes/origin/* exists locally --
-	# needed for the show-ref check below
-	git fetch origin
-
-		if git show-ref --verify --quiet refs/remotes/origin/main; then
-			# remote has a README (or other commits) already --
-			git branch --set-upstream-to=origin/main main
-			git pull --allow-unrelated-histories --no-edit
-			git push
-		else
-			# remote has no README / no commits yet, nothing to merge
-			git push --set-upstream origin main
-		fi
-	fi
+	git push --set-upstream origin main
 
 # 03-remote challenge
 # 04-undo assumes this challenge already exists
