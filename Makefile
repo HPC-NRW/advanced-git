@@ -133,11 +133,10 @@ git-adv-02-branching-challenge-03: git-adv-02-branching
 git-adv-03-remote: git-adv-02-branching
 	cd $(REPO_PATH)
 	git switch main
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git remote add origin "$(REMOTE_REPO)"
-		# fetch first so refs/remotes/origin/* exists locally --
-		# needed for the show-ref check below
-		git fetch origin
+	git remote add origin "$(REMOTE_REPO)"
+	# fetch first so refs/remotes/origin/* exists locally --
+	# needed for the show-ref check below
+	git fetch origin
 
 		if git show-ref --verify --quiet refs/remotes/origin/main; then
 			# remote has a README (or other commits) already --
@@ -160,24 +159,19 @@ git-adv-03-remote-challenge-01: git-adv-03-remote
 	printf '%s\n' "# Bean Dip" "## Ingredients" "- beans" "## Instructions" > bean-dip.md
 	git add bean-dip.md
 	git commit -m "Add bean dip recipe."
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git push --set-upstream origin bean-dip
-	fi
 
 # 03-remote exercise: simulate someone editing README.md directly on the remote
 git-adv-03-remote-challenge-02: git-adv-03-remote-challenge-01
 	cd $(REPO_PATH)
 	git switch main
-	if [ -n "$(REMOTE_REPO)" ]; then
-		rm -rf ../remote-edit-clone
-		git clone -q "$(REMOTE_REPO)" ../remote-edit-clone
-		cd ../remote-edit-clone
-		printf '%s\n' "# Workshop Repo" > README.md
-		git add README.md
-		git commit -q -m "Change title in README.md"
-		git push -q
-		cd ../$(REPO_NAME)
-	fi
+	rm -rf ../remote-edit-clone
+	git clone -q "$(REMOTE_REPO)" ../remote-edit-clone
+	cd ../remote-edit-clone
+	printf '%s\n' "# Workshop Repo" > README.md
+	git add README.md
+	git commit -q -m "Change title in README.md"
+	git push -q
+	cd ../$(REPO_NAME)
 	git branch git-adv-04-undo
 
 # 04-undo: a commit worth reverting/resetting live
@@ -273,40 +267,30 @@ git-adv-06-tags: git-adv-05-merging
 	cd $(REPO_PATH)
 	git tag 1.0.0
 	git tag -a 2.0.0 -m "Second Release"
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git push origin 1.0.0
-		git push origin 2.0.0
-	fi
+	git push origin 1.0.0
+	git push origin 2.0.0
 	git branch git-adv-09-forking
 
 # 06-tags exercise: tag the "Reformat recipe to use YAML." commit as 3.0.0
 git-adv-06-tags-exercise-01: git-adv-06-tags
 	cd $(REPO_PATH)
 	git tag -a 3.0.0 yaml-format -m "Reformat recipe to use YAML"
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git push origin 3.0.0
-	fi
+	git push origin 3.0.0
 
 # 09-forking: simulate the forking workflow via an `upstream` remote
 # Requires REMOTE_REPO to already be a fork of UPSTREAM_REPO for the push/fetch steps to do anything
 git-adv-09-forking: git-adv-06-tags
 	cd $(REPO_PATH)
 	git switch main
-	if [ -n "$(UPSTREAM_REPO)" ]; then
-		git remote add upstream "$(UPSTREAM_REPO)"
-		git pull upstream main
-		if [ -n "$(REMOTE_REPO)" ]; then
-			git push --set-upstream origin main
-		fi
-	fi
+	git remote add upstream "$(UPSTREAM_REPO)"
+	git pull upstream main
+	git push --set-upstream origin main
 	git branch myfeature
 	git switch myfeature
 	printf '%s\n' "# Chips" "## Ingredients" "## Instructions" > chips.md
 	git add chips.md
 	git commit -m "Add chips recipe"
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git push --set-upstream origin myfeature
-	fi
+	git push --set-upstream origin myfeature
 	git switch main
 	git branch git-adv-12-large-files
 
@@ -321,9 +305,7 @@ git-adv-12-large-files: git-adv-09-forking
 	git commit -m "Setup LFS tracking"
 	git add report.pdf
 	git commit -m "Add final report to the repository"
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git push origin main
-	fi
+	git push origin main
 	git branch git-adv-13-cherrypick
 
 # 13-cherrypick: cherry-pick a commit from bean-dip into main
@@ -338,14 +320,10 @@ git-adv-13-cherrypick: git-adv-12-large-files
 		"* black beans: 0.99 per can" > groceries.md
 	git add groceries.md
 	git commit -m "Add bean dip ingredients to groceries"
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git push
-	fi
+	git push
 	git checkout main
 	git cherry-pick bean-dip
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git push
-	fi
+	git push
 	git branch git-adv-14-squash-rebase
 
 # 13-cherrypick exercise: create a cookies branch, cherry-pick just the groceries.md change into main
@@ -450,9 +428,7 @@ git-adv-14-squash-rebase: git-adv-13-cherrypick
 	printf '%s\n' "2. Bake for 45 minutes." >> pie-recipes.md
 	git add pie-recipes.md
 	git commit -m "Complete pecan pie recipe instructions"
-	if [ -n "$(REMOTE_REPO)" ]; then
-		git push --set-upstream origin pie-recipes
-	fi
+	git push --set-upstream origin pie-recipes
 	git branch git-adv-15-hooks-actions
 
 # 14-squash-rebase exercise 2: 3 commits (one with a typo'd message), fixed via non-interactive amend
