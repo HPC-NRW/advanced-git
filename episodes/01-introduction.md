@@ -28,18 +28,20 @@ The git version control system, used to manage the code in many millions of soft
 It uses a distributed version control model (the "beautiful graph theory tree model"), meaning that there is no single central repository of code.
 Instead, users share code back and forth to synchronize their repositories, and it is up to each project to define processes and procedures for managing the flow of changes into a stable software product.
 
-## Challenges
+## Why Git is Challenging
 
 Git is powerful and flexible to fit a wide range of use cases and workflows from simple projects written by a single contributor to projects that are millions of lines and have hundreds of co-authors.
 Furthermore, it does a task that is quite complex. As a result, many users may find it challenging to navigate this complexity.
 While committing and sharing changes is fairly straightforward, recovering from situations such as accidental commits, pushes or bad merges is difficult without a solid understanding of the rather large and complex conceptual model.
 Case in point, three of the top five highest voted questions on Stack Overflow are questions about how to carry out relatively simple tasks: undoing the last commit, changing the last commit message, and deleting a remote branch.
 
-[![XKCD Git](fig/01-xkcd-git.png){alt="An XKCD comic about the git control system."}](https://xkcd.com/1597/)
+![XKCD: "Git" (https://xkcd.com/1597/)](fig/01-xkcd-git.png){alt="An XKCD comic about the git control system."}
+
+
 
 *Mouse-over text: If that doesn't fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of 'It's really pretty simple, just think of branches as...' and eventually you'll learn the commands that will fix everything.*
 
-With this lesson our goal is to give a you a more in-depth understanding of the conceptual model of git, to guide you through increasingly complex workflows and to give you the confidence to participate in larger projects.
+With this lesson our goal is to give you a more in-depth understanding of the conceptual model of git, to guide you through increasingly complex workflows and to give you the confidence to participate in larger projects.
 
 ## Quick Review
 
@@ -50,13 +52,13 @@ Let's take a moment to review some of the basic git commands.
 ```bash
 git init
 ```
-git init creates a new git repository in the current directory.
+"git init" creates a new git repository in the current directory.
 Specifically, this means creating a subdirectory named `.git` that contains your repository's metadata and object database.
 Generally speaking, we don't tinker with this directory, but it's useful to know that it exists and that is is the marker of a folder on our computer being a git repository.
 
 ### The Git Workflow
 
-git has a three-stage workflow: the working directory, the staging area, and the repository.
+Git has a three-stage workflow: the working directory, the staging area, and the repository.
 When we make changes to files in our working directory, they are not included in the next commit until we stage them, which is done by adding them to the staging area.
 The staging area allows us to prepare a snapshot of the changes before committing them to the repository.
 Once we are satisfied with the changes in the staging area, we can commit them to the repository, which records the changes and creates a new commit object.
@@ -115,11 +117,15 @@ For a repository that has a lot of contributors and branches, all the changes ma
 git fetch origin main
 ```
 
+::: prereq
+
 In the event you haven't already, let's clone the repository for this lesson now.
 
 ```bash
 git clone {REPOSITORY_URL}
 ```
+
+:::
 
 ### Exploring the Repository
 
