@@ -288,7 +288,6 @@ git-adv-06-tags: git-adv-05-merging
 git-adv-06-tags-exercise-01: git-adv-06-tags
 	cd $(REPO_PATH)
 	git tag -a 3.0.0 yaml-format -m "Reformat recipe to use YAML"
-	git push origin 3.0.0
 
 # 09-forking: simulate the forking workflow via an `upstream` remote
 # Requires REMOTE_REPO to already be a fork of UPSTREAM_REPO for the push/fetch steps to do anything
