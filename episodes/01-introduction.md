@@ -90,15 +90,6 @@ Each commit contains several key pieces of information that uniquely define its 
 
 All these elements together generate a unique **commit hash**, which identifies the commit across the Git repository.
 
-### Exploring the Repository
-
-We can move around the repository and explore its history using the following commands:
-
-- `git log`: Shows the commit history for the current branch, displaying commit hashes, authors, dates, and messages.
-- `git status`: Displays the current state of the working directory and staging area, indicating which files are modified, staged, or untracked.
-- `git diff`: Shows the differences between the working directory and the staging area, or between commits, allowing you to see what changes have been made.
-- `git checkout HEAD file.txt`: Reverts the specified file in the working directory to the state of the last commit, discarding any changes made since then.
-
 ### Interacting with Remote Repositories
 
 To collaborate with others, we often work with remote repositories.
@@ -107,7 +98,6 @@ To collaborate with others, we often work with remote repositories.
 - `git push`: Uploads your local commits to a remote repository, sharing your changes with others.
 - `git pull`: Fetches and integrates changes from a remote repository into your local branch, keeping your local copy up to date.
 - `git fetch`: Downloads commits, files, and refs from a remote repository into your local repository without merging them into your current branch.
-
 
 ::: callout
 
@@ -125,9 +115,91 @@ For a repository that has a lot of contributors and branches, all the changes ma
 git fetch origin main
 ```
 
+In the event you haven't already, let's clone the repository for this lesson now.
+
+```bash
+git clone {REPOSITORY_URL}
+```
+
+### Exploring the Repository
+
+Let's take a moment to explore the repository we just cloned.
+We can use the `git log` command to view the commit history of the repository up to this point in time:
+
+```bash
+$ git log
+commit 90eaaeca5915397e1247d3a041120ee97649ae23 (HEAD -> main, git-adv-01-introduction)
+Author: Demo User <demo@email.com>
+Date:   Wed Jul 15 17:03:58 2026 +0200
+
+    Merge changes from remote repository
+
+commit 76f0214a989c3da6c7d2bb37f4967bc065d480b6 (git-basic-09-conflict)
+Author: Demo User <demo@email.com>
+Date:   Wed Jul 15 17:03:58 2026 +0200
+
+    Add ingredients for hummus
+
+commit 72bad66f6ceb4e09f045df63caa88d80e0b833ca (git-basic-08-collab, git-basic-07-remotes)
+Author: Demo User <demo@email.com>
+Date:   Wed Jul 15 17:03:57 2026 +0200
+
+    Ignore png files and the pictures folder.
+:
+```
+
+It is likely that the commits from this repository will not fit on your screen.
+If this is the case, you will see a `:` character at the bottom of the screen, indicating that you are in "pager" mode.
+You can use the arrow keys to scroll up and down through the commit history, or press `q` to exit pager mode and return to the command prompt.
+
+Like the `git commit` command, we can add additional "flags" to the command to customize the output.
+Try the following to get a more compact view of the commit history:
+
+```bash
+git log --oneline
+git log -n 3
+```
+
+### Comparing Files between Commits
+
+One of the most useful features of git is the ability to quickly view or compare changes made to files between commits.
+We can use the `git diff` command to see differences between the most recent commit and an earlier commit by providing the commit hash of the earlier commit.
+
+```bash
+$ git diff 72bad66
+
+diff --git a/guacamole.md b/guacamole.md
+index 76a6108..18682f5 100644
+--- a/guacamole.md
++++ b/guacamole.md
+@@ -4,3 +4,4 @@
+ * lime (0.64)
+ * salt (2)
+ ## Instructions
++* peel the avocados and put them into a bowl.
+diff --git a/hummus.md b/hummus.md
+new file mode 100644
+index 0000000..3c51b6b
+--- /dev/null
++++ b/hummus.md
+@@ -0,0 +1,6 @@
++# Hummus
++## Ingredients
++* chickpeas
++* lemon
++* olive oil
++* salt
+```
+
+We can also use relative commit references to compare files between commits, instead of using the full commit hash.
+
+```bash
+git diff HEAD~2
+```
+
 https://www.atlassian.com/git/tutorials/syncing/git-fetch
 
-![Review 2](fig/03-recap.png){alt ="A diagram showing alternate diagrams for understanding the working directory, staging area, and repository in git, as well as commits on a branch."}
+![Review 2](fig/03-recap.png){alt="A diagram showing alternate diagrams for understanding the working directory, staging area, and repository in git, as well as commits on a branch."}
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
