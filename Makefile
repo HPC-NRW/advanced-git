@@ -80,7 +80,7 @@ git-basic-09-conflict: git-basic-08-collab
 
 # --- Advanced Git Workshop ---
 # 01-introduction: git init, add, commit
-git-adv-01-introduction: init-repo
+git-adv-01-introduction: git-basic-09-conflict
 	cd $(REPO_PATH)
 	printf '%s\n' "# Guacamole" "## Ingredients" "## Instructions" > guacamole.md
 	git add guacamole.md
