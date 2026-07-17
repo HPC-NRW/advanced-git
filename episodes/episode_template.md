@@ -6,7 +6,7 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions
 
--
+- Find the sandpaper Documentation here: https://carpentries.github.io/sandpaper-docs/
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
