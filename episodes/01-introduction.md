@@ -219,7 +219,7 @@ https://www.atlassian.com/git/tutorials/syncing/git-fetch
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: What will happen?
+## Challenge 1: What will happen?
 
 The following is a series of git commands that will be executed in a repository.
 What message will be displayed after each `git status` command? Why? Will this work or will it error?
@@ -264,7 +264,7 @@ The "-a" flag in the `git commit` command automatically stages files that have b
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Practice the Git Workflow
+## Challenge 2: Practice the Git Workflow
 
 Let's take a moment to practice the git workflow we just reviewed. Add a new file to the repository called `salsa.md` and add the following content to it:
 
@@ -293,7 +293,7 @@ git show <commit-hash>
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Tracing the Changes to A File
+## Challenge 3: Tracing the Changes to A File
 
 We've used `git log` to view the commit history of the repository, but what if we want to see the history of a specific file?
 

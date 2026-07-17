@@ -85,12 +85,16 @@ git-basic-09-conflict: git-basic-08-collab
 git-adv-01-introduction: git-basic-09-conflict
 	cd $(REPO_PATH)
 	git branch git-adv-01-introduction
-	printf '%s\n' "# Guacamole" "## Ingredients" "## Instructions" > guacamole.md
-	git add guacamole.md
-	git commit -m "Add guacamole recipe"
+
+git-adv-01-introduction-challenge-02: git-adv-01-introduction
+	cd $(REPO_PATH)
+	git branch git-adv-01-introduction-challenge-02
+	printf '%s\n' "# Salsa" "## Ingredients" "## Instructions" > salsa.md
+	git add salsa.md
+	git commit -m "Add salsa recipe"
 
 # 02-branching: branch, switch, reformat recipe as YAML
-git-adv-02-branching: git-adv-01-introduction
+git-adv-02-branching: git-adv-01-introduction-challenge-02
 	cd $(REPO_PATH)
 	git branch git-adv-02-branching
 	git branch yaml-format
