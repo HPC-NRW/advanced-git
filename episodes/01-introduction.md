@@ -134,21 +134,21 @@ We can use the `git log` command to view the commit history of the repository up
 
 ```bash
 $ git log
-commit 90eaaeca5915397e1247d3a041120ee97649ae23 (HEAD -> main, git-adv-01-introduction)
-Author: Demo User <demo@email.com>
-Date:   Wed Jul 15 17:03:58 2026 +0200
+commit da7172ad6db7bdb5b3ffe5db10bcb1177f551298 (HEAD -> main, git-adv-01-introduction)
+Author: Example User <example@email.com>
+Date:   Thu Jul 16 21:42:42 2026 +0200
 
     Merge changes from remote repository
 
-commit 76f0214a989c3da6c7d2bb37f4967bc065d480b6 (git-basic-09-conflict)
-Author: Demo User <demo@email.com>
-Date:   Wed Jul 15 17:03:58 2026 +0200
+commit bfbd431e4cb1e7fd6a11c9bfe56d678250bb50cb (git-basic-09-conflict)
+Author: Example User <example@email.com>
+Date:   Thu Jul 16 21:42:41 2026 +0200
 
     Add ingredients for hummus
 
-commit 72bad66f6ceb4e09f045df63caa88d80e0b833ca (git-basic-08-collab, git-basic-07-remotes)
-Author: Demo User <demo@email.com>
-Date:   Wed Jul 15 17:03:57 2026 +0200
+commit b6c4da3d8c0b62135d21293cbc1bc0e2ea812e3d (git-basic-08-collab, git-basic-07-remotes)
+Author: Example User <example@email.com>
+Date:   Thu Jul 16 21:42:41 2026 +0200
 
     Ignore png files and the pictures folder.
 :
@@ -157,6 +157,15 @@ Date:   Wed Jul 15 17:03:57 2026 +0200
 It is likely that the commits from this repository will not fit on your screen.
 If this is the case, you will see a `:` character at the bottom of the screen, indicating that you are in "pager" mode.
 You can use the arrow keys to scroll up and down through the commit history, or press `q` to exit pager mode and return to the command prompt.
+
+::: callout
+
+At the end of each commit hash, you can see some information in parentheses.
+This indicates the names of branches that point to that commit.
+There's a special branch called `HEAD` that points to the current commit you are on.
+In this case, `HEAD` is pointing to the `main` branch, which is also pointing to the most recent commit.
+
+:::
 
 Like the `git commit` command, we can add additional "flags" to the command to customize the output.
 Try the following to get a more compact view of the commit history:
@@ -171,8 +180,8 @@ git log -n 3
 One of the most useful features of git is the ability to quickly view or compare changes made to files between commits.
 We can use the `git diff` command to see differences between the most recent commit and an earlier commit by providing the commit hash of the earlier commit.
 
-```bash
-$ git diff 72bad66
+```diff
+$ git diff b6c4da3
 
 diff --git a/guacamole.md b/guacamole.md
 index 76a6108..18682f5 100644
@@ -206,6 +215,138 @@ git diff HEAD~2
 https://www.atlassian.com/git/tutorials/syncing/git-fetch
 
 ![Review 2](fig/03-recap.png){alt="A diagram showing alternate diagrams for understanding the working directory, staging area, and repository in git, as well as commits on a branch."}
+
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge: What will happen?
+
+The following is a series of git commands that will be executed in a repository.
+What message will be displayed after each `git status` command? Why? Will this work or will it error?
+
+```bash
+# The file ham_sandwich.txt is created in the working directory and contains some text.
+git status # 1. What will this display?
+
+git add ham_sandwich.txt
+git status # 2. What will this display?
+git commit -m "Add my new file"
+
+# Changes are made to ham_sandwich.txt
+git commit -m "Update my new file"
+git status # 3. What will this display?
+
+# Changes are made to ham_sandwich.txt
+git commit -a -m "Update my new file"
+git status # 4. What will this display?
+
+# We make a new file called salami_sandwich.txt
+git commit -a -m "Add salami_sandwich.txt"
+git status # 4. What will this display?
+```
+
+::: hint
+
+The "-a" flag in the `git commit` command automatically stages files that have been modified and deleted, without having to explicitly run `git add` on them.
+
+:::
+
+:::::::::::::::: solution
+
+1. We will see a message that ham_sandwich.txt is an untracked file in our working directory, but that there is nothing currently added to the staging area.
+2. We will see a message that ham_sandwich.txt is in the staging area and ready to be committed.
+3. We failed to "add" the changes made to ham_sandwich.txt to the staging area before committing, but this will not error. Instead we will see a message similar to "git status", indicating that there are changes in the working directory that have not been staged for commit.
+4. We will see that the working area is clean, and that there is nothing to commit, because the changes made to ham_sandwich.txt were automatically staged and committed with the "-a" flag.
+5. We will see a message that salami_sandwich.txt is an untracked file in our working directory, but that there is nothing currently added to the staging area. The "-a" flag does not automatically stage new files, only modified and deleted files.
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge: Practice the Git Workflow
+
+Let's take a moment to practice the git workflow we just reviewed. Add a new file to the repository called `salsa.md` and add the following content to it:
+
+```markdown
+# Salsa
+## Ingredients
+## Instructions
+```
+
+Add this file to the staging area and commit it to the repository with the message "Add salsa recipe".
+Then, use `git log` to view the commit history and verify that your new commit is present, making a note of the commit hash.
+Finally, use `git show <commit-hash>` to view the details of your new commit.
+
+:::::::::::::::: solution
+
+```bash
+nano salsa.md # Or however you prefer to create & edit a new file
+git add salsa.md
+git commit -m "Add salsa recipe"
+git log
+git show <commit-hash>
+```
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge: Tracing the Changes to A File
+
+We've used `git log` to view the commit history of the repository, but what if we want to see the history of a specific file?
+
+Try the following command to see all of the commits that have affected the `guacamole.md` file:
+
+```bash
+git log -- guacamole.md
+```
+
+Pick two commit hashes from the output. How can we view all changes made to the `guacamole.md` file between those two commits?
+
+::: hint
+
+you can use the `git diff` command to view the changes made to a file between two commits.
+This might give us changes to other files, however.
+Use `git diff --help` to view the documentation for the command and see how to limit the output to a specific file.
+
+:::
+
+::: hint
+
+The `git diff` command can be used like this: `git diff [<options>] <commit>..<commit> [--] [<path>...]`
+
+:::
+
+:::::::::::::::: solution
+
+```bash
+git log -- guacamole.md
+git diff 43507b2..71aa070 -- guacamole.md # Or whatever commit hashes you picked from the output of the previous command.
+```
+
+output:
+
+```diff
+diff --git a/guacamole.md b/guacamole.md
+index 76a6108..7c20bdd 100644
+--- a/guacamole.md
++++ b/guacamole.md
+@@ -1,6 +1,6 @@
+ # Guacamole
+ ## Ingredients
+-* avocado (1.35)
+-* lime (0.64)
+-* salt (2)
++* avocado
++* lime
++* salt
+ ## Instructions
+```
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
