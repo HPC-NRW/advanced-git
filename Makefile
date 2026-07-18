@@ -1,5 +1,5 @@
 # variables
-WORKING_DIR    ?= files
+WORKING_DIR    ?= ../
 REPO_NAME      ?= recipes
 REMOTE_REPO    ?=
 UPSTREAM_REPO  ?=
