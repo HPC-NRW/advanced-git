@@ -15,18 +15,14 @@ reset:
 	rm -rf $(REPO_PATH)
 
 init-repo:
-	mkdir -p $(REPO_PATH)
-	cd $(REPO_PATH)
-	git init -b main
 	git config --local user.name "Example User"
 	git config --local user.email "example@email.com"
 
 # --- Basic Git Workshop ---
 git-basic-03-create: init-repo
+	mkdir -p $(REPO_PATH)
 	cd $(REPO_PATH)
-	mkdir recipes
-	cd recipes
-	git init
+	git init -b main
 
 git-basic-04-tracking-changes: git-basic-03-create
 	cd $(REPO_PATH)
@@ -158,7 +154,7 @@ git-adv-03-remote-challenge-01: git-adv-03-remote
 	printf '%s\n' "# Bean Dip" "## Ingredients" "- beans" "## Instructions" > bean-dip.md
 	git add bean-dip.md
 	git commit -m "Add bean dip recipe."
-	git push --set-upstream origin bean-dip
+	git switch main
 
 # 03-remote exercise: simulate someone editing README.md directly on the remote
 git-adv-03-remote-challenge-02: git-adv-03-remote-challenge-01
@@ -173,16 +169,20 @@ git-adv-03-remote-challenge-02: git-adv-03-remote-challenge-01
 # git reset --hard and the detached HEAD demo reuse the same commit and don't affect the main branch, so the next episode still starts from a clean state
 git-adv-04-undo: git-adv-03-remote-challenge-02
 	cd $(REPO_PATH)
-	git switch bean-dip
-	printf '%s\n' "- Purchase the bean dip." >> bean-dip.md
-	git add bean-dip.md
-	git commit -m "Add bean dip recipe"
+	printf '%s\n' "# Tomato Soup" "## Ingredients" "## Instructions" > tomato-soup.md
+	git add tomato-soup.md
+	git commit -m "Add tomato soup recipe"
+	printf '%s\n' "# Pea Soup" "## Ingredients" "- watermelon" "## Instructions" > pea-soup.md
+	git add pea-soup.md
+	git commit -m "Add ingredients to pea soup recipe"
+	git revert --no-edit HEAD
+	git reset HEAD~2 --hard
 
 # 04-undo exercise: soup-recipes branch - revert, reset --hard , reset (leave staged), recommit
 git-adv-04-undo-exercise-01: git-adv-04-undo
 	cd $(REPO_PATH)
 	git branch git-adv-04-undo
-	git switch bean-dip
+	git switch main
 	git checkout -b soup-recipes
 	mkdir -p soups
 	printf '%s\n' "# Tomato Soup" > soups/tomato-soup.md
