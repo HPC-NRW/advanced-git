@@ -494,7 +494,7 @@ git push --set-upstream origin bean-dip
 We've heard that it's a great idea to put information about our repository in the README file.
 Using the Web IDE of your remote repository, create a new file called "README.md" and add content like the following:
 
-```
+```markdown
 # Recipes Repository
 
 This repository contains a collection of recipes that I have collected over the years.
