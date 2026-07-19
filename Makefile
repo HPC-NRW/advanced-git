@@ -143,8 +143,10 @@ git-adv-03-remote: git-adv-02-branching
 	cd $(REPO_PATH)
 	git branch git-adv-03-remote
 	git switch main
-	git remote add origin "$(REMOTE_REPO)"
-	git push --set-upstream origin main
+	# Add a new line to the guacamole recipe
+	printf '%s\n' "* squeeze the juice of the lime into the bowl." >> guacamole.md
+	git add guacamole.md
+	git commit -m "Extend guacamole recipe to include lime juice."
 
 # 03-remote challenge
 # 04-undo assumes this challenge already exists
@@ -162,21 +164,15 @@ git-adv-03-remote-challenge-01: git-adv-03-remote
 git-adv-03-remote-challenge-02: git-adv-03-remote-challenge-01
 	cd $(REPO_PATH)
 	git switch main
-	rm -rf ../remote-edit-clone
-	git clone -q "$(REMOTE_REPO)" ../remote-edit-clone
-	cd ../remote-edit-clone
-	printf '%s\n' "# Workshop Repo" > README.md
+	printf '%s\n' "# Recipes Repository" "" "This repository contains a collection of recipes that I have collected over the years." "We are using git to manage and collaborate on these recipes."> README.md
 	git add README.md
-	git commit -q -m "Change title in README.md"
-	git push -q
-	cd ../$(REPO_NAME)
+	git commit -m "Add initial README with repository information"
 
 # 04-undo: a commit worth reverting/resetting live
 # TODO (?): the rest of episode 04 (git reset --hard, detached HEAD, alt-history) is not scripted here
 # git reset --hard and the detached HEAD demo reuse the same commit and don't affect the main branch, so the next episode still starts from a clean state
 git-adv-04-undo: git-adv-03-remote-challenge-02
 	cd $(REPO_PATH)
-	git branch git-adv-04-undo
 	git switch bean-dip
 	printf '%s\n' "- Purchase the bean dip." >> bean-dip.md
 	git add bean-dip.md
@@ -185,6 +181,7 @@ git-adv-04-undo: git-adv-03-remote-challenge-02
 # 04-undo exercise: soup-recipes branch - revert, reset --hard , reset (leave staged), recommit
 git-adv-04-undo-exercise-01: git-adv-04-undo
 	cd $(REPO_PATH)
+	git branch git-adv-04-undo
 	git switch bean-dip
 	git checkout -b soup-recipes
 	mkdir -p soups
